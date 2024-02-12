@@ -2,6 +2,9 @@
 
 Welcome to the README for the collection of digital electronics projects developed in MPLAB Assembly language. This document provides an overview of various exercises and a project that I've completed, focusing on the principles of digital electronics, microcontroller programming, and system integration using assembly language.
 
+
+![Rotary LED Display System](im1.png)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -23,8 +26,8 @@ Welcome to the README for the collection of digital electronics projects develop
    - [Example UART Module Configuration in PIC18F25K40](#example-uart-module-configuration-in-pic18f25k40)
    - [Addressing RGB LEDs](#addressing-rgb-leds)
    - [Controlling the Motor](#controlling-the-motor)
-![Rotary LED Display System](im1.png)
 ---
+
 
 ### Introduction
 
