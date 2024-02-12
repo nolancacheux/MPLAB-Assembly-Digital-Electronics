@@ -10,8 +10,7 @@ Welcome to the README for the collection of digital electronics projects develop
    - [Exercises on Simulator](#exercises-on-simulator)
    - [Exercises on Prototyping Board](#exercises-on-prototyping-board)
 4. [Rotary LED Display Project](#rotary-led-display-project)
-    ![Rotary LED Display System](im2.png)
-    ![Rotary LED Display System](im3.png)
+    ![Rotary LED Display System](im1.png)
    - [Project Objectives](#project-objectives)
    - [Project Description](#project-description)
    - [Requirements Specification](#requirements-specification)
@@ -61,7 +60,8 @@ The projects utilize a microcontroller from MICROCHIP, specifically the PIC18F25
 
 Develop a command circuit for a rotary LED display, showcasing digital design skills from signal acquisition to actuator control based on processed information. The project emphasizes integrating a microcontroller, RGB LEDs, a motor, input devices, and potentially a Bluetooth module for wireless interaction.
 
-![Rotary LED Display System](im1.png)
+![Rotary LED Display System](im2.png)
+![Rotary LED Display System](im3.png)
 
 #### Requirements Specification
 
