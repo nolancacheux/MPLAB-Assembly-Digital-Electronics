@@ -10,7 +10,6 @@ Welcome to the README for the collection of digital electronics projects develop
    - [Exercises on Simulator](#exercises-on-simulator)
    - [Exercises on Prototyping Board](#exercises-on-prototyping-board)
 4. [Rotary LED Display Project](#rotary-led-display-project)
-    ![Rotary LED Display System](im1.png)
    - [Project Objectives](#project-objectives)
    - [Project Description](#project-description)
    - [Requirements Specification](#requirements-specification)
@@ -24,7 +23,7 @@ Welcome to the README for the collection of digital electronics projects develop
    - [Example UART Module Configuration in PIC18F25K40](#example-uart-module-configuration-in-pic18f25k40)
    - [Addressing RGB LEDs](#addressing-rgb-leds)
    - [Controlling the Motor](#controlling-the-motor)
-
+![Rotary LED Display System](im1.png)
 ---
 
 ### Introduction
