@@ -1,0 +1,30 @@
+Exercice 4 - Appel d?un Sous-programme
+Objectif
+L'exercice 4 introduit la notion d'appel à des sous-programmes en assembleur. Un sous-programme est une routine ou un ensemble d'instructions regroupées qui peuvent être réutilisées plusieurs fois dans le programme principal. Cela améliore la modularité et la lisibilité du code.
+
+Fonctionnement
+Dans cet exercice, un sous-programme calcul_somme est utilisé pour calculer la somme des premiers entiers. Ce sous-programme est appelé depuis le programme principal avec une valeur initiale, exécute une série d'instructions pour calculer la somme, puis retourne le résultat au programme principal.
+
+Exercice 5 - Utilisation d?un Tableau en Mémoire RAM
+Objectif
+Cet exercice montre comment organiser et manipuler des données sous forme de tableau en mémoire RAM. L'exercice consiste à trouver le minimum et le maximum dans un ensemble de données stockées dans un tableau en RAM.
+
+Fonctionnement
+Le programme initialise d'abord un tableau en mémoire RAM avec des valeurs spécifiques. Ensuite, il parcourt ce tableau pour trouver les valeurs minimale et maximale. Cette méthode est courante pour manipuler des groupes de données en mémoire.
+
+Exercice 6 - Utilisation d?un Tableau en Mémoire Flash avec Computed GOTO
+Objectif
+Cet exercice illustre comment stocker et accéder à des données constantes dans la mémoire Flash, qui est non-volatile, contrairement à la RAM. La méthode utilisée est le Computed GOTO, qui est une manière d'accéder à des données stockées sous forme de table de look-up.
+
+Fonctionnement
+Les données sont stockées dans la mémoire Flash à l'aide d'instructions RETLW. Le programme utilise un indice pour sauter (ou "goto") à l'adresse correspondante dans la table de look-up, récupère la donnée, puis met à jour les valeurs minimale et maximale. Cette méthode est efficace pour stocker des constantes et des tables de données fixes.
+
+Exercice 7 - Utilisation d?un Tableau en Mémoire Flash avec Table Read
+Objectif
+L'exercice 7 montre une autre méthode pour lire des données stockées en mémoire Flash, appelée Table Read. Cette méthode est plus directe et efficace que le Computed GOTO, en particulier pour accéder à de grands ensembles de données.
+
+Fonctionnement
+Les données sont stockées en mémoire Flash, et les registres TBLPTR (Table Pointer) et TABLAT (Table Latch) sont utilisés pour accéder à ces données. Le programme ajuste TBLPTR pour pointer vers l'élément souhaité dans la mémoire Flash, lit la donnée dans TABLAT via une instruction TBLRD, puis compare et met à jour les valeurs minimale et maximale.
+
+Conclusion
+Chaque exercice construit sur les concepts précédents, passant de la manipulation de variables simples en mémoire RAM à la gestion plus complexe de tableaux et de données en mémoire Flash. Ces exercices illustrent des techniques fondamentales en programmation assembleur pour microcontrôleurs, telles que la modularité du code (sous-programmes), la manipulation de données en mémoire (RAM et Flash), et l'utilisation efficace de la mémoire programme pour stocker des constantes et des tables de look-up.

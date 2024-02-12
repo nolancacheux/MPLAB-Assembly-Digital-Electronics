@@ -1,0 +1,3324 @@
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;*******************************************************************************
+                      00002 ;                                                                              *
+                      00003 ;    Microchip licenses this software to you solely for use with Microchip     *
+                      00004 ;    products. The software is owned by Microchip and/or its licensors, and is *
+                      00005 ;    protected under applicable copyright laws.  All rights reserved.          *
+                      00006 ;                                                                              *
+                      00007 ;    This software and any accompanying information is for suggestion only.    *
+                      00008 ;    It shall not be deemed to modify Microchip?s standard warranty for its    *
+                      00009 ;    products.  It is your responsibility to ensure that this software meets   *
+                      00010 ;    your requirements.                                                        *
+                      00011 ;                                                                              *
+                      00012 ;    SOFTWARE IS PROVIDED "AS IS".  MICROCHIP AND ITS LICENSORS EXPRESSLY      *
+                      00013 ;    DISCLAIM ANY WARRANTY OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING  *
+                      00014 ;    BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS    *
+                      00015 ;    FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL          *
+                      00016 ;    MICROCHIP OR ITS LICENSORS BE LIABLE FOR ANY INCIDENTAL, SPECIAL,         *
+                      00017 ;    INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, HARM TO     *
+                      00018 ;    YOUR EQUIPMENT, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR    *
+                      00019 ;    SERVICES, ANY CLAIMS BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY   *
+                      00020 ;    DEFENSE THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER      *
+                      00021 ;    SIMILAR COSTS.                                                            *
+                      00022 ;                                                                              *
+                      00023 ;    To the fullest extend allowed by law, Microchip and its licensors         *
+                      00024 ;    liability shall not exceed the amount of fee, if any, that you have paid  *
+                      00025 ;    directly to Microchip to use this software.                               *
+                      00026 ;                                                                              *
+                      00027 ;    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF    *
+                      00028 ;    THESE TERMS.                                                              *
+                      00029 ;                                                                              *
+                      00030 ;*******************************************************************************
+                      00031 ;                                                                              *
+                      00032 ;    Filename:                                                                 *
+                      00033 ;    Date:                                                                     *
+                      00034 ;    File Version:                                                             *
+                      00035 ;    Author:                                                                   *
+                      00036 ;    Company:                                                                  *
+                      00037 ;    Description:                                                              *
+                      00038 ;                                                                              *
+                      00039 ;*******************************************************************************
+                      00040 ;                                                                              *
+                      00041 ;    Notes: In the MPLAB X Help, refer to the MPASM Assembler documentation    *
+                      00042 ;    for information on assembly instructions.                                 *
+                      00043 ;                                                                              *
+                      00044 ;*******************************************************************************
+                      00045 ;                                                                              *
+                      00046 ;    Known Issues: This template is designed for relocatable code.  As such,   *
+                      00047 ;    build errors such as "Directive only allowed when generating an object    *
+                      00048 ;    file" will result when the 'Build in Absolute Mode' checkbox is selected  *
+                      00049 ;    in the project properties.  Designing code in absolute mode is            *
+                      00050 ;    antiquated - use relocatable mode.                                        *
+                      00051 ;                                                                              *
+                      00052 ;*******************************************************************************
+                      00053 ;                                                                              *
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00054 ;    Revision History:                                                         *
+                      00055 ;                                                                              *
+                      00056 ;*******************************************************************************
+                      00057 
+                      00058 
+                      00059 
+                      00060 ;*******************************************************************************
+                      00061 ; Processor Inclusion
+                      00062 ;
+                      00063 ; TODO Step #1 Open the task list under Window > Tasks.  Include your
+                      00064 ; device .inc file - e.g. #include <device_name>.inc.  Available
+                      00065 ; include files are in C:\Program Files\Microchip\MPLABX\mpasmx
+                      00066 ; assuming the default installation path for MPLAB X.  You may manually find
+                      00067 ; the appropriate include file for your device here and include it, or
+                      00068 ; simply copy the include generated by the configuration bits
+                      00069 ; generator (see Step #2).
+                      00070 ;
+                      00071 ;*******************************************************************************
+                      00072 
+                      00073 ; TODO INSERT INCLUDE CODE HERE
+                      00074 
+                      00075 ;*******************************************************************************
+                      00076 ;
+                      00077 ; TODO Step #2 - Configuration Word Setup
+                      00078 ;
+                      00079 ; The 'CONFIG' directive is used to embed the configuration word within the
+                      00080 ; .asm file. MPLAB X requires users to embed their configuration words
+                      00081 ; into source code.  See the device datasheet for additional information
+                      00082 ; on configuration word settings.  Device configuration bits descriptions
+                      00083 ; are in C:\Program Files\Microchip\MPLABX\mpasmx\P<device_name>.inc
+                      00084 ; (may change depending on your MPLAB X installation directory).
+                      00085 ;
+                      00086 ; MPLAB X has a feature which generates configuration bits source code.  Go to
+                      00087 ; Window > PIC Memory Views > Configuration Bits.  Configure each field as
+                      00088 ; needed and select 'Generate Source Code to Output'.  The resulting code which
+                      00089 ; appears in the 'Output Window' > 'Config Bits Source' tab may be copied
+                      00090 ; below.
+                      00091 ;
+                      00092 ;*******************************************************************************
+                      00093 
+                      00094 ; TODO INSERT CONFIG HERE
+                      00095 
+                      00096 ; PIC18F25K40 Configuration Bit Settings
+                      00097 
+                      00098 ; Assembly source line config statements
+                      00099 
+                      00100 #include "p18f25k40.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 06 2020
+                      00005 ;  MPASM PIC18F25K40 processor include
+                      00006 ; 
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00007 ;  (c) Copyright 1999-2020 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      04494         LIST
+                      00101 
+                      00102 ; CONFIG1L
+                      00103   CONFIG  FEXTOSC = OFF         ; External Oscillator mode Selection bits (EC (external clock) above 8 M
+                            Hz; PFM set to high power)
+                      00104   CONFIG  RSTOSC = HFINTOSC_64MHZ; Power-up default value for COSC bits (HFINTOSC with HFFRQ = 64 MHz an
+                            d CDIV = 1:1)
+                      00105 
+                      00106 ; CONFIG1H
+                      00107   CONFIG  CLKOUTEN = OFF        ; Clock Out Enable bit (CLKOUT function is disabled)
+                      00108   CONFIG  CSWEN = ON            ; Clock Switch Enable bit (Writing to NOSC and NDIV is allowed)
+                      00109   CONFIG  FCMEN = ON            ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor enabled)
+                      00110 
+                      00111 ; CONFIG2L
+                      00112   CONFIG  MCLRE = EXTMCLR       ; Master Clear Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3
+                             pin function is MCLR )
+                      00113   CONFIG  PWRTE = OFF           ; Power-up Timer Enable bit (Power up timer disabled)
+                      00114   CONFIG  LPBOREN = OFF         ; Low-power BOR enable bit (ULPBOR disabled)
+                      00115   CONFIG  BOREN = SBORDIS       ; Brown-out Reset Enable bits (Brown-out Reset enabled , SBOREN bit is i
+                            gnored)
+                      00116 
+                      00117 ; CONFIG2H
+                      00118   CONFIG  BORV = VBOR_2P45      ; Brown Out Reset Voltage selection bits (Brown-out Reset Voltage (VBOR)
+                             set to 2.45V)
+                      00119   CONFIG  ZCD = OFF             ; ZCD Disable bit (ZCD disabled. ZCD can be enabled by setting the ZCDSE
+                            N bit of ZCDCON)
+                      00120   CONFIG  PPS1WAY = ON          ; PPSLOCK bit One-Way Set Enable bit (PPSLOCK bit can be cleared and set
+                             only once; PPS registers remain locked after one clear/set cycle)
+                      00121   CONFIG  STVREN = ON           ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause
+                             Reset)
+                      00122   CONFIG  DEBUG = OFF           ; Debugger Enable bit (Background debugger disabled)
+                      00123   CONFIG  XINST = OFF           ; Extended Instruction Set Enable bit (Extended Instruction Set and Inde
+                            xed Addressing Mode disabled)
+                      00124 
+                      00125 ; CONFIG3L
+                      00126   CONFIG  WDTCPS = WDTCPS_31    ; WDT Period Select bits (Divider ratio 1:65536; software control of WDT
+                            PS)
+                      00127   CONFIG  WDTE = OFF             ; WDT operating mode (WDT enabled regardless of sleep)
+                      00128 
+                      00129 ; CONFIG3H
+                      00130   CONFIG  WDTCWS = WDTCWS_7     ; WDT Window Select bits (window always open (100%); software control; k
+                            eyed access not required)
+                      00131   CONFIG  WDTCCS = SC           ; WDT input clock selector (Software Control)
+                      00132 
+                      00133 ; CONFIG4L
+                      00134   CONFIG  WRT0 = OFF            ; Write Protection Block 0 (Block 0 (000800-001FFFh) not write-protected
+                            )
+                      00135   CONFIG  WRT1 = OFF            ; Write Protection Block 1 (Block 1 (002000-003FFFh) not write-protected
+                            )
+                      00136   CONFIG  WRT2 = OFF            ; Write Protection Block 2 (Block 2 (004000-005FFFh) not write-protected
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                            )
+                      00137   CONFIG  WRT3 = OFF            ; Write Protection Block 3 (Block 3 (006000-007FFFh) not write-protected
+                            )
+                      00138 
+                      00139 ; CONFIG4H
+                      00140   CONFIG  WRTC = OFF            ; Configuration Register Write Protection bit (Configuration registers (
+                            300000-30000Bh) not write-protected)
+                      00141   CONFIG  WRTB = OFF            ; Boot Block Write Protection bit (Boot Block (000000-0007FFh) not write
+                            -protected)
+                      00142   CONFIG  WRTD = OFF            ; Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+                      00143   CONFIG  SCANE = ON            ; Scanner Enable bit (Scanner module is available for use, SCANMD bit ca
+                            n control the module)
+                      00144   CONFIG  LVP = OFF              ; Low Voltage Programming Enable bit (Low voltage programming enabled. 
+                            MCLR/VPP pin function is MCLR. MCLRE configuration bit is ignored)
+                      00145 
+                      00146 ; CONFIG5L
+                      00147   CONFIG  CP = OFF              ; UserNVM Program Memory Code Protection bit (UserNVM code protection di
+                            sabled)
+                      00148   CONFIG  CPD = OFF             ; DataNVM Memory Code Protection bit (DataNVM code protection disabled)
+                      00149 
+                      00150 ; CONFIG5H
+                      00151 
+                      00152 ; CONFIG6L
+                      00153   CONFIG  EBTR0 = OFF           ; Table Read Protection Block 0 (Block 0 (000800-001FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00154   CONFIG  EBTR1 = OFF           ; Table Read Protection Block 1 (Block 1 (002000-003FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00155   CONFIG  EBTR2 = OFF           ; Table Read Protection Block 2 (Block 2 (004000-005FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00156   CONFIG  EBTR3 = OFF           ; Table Read Protection Block 3 (Block 3 (006000-007FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00157 
+                      00158 ; CONFIG6H
+                      00159   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not 
+                            protected from table reads executed in other blocks)
+                      00160 
+                      00161 
+                      00162 
+                      00163 
+                      00164 ;*******************************************************************************
+                      00165 ;
+                      00166 ; TODO Step #3 - Variable Definitions
+                      00167 ;
+                      00168 ; Refer to datasheet for available data memory (RAM) organization assuming
+                      00169 ; relocatible code organization (which is an option in project
+                      00170 ; properties > mpasm (Global Options)).  Absolute mode generally should
+                      00171 ; be used sparingly.
+                      00172 ;
+                      00173 ; Example of using GPR Uninitialized Data
+                      00174 ;
+                      00175 ;   GPR_VAR        UDATA
+                      00176 ;   MYVAR1         RES        1      ; User variable linker places
+                      00177 ;   MYVAR2         RES        1      ; User variable linker places
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00178 ;   MYVAR3         RES        1      ; User variable linker places
+                      00179 ;
+                      00180 ;   ; Example of using Access Uninitialized Data Section (when available)
+                      00181 ;   ; The variables for the context saving in the device datasheet may need
+                      00182 ;   ; memory reserved here.
+                      00183 ;   INT_VAR        UDATA_ACS
+                      00184 ;   W_TEMP         RES        1      ; w register for context saving (ACCESS)
+                      00185 ;   STATUS_TEMP    RES        1      ; status used for context saving
+                      00186 ;   BSR_TEMP       RES        1      ; bank select used for ISR context saving
+                      00187 ;
+                      00188 ;*******************************************************************************
+                      00189 
+                      00190 ; TODO PLACE VARIABLE DEFINITIONS GO HERE
+  00000000            00191 LED_PIN equ RB0 ; Définir la broche de la LED
+                      00192 
+                      00193 INT_VAR UDATA_ACS
+000000                00194 prog RES 1
+000001                00195 isbtn1pressed RES 1
+000002                00196 isbtn0pressed RES 1
+000003                00197 un RES 1
+000004                00198 deux RES 1
+000005                00199 trois RES 1
+000006                00200 quatre RES 1
+000007                00201 cinq RES 1
+000008                00202 six RES 1
+000009                00203 sept RES 1
+00000A                00204 huit RES 1
+00000B                00205 NB_LED RES 1
+00000C                00206 RESULTHI RES 1
+00000D                00207 RESULTLO RES 1
+00000E                00208 incre RES 1
+00000F                00209 luminosite RES 1
+                      00210 
+                      00211 ;*******************************************************************************
+                      00212 ; Reset Vector
+                      00213 ;*******************************************************************************
+                      00214 
+                      00215 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00216     GOTO    BEGIN                   ; go to beginning of program
+                      00217 
+                      00218 ;*******************************************************************************
+                      00219 ; TODO Step #4 - Interrupt Service Routines
+                      00220 ;
+                      00221 ; There are a few different ways to structure interrupt routines in the 8
+                      00222 ; bit device families.  On PIC18's the high priority and low priority
+                      00223 ; interrupts are located at 0x0008 and 0x0018, respectively.  On PIC16's and
+                      00224 ; lower the interrupt is at 0x0004.  Between device families there is subtle
+                      00225 ; variation in the both the hardware supporting the ISR (for restoring
+                      00226 ; interrupt context) as well as the software used to restore the context
+                      00227 ; (without corrupting the STATUS bits).
+                      00228 ;
+                      00229 ; General formats are shown below in relocatible format.
+                      00230 ;
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00231 ;------------------------------PIC16's and below--------------------------------
+                      00232 ;
+                      00233 ; ISR       CODE    0x0004           ; interrupt vector location
+                      00234 ;
+                      00235 ;     <Search the device datasheet for 'context' and copy interrupt
+                      00236 ;     context saving code here.  Older devices need context saving code,
+                      00237 ;     but newer devices like the 16F#### don't need context saving code.>
+                      00238 ;
+                      00239 ;     RETFIE
+                      00240 ;
+                      00241 ;----------------------------------PIC18's--------------------------------------
+                      00242 ;
+                      00243 ; ISRHV     CODE    0x0008
+                      00244 ;     GOTO    HIGH_ISR
+                      00245 ; ISRLV     CODE    0x0018
+                      00246 ;     GOTO    LOW_ISR
+                      00247 ;
+                      00248 ; ISRH      CODE                     ; let linker place high ISR routine
+                      00249 ; HIGH_ISR
+                      00250 ;     <Insert High Priority ISR Here - no SW context saving>
+                      00251 ;     RETFIE  FAST
+                      00252 ;
+                      00253 ; ISRL      CODE                     ; let linker place low ISR routine
+                      00254 ; LOW_ISR
+                      00255 ;       <Search the device datasheet for 'context' and copy interrupt
+                      00256 ;       context saving code here>
+                      00257 ;     RETFIE
+                      00258 ;
+                      00259 ;*******************************************************************************
+                      00260 
+                      00261 ; TODO INSERT ISR HERE
+                      00262 
+                      00263 ;*******************************************************************************
+                      00264 ; MAIN PROGRAM
+                      00265 ;*******************************************************************************
+                      00266     
+                      00267 MAIN_PROG CODE                      ; let linker place main program
+                      00268   
+000000                00269 BEGIN
+                      00270     
+                      00271 ; On met la fréquence à 16MHz
+000000 0E60           00272     MOVLW b'01100000'
+000002 6FD8           00273     MOVWF OSCCON1
+000004 6FD9           00274     MOVWF OSCCON2
+                      00275     
+                      00276 ; Configuration des ports en sortie
+000006 0E07           00277     movlw 0x07
+000008 6E89           00278     movwf TRISB
+00000A 0E30           00279     movlw 0x30
+00000C 6E88           00280     movwf TRISA
+00000E 010F           00281     BANKSEL ANSELB
+000010 9519           00282     BCF ANSELB,2
+000012 9319           00283     BCF ANSELB,1
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00284 
+                      00285     
+000014 010E           00286     MOVLB 0x0E  
+000016 968A           00287     BCF TRISC, 3
+                      00288 
+                      00289 ; Configuration des bits de configuration du microcontrôleur
+  00000000            00290 LED_PIN equ LATC0 ; Définir la broche de la LED sur LATC0
+                      00291 
+                      00292 ;------------------------------------------------------------------------------
+                      00293 ;                       Configuration de l'ADC                                |
+                      00294 ;------------------------------------------------------------------------------
+                      00295 
+                      00296 ; début de la configuration de l'ADC
+000018 010F           00297     MOVLB 0x0F; ;sélection de la banque d?adresse, datasheet ADPCH : F5Fh, donc F adresse de la bank
+00001A 0E05           00298     MOVLW b'00000101' ; schéma ADC : ANA5 => data sheet ANA 5 = 000101 (p447)
+00001C 6F5F           00299     MOVWF ADPCH, 1 ; sélection du channel ADC
+00001E 0E00           00300     MOVLW b'00000000' ; Voir cours
+000020 6F58           00301     MOVWF ADREF, 1 ; configuration des références analogiques
+000022 0E0F           00302     MOVLW b'00001111' ; bit 7-6 Unimplemented: Read as ?0? bit 5-0 001111 = 1µs < FOSC/32 < 6µs
+000024 6F57           00303     MOVWF ADCLK, 1 ; configuration de l?horloge de l?ADC : 1µs ? TAD ? 6µs
+000026 0EFF           00304     MOVLW b'11111111'
+000028 6F5E           00305     MOVWF ADPRE, 1 ; configuration du temps de précharge (max. par défaut)
+00002A 6F5C           00306     MOVWF ADACQ, 1 ; configuration du temps d?acquisition (max. par défaut)
+00002C 6B5D           00307     CLRF ADCAP, 1 ; pas de capacité additionnelle
+00002E 0E00           00308     MOVLW b'00000000'
+000030 6F56           00309     MOVWF ADACT, 1 ; pas d?activation auto. de l?ADC sur événement
+000032 0E00           00310     MOVLW b'00000000'
+000034 6F5B           00311     MOVWF ADCON3, 1 ; pas d?interruption sur l?ADC
+000036 0E00           00312     MOVLW b'00000000'
+000038 6F5A           00313     MOVWF ADCON2, 1 ; configuration de l?ADC en mode basique
+00003A 0E00           00314     MOVLW b'00000000'
+00003C 6F59           00315     MOVWF ADCON1, 1 ; configuration des options de précharge
+00003E 0E84           00316     MOVLW b'10000100' ; ADC enable, format right
+000040 6E60           00317     MOVWF ADCON0 ; configuration générale et format du résultat
+                      00318 ; fin de la configuration
+                      00319 
+                      00320     
+                      00321 ;------------------------------------------------------------------------------
+                      00322 ;                       Configuration de l'PWM                                |
+                      00323 ;------------------------------------------------------------------------------
+                      00324 
+                      00325 ; début de la configuration
+000042 0E04           00326     MOVLW b'00000100'
+000044 6EAE           00327     MOVWF CCPTMRS ; associe le module CCP2 avec le timer 2
+000046 010E           00328     MOVLB 0x0E ; data sheet bank d'adresse E 
+000048 0E06           00329     MOVLW 0x06 ; data sheet p213 CCP2 = 6
+00004A 6FF8           00330     MOVWF RC1PPS, 1 ; associe le pin RC1 avec le module CCP2 (voir p.213)
+00004C 828A           00331     BSF TRISC, 1 ; désactivation de la sortie PWM pour configuration
+00004E 0EC8           00332     MOVLW d'200' ; 64 000 000 / ( 10 000 x 4 x 8) - 1 = 199, on arrondis à 200
+                      00333     ; 64 000 000 = FOSC, 10 000 période PWM, 8 = prescaler
+000050 6EBC           00334     MOVWF T2PR ; fixe la période de PWM (voir formule p.271)
+000052 0E8C           00335     MOVLW b'10001100'; CPP = enable, right format, PWM operate
+000054 6EA8           00336     MOVWF CCP2CON ; configuration du module CCP2 et format des données
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000056 0E01           00337     MOVLW b'00000001'
+000058 6EA7           00338     MOVWF CCPR2H
+00005A 0E80           00339     MOVLW b'10000000'
+00005C 6EA6           00340     MOVWF CCPR2L ; fixe le rapport cyclique du signal (voir formule p.272)
+                      00341     ; 201 x 4 x 0,48 = 384
+00005E 0E01           00342     MOVLW b'00000001' 
+000060 6EBF           00343     MOVWF T2CLKCON ; configuration de l?horloge du timer 2 = Fosc/4
+000062 0EB0           00344     MOVLW b'10110000'; Timer = On , prescaler  = 8, pas de postscaler
+000064 6EBD           00345     MOVWF T2CON ; choix des options du timer 2 (voir p.256)
+000066 928A           00346     BCF TRISC, 1 ; activation de la sortie PWM
+                      00347 ; fin de la configuration
+                      00348     
+                      00349     ; CONVERSION ADC
+000068 0E80           00350     MOVLW b'10000000' ;Select channel AN0
+00006A 6E60           00351     MOVWF ADCON0 ;Turn ADC On
+                      00352 
+00006C 8060           00353     BSF ADCON0,ADGO ;Start conversion
+00006E B060           00354     BTFSC ADCON0,ADGO ;Is conversion done?
+000070 EF?? F???      00355     GOTO $-2 ;No, test again
+000074 010F           00356     BANKSEL ADRESH ;
+000076 5064           00357     MOVF ADRESH,W ;Read upper 2 bits
+000078 6E??           00358     MOVWF RESULTHI ;store in GPR space
+00007A 010F           00359     BANKSEL ADRESL ;
+00007C 5063           00360     MOVF ADRESL,W ;Read lower 8 bits
+00007E 6E??           00361     MOVWF RESULTLO ;Store in GPR space
+                      00362 ; FIN CONVERSION ADC
+                      00363     
+000080 8089           00364     BSF TRISB, 0
+000082 9119           00365     BCF ANSELB, 0
+000084 0E00           00366     MOVLW b'00000000'
+000086 6E88           00367     MOVWF TRISA
+000088                00368 boucle
+000088 B08E           00369     BTFSC PORTB, 0
+00008A EC?? F???      00370     CALL allumerLed
+00008E A08E           00371     BTFSS PORTB, 0
+000090 EC?? F???      00372     CALL eteindreLed
+000094 EF?? F???      00373     goto boucle
+                      00374     
+000098                00375 allumerLed
+000098 0E01           00376     MOVLW b'0001'
+00009A 6E83           00377     MOVWF LATA
+00009C 0012           00378     RETURN
+                      00379     
+00009E                00380 eteindreLed
+00009E 0E00           00381     MOVLW b'0000'
+0000A0 6E83           00382     MOVWF LATA
+0000A2 0012           00383     RETURN
+                      00384     
+                      00385     
+                      00386     END
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+A                                 00000000
+ABDEN                             00000000
+ABDOVF                            00000007
+ACC0                              00000000
+ACC1                              00000001
+ACC10                             00000002
+ACC11                             00000003
+ACC12                             00000004
+ACC13                             00000005
+ACC14                             00000006
+ACC15                             00000007
+ACC2                              00000002
+ACC3                              00000003
+ACC4                              00000004
+ACC5                              00000005
+ACC6                              00000006
+ACC7                              00000007
+ACC8                              00000000
+ACC9                              00000001
+ACCESS                            00000000
+ACCM                              00000004
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACKTIM                            00000007
+ADACC                             00000F70
+ADACC0                            00000000
+ADACC1                            00000001
+ADACC10                           00000002
+ADACC11                           00000003
+ADACC12                           00000004
+ADACC13                           00000005
+ADACC14                           00000006
+ADACC15                           00000007
+ADACC2                            00000002
+ADACC3                            00000003
+ADACC4                            00000004
+ADACC5                            00000005
+ADACC6                            00000006
+ADACC7                            00000007
+ADACC8                            00000000
+ADACC9                            00000001
+ADACCH                            00000F71
+ADACCL                            00000F70
+ADACLR                            00000003
+ADACQ                             00000F5C
+ADACQ0                            00000000
+ADACQ1                            00000001
+ADACQ2                            00000002
+ADACQ3                            00000003
+ADACQ4                            00000004
+ADACQ5                            00000005
+ADACQ6                            00000006
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADACQ7                            00000007
+ADACT                             00000F56
+ADACT0                            00000000
+ADACT1                            00000001
+ADACT2                            00000002
+ADACT3                            00000003
+ADACT4                            00000004
+ADACTPPS                          00000EAE
+ADACTPPS0                         00000000
+ADACTPPS1                         00000001
+ADACTPPS2                         00000002
+ADACTPPS3                         00000003
+ADACTPPS4                         00000004
+ADAOV                             00000007
+ADCALC0                           00000004
+ADCALC1                           00000005
+ADCALC2                           00000006
+ADCAP                             00000F5D
+ADCAP0                            00000000
+ADCAP1                            00000001
+ADCAP2                            00000002
+ADCAP3                            00000003
+ADCAP4                            00000004
+ADCLK                             00000F57
+ADCMD                             00000005
+ADCNT                             00000F67
+ADCNT0                            00000000
+ADCNT1                            00000001
+ADCNT2                            00000002
+ADCNT3                            00000003
+ADCNT4                            00000004
+ADCNT5                            00000005
+ADCNT6                            00000006
+ADCNT7                            00000007
+ADCON0                            00000F60
+ADCON1                            00000F59
+ADCON2                            00000F5A
+ADCON3                            00000F5B
+ADCONT                            00000006
+ADCRS0                            00000004
+ADCRS1                            00000005
+ADCRS2                            00000006
+ADCS                              00000004
+ADCS0                             00000000
+ADCS1                             00000001
+ADCS2                             00000002
+ADCS3                             00000003
+ADCS4                             00000004
+ADCS5                             00000005
+ADDEN                             00000003
+ADDSEN                            00000000
+ADERR                             00000F6E
+ADERR0                            00000000
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADERR1                            00000001
+ADERR10                           00000002
+ADERR11                           00000003
+ADERR12                           00000004
+ADERR13                           00000005
+ADERR14                           00000006
+ADERR15                           00000007
+ADERR2                            00000002
+ADERR3                            00000003
+ADERR4                            00000004
+ADERR5                            00000005
+ADERR6                            00000006
+ADERR7                            00000007
+ADERR8                            00000000
+ADERR9                            00000001
+ADERRH                            00000F6F
+ADERRL                            00000F6E
+ADFLTR                            00000F72
+ADFLTR0                           00000000
+ADFLTR1                           00000001
+ADFLTR10                          00000002
+ADFLTR11                          00000003
+ADFLTR12                          00000004
+ADFLTR13                          00000005
+ADFLTR14                          00000006
+ADFLTR15                          00000007
+ADFLTR2                           00000002
+ADFLTR3                           00000003
+ADFLTR4                           00000004
+ADFLTR5                           00000005
+ADFLTR6                           00000006
+ADFLTR7                           00000007
+ADFLTR8                           00000000
+ADFLTR9                           00000001
+ADFLTRH                           00000F73
+ADFLTRL                           00000F72
+ADFM                              00000002
+ADFM0                             00000002
+ADFVR0                            00000000
+ADFVR1                            00000001
+ADGO                              00000000
+ADGPOL                            00000005
+ADIE                              00000000
+ADIF                              00000000
+ADIP                              00000000
+ADIPEN                            00000006
+ADLTH                             00000F6A
+ADLTH0                            00000000
+ADLTH1                            00000001
+ADLTH10                           00000002
+ADLTH11                           00000003
+ADLTH12                           00000004
+ADLTH13                           00000005
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADLTH14                           00000006
+ADLTH15                           00000007
+ADLTH2                            00000002
+ADLTH3                            00000003
+ADLTH4                            00000004
+ADLTH5                            00000005
+ADLTH6                            00000006
+ADLTH7                            00000007
+ADLTH8                            00000000
+ADLTH9                            00000001
+ADLTHH                            00000F6B
+ADLTHL                            00000F6A
+ADLTHR                            00000005
+ADMATH                            00000004
+ADMD0                             00000000
+ADMD1                             00000001
+ADMD2                             00000002
+ADMSK1                            00000001
+ADMSK2                            00000002
+ADMSK3                            00000003
+ADMSK4                            00000004
+ADMSK5                            00000005
+ADNREF                            00000004
+ADOEN                             00000002
+ADON                              00000007
+ADOR                              00000002
+ADPCH                             00000F5F
+ADPCH0                            00000000
+ADPCH1                            00000001
+ADPCH2                            00000002
+ADPCH3                            00000003
+ADPCH4                            00000004
+ADPCH5                            00000005
+ADPPOL                            00000007
+ADPRE                             00000F5E
+ADPRE0                            00000000
+ADPRE1                            00000001
+ADPRE2                            00000002
+ADPRE3                            00000003
+ADPRE4                            00000004
+ADPRE5                            00000005
+ADPRE6                            00000006
+ADPRE7                            00000007
+ADPREF0                           00000000
+ADPREF1                           00000001
+ADPREV                            00000F61
+ADPREV0                           00000000
+ADPREV1                           00000001
+ADPREV10                          00000002
+ADPREV11                          00000003
+ADPREV12                          00000004
+ADPREV13                          00000005
+ADPREV14                          00000006
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADPREV15                          00000007
+ADPREV2                           00000002
+ADPREV3                           00000003
+ADPREV4                           00000004
+ADPREV5                           00000005
+ADPREV6                           00000006
+ADPREV7                           00000007
+ADPREV8                           00000000
+ADPREV9                           00000001
+ADPREVH                           00000F62
+ADPREVL                           00000F61
+ADPSIS                            00000007
+ADR0                              00000000
+ADR1                              00000001
+ADR2                              00000002
+ADR3                              00000003
+ADR4                              00000004
+ADR5                              00000005
+ADR6                              00000006
+ADR7                              00000007
+ADREF                             00000F58
+ADRES                             00000F63
+ADRES0                            00000000
+ADRES1                            00000001
+ADRES10                           00000002
+ADRES11                           00000003
+ADRES12                           00000004
+ADRES13                           00000005
+ADRES14                           00000006
+ADRES15                           00000007
+ADRES2                            00000002
+ADRES3                            00000003
+ADRES4                            00000004
+ADRES5                            00000005
+ADRES6                            00000006
+ADRES7                            00000007
+ADRES8                            00000000
+ADRES9                            00000001
+ADRESH                            00000F64
+ADRESL                            00000F63
+ADRPT                             00000F66
+ADRPT0                            00000000
+ADRPT1                            00000001
+ADRPT2                            00000002
+ADRPT3                            00000003
+ADRPT4                            00000004
+ADRPT5                            00000005
+ADRPT6                            00000006
+ADRPT7                            00000007
+ADSOI                             00000003
+ADSTAT                            00000F65
+ADSTAT0                           00000000
+ADSTAT1                           00000001
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADSTAT2                           00000002
+ADSTPT                            00000F68
+ADSTPT0                           00000000
+ADSTPT1                           00000001
+ADSTPT10                          00000002
+ADSTPT11                          00000003
+ADSTPT12                          00000004
+ADSTPT13                          00000005
+ADSTPT14                          00000006
+ADSTPT15                          00000007
+ADSTPT2                           00000002
+ADSTPT3                           00000003
+ADSTPT4                           00000004
+ADSTPT5                           00000005
+ADSTPT6                           00000006
+ADSTPT7                           00000007
+ADSTPT8                           00000000
+ADSTPT9                           00000001
+ADSTPTH                           00000F69
+ADSTPTL                           00000F68
+ADTIE                             00000001
+ADTIF                             00000001
+ADTIP                             00000001
+ADTMD0                            00000000
+ADTMD1                            00000001
+ADTMD2                            00000002
+ADUTH                             00000F6C
+ADUTH0                            00000000
+ADUTH1                            00000001
+ADUTH10                           00000002
+ADUTH11                           00000003
+ADUTH12                           00000004
+ADUTH13                           00000005
+ADUTH14                           00000006
+ADUTH15                           00000007
+ADUTH2                            00000002
+ADUTH3                            00000003
+ADUTH4                            00000004
+ADUTH5                            00000005
+ADUTH6                            00000006
+ADUTH7                            00000007
+ADUTH8                            00000000
+ADUTH9                            00000001
+ADUTHH                            00000F6D
+ADUTHL                            00000F6C
+ADUTHR                            00000006
+AHEN                              00000001
+ANSELA                            00000F11
+ANSELA0                           00000000
+ANSELA1                           00000001
+ANSELA2                           00000002
+ANSELA3                           00000003
+ANSELA4                           00000004
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ANSELA5                           00000005
+ANSELA6                           00000006
+ANSELA7                           00000007
+ANSELB                            00000F19
+ANSELB0                           00000000
+ANSELB1                           00000001
+ANSELB2                           00000002
+ANSELB3                           00000003
+ANSELB4                           00000004
+ANSELB5                           00000005
+ANSELB6                           00000006
+ANSELB7                           00000007
+ANSELC                            00000F21
+ANSELC0                           00000000
+ANSELC1                           00000001
+ANSELC2                           00000002
+ANSELC3                           00000003
+ANSELC4                           00000004
+ANSELC5                           00000005
+ANSELC6                           00000006
+ANSELC7                           00000007
+AS0E                              00000000
+AS1E                              00000001
+AS2E                              00000002
+AS3E                              00000003
+AS4E                              00000004
+AS5E                              00000005
+BANKED                            00000001
+BAUD1CON                          00000F9F
+BAUDCON                           00000F9F
+BAUDCON1                          00000F9F
+BAUDCTL                           00000F9F
+BAUDCTL1                          00000F9F
+BCL1IE                            00000001
+BCL1IF                            00000001
+BCL1IP                            00000001
+BCLIE                             00000001
+BCLIF                             00000001
+BCLIP                             00000001
+BEGIN                             00000000
+BF                                00000000
+BIT                               00000000
+BOEN                              00000004
+BOR                               00000000
+BORCON                            00000EE0
+BORRDY                            00000000
+BRG16                             00000003
+BRGH                              00000002
+BSR                               00000FE0
+BUSY                              00000005
+C                                 00000000
+C1EN                              00000007
+C1HYS                             00000001
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C1IE                              00000000
+C1IF                              00000000
+C1INTN                            00000000
+C1INTP                            00000001
+C1IP                              00000000
+C1NCH0                            00000000
+C1NCH1                            00000001
+C1NCH2                            00000002
+C1OUT                             00000006
+C1PCH0                            00000000
+C1PCH1                            00000001
+C1PCH2                            00000002
+C1POL                             00000004
+C1SYNC                            00000000
+C1TSEL0                           00000000
+C1TSEL1                           00000001
+C2EN                              00000007
+C2HYS                             00000001
+C2IE                              00000001
+C2IF                              00000001
+C2INTN                            00000000
+C2INTP                            00000001
+C2IP                              00000001
+C2NCH0                            00000000
+C2NCH1                            00000001
+C2NCH2                            00000002
+C2OUT                             00000006
+C2PCH0                            00000000
+C2PCH1                            00000001
+C2PCH2                            00000002
+C2POL                             00000004
+C2SYNC                            00000000
+C2TSEL0                           00000002
+C2TSEL1                           00000003
+CCP1CAP                           00000FAD
+CCP1CON                           00000FAC
+CCP1CTS0                          00000000
+CCP1CTS1                          00000001
+CCP1EN                            00000007
+CCP1FMT                           00000004
+CCP1IE                            00000000
+CCP1IF                            00000000
+CCP1IP                            00000000
+CCP1MD                            00000000
+CCP1MODE0                         00000000
+CCP1MODE1                         00000001
+CCP1MODE2                         00000002
+CCP1MODE3                         00000003
+CCP1OUT                           00000005
+CCP1PPS                           00000EAF
+CCP1PPS0                          00000000
+CCP1PPS1                          00000001
+CCP1PPS2                          00000002
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCP1PPS3                          00000003
+CCP1PPS4                          00000004
+CCP2CAP                           00000FA9
+CCP2CON                           00000FA8
+CCP2CTS0                          00000000
+CCP2CTS1                          00000001
+CCP2EN                            00000007
+CCP2FMT                           00000004
+CCP2IE                            00000001
+CCP2IF                            00000001
+CCP2IP                            00000001
+CCP2MD                            00000001
+CCP2MODE0                         00000000
+CCP2MODE1                         00000001
+CCP2MODE2                         00000002
+CCP2MODE3                         00000003
+CCP2OUT                           00000005
+CCP2PPS                           00000EB0
+CCP2PPS0                          00000000
+CCP2PPS1                          00000001
+CCP2PPS2                          00000002
+CCP2PPS3                          00000003
+CCP2PPS4                          00000004
+CCPR1                             00000FAA
+CCPR1H                            00000FAB
+CCPR1L                            00000FAA
+CCPR2                             00000FA6
+CCPR2H                            00000FA7
+CCPR2L                            00000FA6
+CCPTMRS                           00000FAE
+CDAFVR0                           00000002
+CDAFVR1                           00000003
+CDIV0                             00000000
+CDIV1                             00000001
+CDIV2                             00000002
+CDIV3                             00000003
+CHPOL                             00000005
+CHS0                              00000000
+CHS1                              00000001
+CHS2                              00000002
+CHSYNC                            00000004
+CK1PPS                            00000EB6
+CKE                               00000006
+CKP                               00000004
+CKPOL                             00000006
+CKPPS                             00000EB6
+CKPS0                             00000004
+CKPS1                             00000005
+CKPS2                             00000006
+CKSYNC                            00000005
+CLK0                              00000000
+CLK1                              00000001
+CLK2                              00000002
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CLKRCLK                           00000F3F
+CLKRCLK0                          00000000
+CLKRCLK1                          00000001
+CLKRCLK2                          00000002
+CLKRCON                           00000F3E
+CLKRDC0                           00000003
+CLKRDC1                           00000004
+CLKRDIV0                          00000000
+CLKRDIV1                          00000001
+CLKRDIV2                          00000002
+CLKREN                            00000007
+CLKRMD                            00000001
+CLPOL                             00000001
+CLS0                              00000000
+CLS1                              00000001
+CLS2                              00000002
+CLSYNC                            00000000
+CM1CON0                           00000F39
+CM1CON1                           00000F3A
+CM1NCH                            00000F3B
+CM1PCH                            00000F3C
+CM2CON0                           00000F35
+CM2CON1                           00000F36
+CM2NCH                            00000F37
+CM2PCH                            00000F38
+CMOUT                             00000F3D
+CMP1MD                            00000001
+CMP2MD                            00000002
+COSC0                             00000004
+COSC1                             00000005
+COSC2                             00000006
+CPUDOZE                           00000ED7
+CRCACC                            00000F76
+CRCACCH                           00000F77
+CRCACCL                           00000F76
+CRCCON0                           00000F7C
+CRCCON1                           00000F7D
+CRCDATA                           00000F74
+CRCDATH                           00000F75
+CRCDATL                           00000F74
+CRCEN                             00000007
+CRCGO                             00000006
+CRCIE                             00000006
+CRCIF                             00000006
+CRCIP                             00000006
+CRCMD                             00000004
+CRCSHFT                           00000F78
+CRCSHIFTH                         00000F79
+CRCSHIFTL                         00000F78
+CRCXOR                            00000F7A
+CRCXORH                           00000F7B
+CRCXORL                           00000F7A
+CREN                              00000004
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CS                                00000000
+CS0                               00000000
+CS1                               00000001
+CS2                               00000002
+CS3                               00000003
+CSRC                              00000007
+CSWHOLD                           00000007
+CSWIE                             00000006
+CSWIF                             00000006
+CSWIP                             00000006
+CTS0                              00000000
+CTS1                              00000001
+CWG1AS0                           00000F46
+CWG1AS1                           00000F47
+CWG1CLK                           00000F40
+CWG1CLKCON                        00000F40
+CWG1CON0                          00000F44
+CWG1CON1                          00000F45
+CWG1CS                            00000000
+CWG1DBF                           00000F43
+CWG1DBF0                          00000000
+CWG1DBF1                          00000001
+CWG1DBF2                          00000002
+CWG1DBF3                          00000003
+CWG1DBF4                          00000004
+CWG1DBF5                          00000005
+CWG1DBR                           00000F42
+CWG1DBR0                          00000000
+CWG1DBR1                          00000001
+CWG1DBR2                          00000002
+CWG1DBR3                          00000003
+CWG1DBR4                          00000004
+CWG1DBR5                          00000005
+CWG1EN                            00000007
+CWG1IE                            00000000
+CWG1IF                            00000000
+CWG1IN                            00000005
+CWG1INPPS0                        00000000
+CWG1INPPS1                        00000001
+CWG1INPPS2                        00000002
+CWG1INPPS3                        00000003
+CWG1INPPS4                        00000004
+CWG1IP                            00000000
+CWG1ISM                           00000F41
+CWG1ISM0                          00000000
+CWG1ISM1                          00000001
+CWG1ISM2                          00000002
+CWG1ISM3                          00000003
+CWG1LD                            00000006
+CWG1LSAC0                         00000002
+CWG1LSAC1                         00000003
+CWG1LSBD0                         00000004
+CWG1LSBD1                         00000005
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CWG1MD                            00000000
+CWG1MODE0                         00000000
+CWG1MODE1                         00000001
+CWG1MODE2                         00000002
+CWG1OVRA                          00000004
+CWG1OVRB                          00000005
+CWG1OVRC                          00000006
+CWG1OVRD                          00000007
+CWG1POLA                          00000000
+CWG1POLB                          00000001
+CWG1POLC                          00000002
+CWG1POLD                          00000003
+CWG1PPS                           00000EB1
+CWG1REN                           00000006
+CWG1SHUTDOWN                      00000007
+CWG1STR                           00000F48
+CWG1STRA                          00000000
+CWG1STRB                          00000001
+CWG1STRC                          00000002
+CWG1STRD                          00000003
+CWGIE                             00000000
+CWGIF                             00000000
+CWGINPPS                          00000EB1
+CWGINPPS0                         00000000
+CWGINPPS1                         00000001
+CWGINPPS2                         00000002
+CWGINPPS3                         00000003
+CWGINPPS4                         00000004
+CWGIP                             00000000
+CWGMD                             00000000
+DABORT                            00000004
+DAC1CON0                          00000F33
+DAC1CON1                          00000F34
+DAC1EN                            00000007
+DAC1NSS                           00000000
+DAC1OE1                           00000005
+DAC1OE2                           00000004
+DAC1PSS0                          00000002
+DAC1PSS1                          00000003
+DAC1R0                            00000000
+DAC1R1                            00000001
+DAC1R2                            00000002
+DAC1R3                            00000003
+DAC1R4                            00000004
+DACMD                             00000006
+DATA0                             00000000
+DATA1                             00000001
+DATA10                            00000002
+DATA11                            00000003
+DATA12                            00000004
+DATA13                            00000005
+DATA14                            00000006
+DATA15                            00000007
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DATA2                             00000002
+DATA3                             00000003
+DATA4                             00000004
+DATA5                             00000005
+DATA6                             00000006
+DATA7                             00000007
+DATA8                             00000000
+DATA9                             00000001
+DATA_ADDRESS                      00000005
+DBF0                              00000000
+DBF1                              00000001
+DBF2                              00000002
+DBF3                              00000003
+DBF4                              00000004
+DBF5                              00000005
+DBR0                              00000000
+DBR1                              00000001
+DBR2                              00000002
+DBR3                              00000003
+DBR4                              00000004
+DBR5                              00000005
+DC                                00000001
+DC0_CLKRCON                       00000003
+DC0_PWM3DCL                       00000006
+DC0_PWM4DCL                       00000006
+DC1_CLKRCON                       00000004
+DC1_PWM3DCL                       00000007
+DC1_PWM4DCL                       00000007
+DC2                               00000000
+DC3                               00000001
+DC4                               00000002
+DC5                               00000003
+DC6                               00000004
+DC7                               00000005
+DC8                               00000006
+DC9                               00000007
+DDRA                              TRISA
+DDRB                              TRISB
+DDRC                              TRISC
+DDRD                              TRISD
+DDRE                              TRISE
+DHEN                              00000000
+DIV0                              00000000
+DIV1                              00000001
+DIV2                              00000002
+DLEN0                             00000004
+DLEN1                             00000005
+DLEN2                             00000006
+DLEN3                             00000007
+DOE                               00000004
+DONE                              00000000
+DOZE0                             00000000
+DOZE1                             00000001
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DOZE2                             00000002
+DOZEN                             00000006
+DSMMD                             00000000
+D_A                               00000005
+D_NOT_A                           00000005
+EN                                00000007
+EXTOEN                            00000007
+EXTOR                             00000007
+FAST                              00000001
+FERR                              00000002
+FMT                               00000004
+FREE                              00000004
+FRQ0                              00000000
+FRQ1                              00000001
+FRQ2                              00000002
+FRQ3                              00000003
+FSR0                              00000000
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1                              00000001
+FSR1H                             00000FE2
+FSR1L                             00000FE1
+FSR2                              00000002
+FSR2H                             00000FDA
+FSR2L                             00000FD9
+FULL                              00000000
+FVRCON                            00000F31
+FVREN                             00000007
+FVRMD                             00000006
+FVRRDY                            00000006
+G1EN                              00000007
+GCEN                              00000007
+GE                                00000007
+GGO_NOT_DONE                      00000003
+GIE                               00000007
+GIEH                              00000007
+GIEL                              00000006
+GIE_GIEH                          00000007
+GO_ADCON0                         00000000
+GO_NOT_DONE                       00000000
+GO_SCANCON0                       00000006
+GPOL                              00000006
+GSPM                              00000004
+GSS0                              00000000
+GSS1                              00000001
+GSS2                              00000002
+GSS3                              00000003
+GTM                               00000005
+GVAL                              00000002
+HADR0                             00000000
+HADR1                             00000001
+HADR10                            00000002
+HADR11                            00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+HADR12                            00000004
+HADR13                            00000005
+HADR14                            00000006
+HADR15                            00000007
+HADR16                            00000000
+HADR17                            00000001
+HADR18                            00000002
+HADR19                            00000003
+HADR2                             00000002
+HADR20                            00000004
+HADR21                            00000005
+HADR3                             00000003
+HADR4                             00000004
+HADR5                             00000005
+HADR6                             00000006
+HADR7                             00000007
+HADR8                             00000000
+HADR9                             00000001
+HFOEN                             00000006
+HFOR                              00000006
+HLVDCON0                          00000F2F
+HLVDCON1                          00000F30
+HLVDEN                            00000007
+HLVDIE                            00000007
+HLVDIF                            00000007
+HLVDINTH                          00000001
+HLVDINTL                          00000000
+HLVDIP                            00000007
+HLVDMD                            00000005
+HLVDOUT                           00000005
+HLVDRDY                           00000004
+HLVDSEL0                          00000000
+HLVDSEL1                          00000001
+HLVDSEL2                          00000002
+HLVDSEL3                          00000003
+HYS                               00000001
+I2C_DAT                           00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IDLEN                             00000007
+IN                                00000005
+INDF0                             00000FEF
+INDF1                             00000FE7
+INDF2                             00000FDF
+INLVLA                            00000F0D
+INLVLA0                           00000000
+INLVLA1                           00000001
+INLVLA2                           00000002
+INLVLA3                           00000003
+INLVLA4                           00000004
+INLVLA5                           00000005
+INLVLA6                           00000006
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INLVLA7                           00000007
+INLVLB                            00000F15
+INLVLB0                           00000000
+INLVLB1                           00000001
+INLVLB2                           00000002
+INLVLB3                           00000003
+INLVLB4                           00000004
+INLVLB5                           00000005
+INLVLB6                           00000006
+INLVLB7                           00000007
+INLVLC                            00000F1D
+INLVLC0                           00000000
+INLVLC1                           00000001
+INLVLC2                           00000002
+INLVLC3                           00000003
+INLVLC4                           00000004
+INLVLC5                           00000005
+INLVLC6                           00000006
+INLVLC7                           00000007
+INLVLE                            00000F2A
+INLVLE3                           00000003
+INT0EDG                           00000000
+INT0IE                            00000000
+INT0IF                            00000000
+INT0IP                            00000000
+INT0PPS                           00000EA1
+INT0PPS0                          00000000
+INT0PPS1                          00000001
+INT0PPS2                          00000002
+INT0PPS3                          00000003
+INT1EDG                           00000001
+INT1IE                            00000001
+INT1IF                            00000001
+INT1IP                            00000001
+INT1PPS                           00000EA2
+INT1PPS0                          00000000
+INT1PPS1                          00000001
+INT1PPS2                          00000002
+INT1PPS3                          00000003
+INT2EDG                           00000002
+INT2IE                            00000002
+INT2IF                            00000002
+INT2IP                            00000002
+INT2PPS                           00000EA3
+INT2PPS0                          00000000
+INT2PPS1                          00000001
+INT2PPS2                          00000002
+INT2PPS3                          00000003
+INTCON                            00000FF2
+INTH                              00000001
+INTL                              00000000
+INTM                              00000003
+INTN                              00000000
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INTP                              00000001
+INVALID                           00000004
+IOCAF                             00000F0A
+IOCAF0                            00000000
+IOCAF1                            00000001
+IOCAF2                            00000002
+IOCAF3                            00000003
+IOCAF4                            00000004
+IOCAF5                            00000005
+IOCAF6                            00000006
+IOCAF7                            00000007
+IOCAN                             00000F0B
+IOCAN0                            00000000
+IOCAN1                            00000001
+IOCAN2                            00000002
+IOCAN3                            00000003
+IOCAN4                            00000004
+IOCAN5                            00000005
+IOCAN6                            00000006
+IOCAN7                            00000007
+IOCAP                             00000F0C
+IOCAP0                            00000000
+IOCAP1                            00000001
+IOCAP2                            00000002
+IOCAP3                            00000003
+IOCAP4                            00000004
+IOCAP5                            00000005
+IOCAP6                            00000006
+IOCAP7                            00000007
+IOCBF                             00000F12
+IOCBF0                            00000000
+IOCBF1                            00000001
+IOCBF2                            00000002
+IOCBF3                            00000003
+IOCBF4                            00000004
+IOCBF5                            00000005
+IOCBF6                            00000006
+IOCBF7                            00000007
+IOCBN                             00000F13
+IOCBN0                            00000000
+IOCBN1                            00000001
+IOCBN2                            00000002
+IOCBN3                            00000003
+IOCBN4                            00000004
+IOCBN5                            00000005
+IOCBN6                            00000006
+IOCBN7                            00000007
+IOCBP                             00000F14
+IOCBP0                            00000000
+IOCBP1                            00000001
+IOCBP2                            00000002
+IOCBP3                            00000003
+IOCBP4                            00000004
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 26
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+IOCBP5                            00000005
+IOCBP6                            00000006
+IOCBP7                            00000007
+IOCCF                             00000F1A
+IOCCF0                            00000000
+IOCCF1                            00000001
+IOCCF2                            00000002
+IOCCF3                            00000003
+IOCCF4                            00000004
+IOCCF5                            00000005
+IOCCF6                            00000006
+IOCCF7                            00000007
+IOCCN                             00000F1B
+IOCCN0                            00000000
+IOCCN1                            00000001
+IOCCN2                            00000002
+IOCCN3                            00000003
+IOCCN4                            00000004
+IOCCN5                            00000005
+IOCCN6                            00000006
+IOCCN7                            00000007
+IOCCP                             00000F1C
+IOCCP0                            00000000
+IOCCP1                            00000001
+IOCCP2                            00000002
+IOCCP3                            00000003
+IOCCP4                            00000004
+IOCCP5                            00000005
+IOCCP6                            00000006
+IOCCP7                            00000007
+IOCEF                             00000F27
+IOCEF3                            00000003
+IOCEN                             00000F28
+IOCEN3                            00000003
+IOCEP                             00000F29
+IOCEP3                            00000003
+IOCIE                             00000004
+IOCIF                             00000004
+IOCIP                             00000004
+IOCMD                             00000000
+IPEN                              00000005
+IPR0                              00000EBA
+IPR1                              00000EBB
+IPR2                              00000EBC
+IPR3                              00000EBD
+IPR4                              00000EBE
+IPR5                              00000EBF
+IPR6                              00000EC0
+IPR7                              00000EC1
+LADR0                             00000000
+LADR1                             00000001
+LADR10                            00000002
+LADR11                            00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 27
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LADR12                            00000004
+LADR13                            00000005
+LADR14                            00000006
+LADR15                            00000007
+LADR16                            00000000
+LADR17                            00000001
+LADR18                            00000002
+LADR19                            00000003
+LADR2                             00000002
+LADR20                            00000004
+LADR21                            00000005
+LADR3                             00000003
+LADR4                             00000004
+LADR5                             00000005
+LADR6                             00000006
+LADR7                             00000007
+LADR8                             00000000
+LADR9                             00000001
+LATA                              00000F83
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA3                             00000003
+LATA4                             00000004
+LATA5                             00000005
+LATA6                             00000006
+LATA7                             00000007
+LATB                              00000F84
+LATB0                             00000000
+LATB1                             00000001
+LATB2                             00000002
+LATB3                             00000003
+LATB4                             00000004
+LATB5                             00000005
+LATB6                             00000006
+LATB7                             00000007
+LATC                              00000F85
+LATC0                             00000000
+LATC1                             00000001
+LATC2                             00000002
+LATC3                             00000003
+LATC4                             00000004
+LATC5                             00000005
+LATC6                             00000006
+LATC7                             00000007
+LD                                00000006
+LED_PIN                           00000000
+LFOEN                             00000004
+LFOR                              00000004
+LSAC0                             00000002
+LSAC1                             00000003
+LSBD0                             00000004
+LSBD1                             00000005
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 28
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+MC1OUT                            00000000
+MC2OUT                            00000001
+MDBIT                             00000000
+MDCARH                            00000F55
+MDCARHPPS                         00000EB3
+MDCARHPPS0                        00000000
+MDCARHPPS1                        00000001
+MDCARHPPS2                        00000002
+MDCARHPPS3                        00000003
+MDCARHPPS4                        00000004
+MDCARL                            00000F54
+MDCARLPPS                         00000EB2
+MDCARLPPS0                        00000000
+MDCARLPPS1                        00000001
+MDCARLPPS2                        00000002
+MDCARLPPS3                        00000003
+MDCARLPPS4                        00000004
+MDCHPOL                           00000005
+MDCHS0                            00000000
+MDCHS1                            00000001
+MDCHS2                            00000002
+MDCHSYNC                          00000004
+MDCLPOL                           00000001
+MDCLS0                            00000000
+MDCLS1                            00000001
+MDCLS2                            00000002
+MDCLSYNC                          00000000
+MDCON0                            00000F51
+MDCON1                            00000F52
+MDEN                              00000007
+MDOPOL                            00000004
+MDOUT                             00000005
+MDSRC                             00000F53
+MDSRCPPS                          00000EB4
+MDSRCPPS0                         00000000
+MDSRCPPS1                         00000001
+MDSRCPPS2                         00000002
+MDSRCPPS3                         00000003
+MDSRCPPS4                         00000004
+MDSRCS0                           00000000
+MDSRCS1                           00000001
+MDSRCS2                           00000002
+MDSRCS3                           00000003
+MFOEN                             00000005
+MFOR                              00000005
+MODE0                             00000000
+MODE1                             00000001
+MODE2                             00000002
+MODE3                             00000003
+MODE4                             00000004
+MSK0                              00000000
+MSK1                              00000001
+MSK2                              00000002
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 29
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+MSK3                              00000003
+MSK4                              00000004
+MSK5                              00000005
+MSK6                              00000006
+MSK7                              00000007
+MSSP1MD                           00000004
+N                                 00000004
+NB_LED                            0000000B
+NCH0                              00000000
+NCH1                              00000001
+NCH2                              00000002
+NDIV0                             00000000
+NDIV1                             00000001
+NDIV2                             00000002
+NDIV3                             00000003
+NOSC0                             00000004
+NOSC1                             00000005
+NOSC2                             00000006
+NOSCR                             00000003
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BOR                           00000000
+NOT_PD                            00000005
+NOT_POR                           00000001
+NOT_RI                            00000002
+NOT_RMCLR                         00000003
+NOT_RWDT                          00000004
+NOT_SYNC                          00000002
+NOT_T1SYNC                        00000002
+NOT_T3SYNC                        00000002
+NOT_T5SYNC                        00000002
+NOT_TO                            00000006
+NOT_W                             00000002
+NOT_WDTWV                         00000005
+NOT_WRITE                         00000002
+NSS                               00000000
+NVMADR                            00000F7E
+NVMADR0                           00000000
+NVMADR1                           00000001
+NVMADR2                           00000002
+NVMADR3                           00000003
+NVMADR4                           00000004
+NVMADR5                           00000005
+NVMADR6                           00000006
+NVMADR7                           00000007
+NVMADRL                           00000F7E
+NVMCON1                           00000F81
+NVMCON2                           00000F82
+NVMDAT                            00000F80
+NVMDAT0                           00000000
+NVMDAT1                           00000001
+NVMDAT2                           00000002
+NVMDAT3                           00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 30
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NVMDAT4                           00000004
+NVMDAT5                           00000005
+NVMDAT6                           00000006
+NVMDAT7                           00000007
+NVMIE                             00000005
+NVMIF                             00000005
+NVMIP                             00000005
+NVMMD                             00000002
+NVMREG0                           00000006
+NVMREG1                           00000007
+ODCA0                             00000000
+ODCA1                             00000001
+ODCA2                             00000002
+ODCA3                             00000003
+ODCA4                             00000004
+ODCA5                             00000005
+ODCA6                             00000006
+ODCA7                             00000007
+ODCB0                             00000000
+ODCB1                             00000001
+ODCB2                             00000002
+ODCB3                             00000003
+ODCB4                             00000004
+ODCB5                             00000005
+ODCB6                             00000006
+ODCB7                             00000007
+ODCC0                             00000000
+ODCC1                             00000001
+ODCC2                             00000002
+ODCC3                             00000003
+ODCC4                             00000004
+ODCC5                             00000005
+ODCC6                             00000006
+ODCC7                             00000007
+ODCONA                            00000F0F
+ODCONB                            00000F17
+ODCONC                            00000F1F
+OE1                               00000005
+OE2                               00000004
+OERR                              00000001
+ON_T1CON                          00000000
+ON_T2CON                          00000007
+ON_T3CON                          00000000
+ON_T4CON                          00000007
+ON_T5CON                          00000000
+ON_T6CON                          00000007
+OPOL                              00000004
+ORDY                              00000004
+OSCCON1                           00000ED8
+OSCCON2                           00000ED9
+OSCCON3                           00000EDA
+OSCEN                             00000EDC
+OSCFIE                            00000007
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 31
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+OSCFIF                            00000007
+OSCFIP                            00000007
+OSCFRQ                            00000EDE
+OSCSTAT                           00000EDB
+OSCSTAT1                          00000EDB
+OSCTUNE                           00000EDD
+OUTPS0                            00000000
+OUTPS1                            00000001
+OUTPS2                            00000002
+OUTPS3                            00000003
+OUT_CCP1CON                       00000005
+OUT_CCP2CON                       00000005
+OUT_CM1CON0                       00000006
+OUT_CM2CON0                       00000006
+OUT_HLVDCON0                      00000005
+OUT_MDCON0                        00000005
+OUT_PWM3CON                       00000005
+OUT_PWM4CON                       00000005
+OUT_ZCDCON                        00000005
+OV                                00000003
+OVRA                              00000004
+OVRB                              00000005
+OVRC                              00000006
+OVRD                              00000007
+P                                 00000004
+P3TSEL0                           00000004
+P3TSEL1                           00000005
+P4TSEL0                           00000006
+P4TSEL1                           00000007
+PC                                00000FF9
+PCH0                              00000000
+PCH1                              00000001
+PCH2                              00000002
+PCIE                              00000006
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+PCON0                             00000FD7
+PD                                00000005
+PEIE                              00000006
+PEIE_GIEL                         00000006
+PEN                               00000002
+PIE0                              00000EC2
+PIE1                              00000EC3
+PIE2                              00000EC4
+PIE3                              00000EC5
+PIE4                              00000EC6
+PIE5                              00000EC7
+PIE6                              00000EC8
+PIE7                              00000EC9
+PIR0                              00000ECA
+PIR1                              00000ECB
+PIR2                              00000ECC
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 32
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PIR3                              00000ECD
+PIR4                              00000ECE
+PIR5                              00000ECF
+PIR6                              00000ED0
+PIR7                              00000ED1
+PLEN0                             00000000
+PLEN1                             00000001
+PLEN2                             00000002
+PLEN3                             00000003
+PLLR                              00000000
+PLUSW0                            00000FEB
+PLUSW1                            00000FE3
+PLUSW2                            00000FDB
+PMD0                              00000EE1
+PMD1                              00000EE2
+PMD2                              00000EE3
+PMD3                              00000EE4
+PMD4                              00000EE5
+PMD5                              00000EE6
+POL                               00000004
+POLA                              00000000
+POLB                              00000001
+POLC                              00000002
+POLD                              00000003
+POR                               00000001
+PORT                              00000003
+PORTA                             00000F8D
+PORTB                             00000F8E
+PORTC                             00000F8F
+PORTE                             00000F91
+POSTDEC0                          00000FED
+POSTDEC1                          00000FE5
+POSTDEC2                          00000FDD
+POSTINC0                          00000FEE
+POSTINC1                          00000FE6
+POSTINC2                          00000FDE
+PPSLOCK                           00000EA0
+PPSLOCKED                         00000000
+PR0                               00000FD4
+PR1                               00000FD0
+PR2                               00000FBC
+PR3                               00000FCA
+PR4                               00000FB6
+PR5                               00000FC4
+PR6                               00000FB0
+PREINC0                           00000FEC
+PREINC1                           00000FE4
+PREINC2                           00000FDC
+PROD                              00000FF3
+PRODH                             00000FF4
+PRODL                             00000FF3
+PSCNT0                            00000000
+PSCNT1                            00000001
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 33
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PSCNT10                           00000002
+PSCNT11                           00000003
+PSCNT12                           00000004
+PSCNT13                           00000005
+PSCNT14                           00000006
+PSCNT15                           00000007
+PSCNT16                           00000000
+PSCNT17                           00000001
+PSCNT2                            00000002
+PSCNT3                            00000003
+PSCNT4                            00000004
+PSCNT5                            00000005
+PSCNT6                            00000006
+PSCNT7                            00000007
+PSCNT8                            00000000
+PSCNT9                            00000001
+PSS0                              00000002
+PSS1                              00000003
+PSYNC                             00000007
+PWM3CON                           00000FA5
+PWM3DC                            00000FA3
+PWM3DC0                           00000006
+PWM3DC1                           00000007
+PWM3DC2                           00000000
+PWM3DC3                           00000001
+PWM3DC4                           00000002
+PWM3DC5                           00000003
+PWM3DC6                           00000004
+PWM3DC7                           00000005
+PWM3DC8                           00000006
+PWM3DC9                           00000007
+PWM3DCH                           00000FA4
+PWM3DCL                           00000FA3
+PWM3EN                            00000007
+PWM3MD                            00000002
+PWM3OUT                           00000005
+PWM3POL                           00000004
+PWM4CON                           00000FA2
+PWM4DC                            00000FA0
+PWM4DC0                           00000006
+PWM4DC1                           00000007
+PWM4DC2                           00000000
+PWM4DC3                           00000001
+PWM4DC4                           00000002
+PWM4DC5                           00000003
+PWM4DC6                           00000004
+PWM4DC7                           00000005
+PWM4DC8                           00000006
+PWM4DC9                           00000007
+PWM4DCH                           00000FA1
+PWM4DCL                           00000FA0
+PWM4EN                            00000007
+PWM4MD                            00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 34
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PWM4OUT                           00000005
+PWM4POL                           00000004
+PWMPW0                            00000006
+PWMPW1                            00000007
+PWMPW2                            00000000
+PWMPW3                            00000001
+PWMPW4                            00000002
+PWMPW5                            00000003
+PWMPW6                            00000004
+PWMPW7                            00000005
+PWMPW8                            00000006
+PWMPW9                            00000007
+RA0                               00000000
+RA0PPS                            00000EE7
+RA0PPS0                           00000000
+RA0PPS1                           00000001
+RA0PPS2                           00000002
+RA0PPS3                           00000003
+RA0PPS4                           00000004
+RA1                               00000001
+RA1PPS                            00000EE8
+RA1PPS0                           00000000
+RA1PPS1                           00000001
+RA1PPS2                           00000002
+RA1PPS3                           00000003
+RA1PPS4                           00000004
+RA2                               00000002
+RA2PPS                            00000EE9
+RA2PPS0                           00000000
+RA2PPS1                           00000001
+RA2PPS2                           00000002
+RA2PPS3                           00000003
+RA2PPS4                           00000004
+RA3                               00000003
+RA3PPS                            00000EEA
+RA3PPS0                           00000000
+RA3PPS1                           00000001
+RA3PPS2                           00000002
+RA3PPS3                           00000003
+RA3PPS4                           00000004
+RA4                               00000004
+RA4PPS                            00000EEB
+RA4PPS0                           00000000
+RA4PPS1                           00000001
+RA4PPS2                           00000002
+RA4PPS3                           00000003
+RA4PPS4                           00000004
+RA5                               00000005
+RA5PPS                            00000EEC
+RA5PPS0                           00000000
+RA5PPS1                           00000001
+RA5PPS2                           00000002
+RA5PPS3                           00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 35
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA5PPS4                           00000004
+RA6                               00000006
+RA6PPS                            00000EED
+RA6PPS0                           00000000
+RA6PPS1                           00000001
+RA6PPS2                           00000002
+RA6PPS3                           00000003
+RA6PPS4                           00000004
+RA7                               00000007
+RA7PPS                            00000EEE
+RA7PPS0                           00000000
+RA7PPS1                           00000001
+RA7PPS2                           00000002
+RA7PPS3                           00000003
+RA7PPS4                           00000004
+RB0                               00000000
+RB0PPS                            00000EEF
+RB0PPS0                           00000000
+RB0PPS1                           00000001
+RB0PPS2                           00000002
+RB0PPS3                           00000003
+RB0PPS4                           00000004
+RB1                               00000001
+RB1PPS                            00000EF0
+RB1PPS0                           00000000
+RB1PPS1                           00000001
+RB1PPS2                           00000002
+RB1PPS3                           00000003
+RB1PPS4                           00000004
+RB2                               00000002
+RB2PPS                            00000EF1
+RB2PPS0                           00000000
+RB2PPS1                           00000001
+RB2PPS2                           00000002
+RB2PPS3                           00000003
+RB2PPS4                           00000004
+RB3                               00000003
+RB3PPS                            00000EF2
+RB3PPS0                           00000000
+RB3PPS1                           00000001
+RB3PPS2                           00000002
+RB3PPS3                           00000003
+RB3PPS4                           00000004
+RB4                               00000004
+RB4PPS                            00000EF3
+RB4PPS0                           00000000
+RB4PPS1                           00000001
+RB4PPS2                           00000002
+RB4PPS3                           00000003
+RB4PPS4                           00000004
+RB5                               00000005
+RB5PPS                            00000EF4
+RB5PPS0                           00000000
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 36
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB5PPS1                           00000001
+RB5PPS2                           00000002
+RB5PPS3                           00000003
+RB5PPS4                           00000004
+RB6                               00000006
+RB6PPS                            00000EF5
+RB6PPS0                           00000000
+RB6PPS1                           00000001
+RB6PPS2                           00000002
+RB6PPS3                           00000003
+RB6PPS4                           00000004
+RB7                               00000007
+RB7PPS                            00000EF6
+RB7PPS0                           00000000
+RB7PPS1                           00000001
+RB7PPS2                           00000002
+RB7PPS3                           00000003
+RB7PPS4                           00000004
+RC0                               00000000
+RC0PPS                            00000EF7
+RC0PPS0                           00000000
+RC0PPS1                           00000001
+RC0PPS2                           00000002
+RC0PPS3                           00000003
+RC0PPS4                           00000004
+RC1                               00000001
+RC1IE                             00000005
+RC1IF                             00000005
+RC1PPS                            00000EF8
+RC1PPS0                           00000000
+RC1PPS1                           00000001
+RC1PPS2                           00000002
+RC1PPS3                           00000003
+RC1PPS4                           00000004
+RC1REG                            00000F99
+RC1STA                            00000F9D
+RC2                               00000002
+RC2PPS                            00000EF9
+RC2PPS0                           00000000
+RC2PPS1                           00000001
+RC2PPS2                           00000002
+RC2PPS3                           00000003
+RC2PPS4                           00000004
+RC3                               00000003
+RC3PPS                            00000EFA
+RC3PPS0                           00000000
+RC3PPS1                           00000001
+RC3PPS2                           00000002
+RC3PPS3                           00000003
+RC3PPS4                           00000004
+RC4                               00000004
+RC4PPS                            00000EFB
+RC4PPS0                           00000000
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 37
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RC4PPS1                           00000001
+RC4PPS2                           00000002
+RC4PPS3                           00000003
+RC4PPS4                           00000004
+RC5                               00000005
+RC5PPS                            00000EFC
+RC5PPS0                           00000000
+RC5PPS1                           00000001
+RC5PPS2                           00000002
+RC5PPS3                           00000003
+RC5PPS4                           00000004
+RC6                               00000006
+RC6PPS                            00000EFD
+RC6PPS0                           00000000
+RC6PPS1                           00000001
+RC6PPS2                           00000002
+RC6PPS3                           00000003
+RC6PPS4                           00000004
+RC7                               00000007
+RC7PPS                            00000EFE
+RC7PPS0                           00000000
+RC7PPS1                           00000001
+RC7PPS2                           00000002
+RC7PPS3                           00000003
+RC7PPS4                           00000004
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCIP                              00000005
+RCREG                             00000F99
+RCREG1                            00000F99
+RCSTA                             00000F9D
+RCSTA1                            00000F9D
+RD                                00000000
+RD16                              00000001
+RDY_FVRCON                        00000006
+RDY_HLVDCON0                      00000004
+RE3                               00000003
+READ_WRITE                        00000002
+REN                               00000006
+RESULTHI                          0000000C
+RESULTLO                          0000000D
+RI                                00000002
+RMCLR                             00000003
+ROI                               00000005
+RSEL0                             00000000
+RSEL1                             00000001
+RSEL2                             00000002
+RSEL3                             00000003
+RSEN                              00000001
+RWDT                              00000004
+RX1PPS                            00000EB5
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 38
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RX9                               00000006
+RX9D                              00000000
+RXPPS                             00000EB5
+RXPPS0                            00000000
+RXPPS1                            00000001
+RXPPS2                            00000002
+RXPPS3                            00000003
+RXPPS4                            00000004
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SBCDE                             00000002
+SBOREN                            00000007
+SCANBUSY                          00000005
+SCANCON0                          00000F4F
+SCANEN                            00000007
+SCANGO                            00000006
+SCANHADR                          00000F4C
+SCANHADR0                         00000000
+SCANHADR1                         00000001
+SCANHADR10                        00000002
+SCANHADR11                        00000003
+SCANHADR12                        00000004
+SCANHADR13                        00000005
+SCANHADR14                        00000006
+SCANHADR15                        00000007
+SCANHADR16                        00000000
+SCANHADR17                        00000001
+SCANHADR18                        00000002
+SCANHADR19                        00000003
+SCANHADR2                         00000002
+SCANHADR20                        00000004
+SCANHADR21                        00000005
+SCANHADR3                         00000003
+SCANHADR4                         00000004
+SCANHADR5                         00000005
+SCANHADR6                         00000006
+SCANHADR7                         00000007
+SCANHADR8                         00000000
+SCANHADR9                         00000001
+SCANHADRH                         00000F4D
+SCANHADRL                         00000F4C
+SCANHADRU                         00000F4E
+SCANIE                            00000007
+SCANIF                            00000007
+SCANINTM                          00000003
+SCANINVALID                       00000004
+SCANIP                            00000007
+SCANLADR                          00000F49
+SCANLADR0                         00000000
+SCANLADR1                         00000001
+SCANLADR10                        00000002
+SCANLADR11                        00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 39
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SCANLADR12                        00000004
+SCANLADR13                        00000005
+SCANLADR14                        00000006
+SCANLADR15                        00000007
+SCANLADR16                        00000000
+SCANLADR17                        00000001
+SCANLADR18                        00000002
+SCANLADR19                        00000003
+SCANLADR2                         00000002
+SCANLADR20                        00000004
+SCANLADR21                        00000005
+SCANLADR3                         00000003
+SCANLADR4                         00000004
+SCANLADR5                         00000005
+SCANLADR6                         00000006
+SCANLADR7                         00000007
+SCANLADR8                         00000000
+SCANLADR9                         00000001
+SCANLADRH                         00000F4A
+SCANLADRL                         00000F49
+SCANLADRU                         00000F4B
+SCANMD                            00000003
+SCANMODE0                         00000000
+SCANMODE1                         00000001
+SCANTRIG                          00000F50
+SCANTSEL0                         00000000
+SCANTSEL1                         00000001
+SCANTSEL2                         00000002
+SCANTSEL3                         00000003
+SCIE                              00000005
+SCKP                              00000004
+SDAHT                             00000003
+SEL0                              00000000
+SEL1                              00000001
+SEL2                              00000002
+SEL3                              00000003
+SENDB                             00000003
+SEN_SSP1CON2                      00000000
+SEN_WDTCON0                       00000000
+SEN_ZCDCON                        00000007
+SHFT0                             00000000
+SHFT1                             00000001
+SHFT10                            00000002
+SHFT11                            00000003
+SHFT12                            00000004
+SHFT13                            00000005
+SHFT14                            00000006
+SHFT15                            00000007
+SHFT2                             00000002
+SHFT3                             00000003
+SHFT4                             00000004
+SHFT5                             00000005
+SHFT6                             00000006
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 40
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SHFT7                             00000007
+SHFT8                             00000000
+SHFT9                             00000001
+SHIFTM                            00000001
+SHUTDOWN                          00000007
+SLRA0                             00000000
+SLRA1                             00000001
+SLRA2                             00000002
+SLRA3                             00000003
+SLRA4                             00000004
+SLRA5                             00000005
+SLRA6                             00000006
+SLRA7                             00000007
+SLRB0                             00000000
+SLRB1                             00000001
+SLRB2                             00000002
+SLRB3                             00000003
+SLRB4                             00000004
+SLRB5                             00000005
+SLRB6                             00000006
+SLRB7                             00000007
+SLRC0                             00000000
+SLRC1                             00000001
+SLRC2                             00000002
+SLRC3                             00000003
+SLRC4                             00000004
+SLRC5                             00000005
+SLRC6                             00000006
+SLRC7                             00000007
+SLRCONA                           00000F0E
+SLRCONB                           00000F16
+SLRCONC                           00000F1E
+SMP                               00000007
+SOR                               00000003
+SOSCEN                            00000003
+SOSCPWR                           00000006
+SP0                               00000000
+SP1                               00000001
+SP1BRG                            00000F9B
+SP1BRGH                           00000F9C
+SP1BRGL                           00000F9B
+SP2                               00000002
+SP3                               00000003
+SP4                               00000004
+SP5                               00000005
+SPBRG                             00000F9B
+SPBRG1                            00000F9B
+SPBRGH                            00000F9C
+SPBRGH1                           00000F9C
+SPBRGL                            00000F9B
+SPEN                              00000007
+SRCS0                             00000000
+SRCS1                             00000001
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 41
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SRCS2                             00000002
+SRCS3                             00000003
+SREN                              00000005
+SSP1ADD                           00000F93
+SSP1BUF                           00000F92
+SSP1CLKPPS                        00000EB7
+SSP1CLKPPS0                       00000000
+SSP1CLKPPS1                       00000001
+SSP1CLKPPS2                       00000002
+SSP1CLKPPS3                       00000003
+SSP1CLKPPS4                       00000004
+SSP1CON1                          00000F96
+SSP1CON2                          00000F97
+SSP1CON3                          00000F98
+SSP1DATPPS                        00000EB8
+SSP1DATPPS0                       00000000
+SSP1DATPPS1                       00000001
+SSP1DATPPS2                       00000002
+SSP1DATPPS3                       00000003
+SSP1DATPPS4                       00000004
+SSP1IE                            00000000
+SSP1IF                            00000000
+SSP1IP                            00000000
+SSP1MSK                           00000F94
+SSP1SSPPS                         00000EB9
+SSP1SSPPS0                        00000000
+SSP1SSPPS1                        00000001
+SSP1SSPPS2                        00000002
+SSP1SSPPS3                        00000003
+SSP1SSPPS4                        00000004
+SSP1STAT                          00000F95
+SSPCLKPPS                         00000EB7
+SSPCLKPPS0                        00000000
+SSPCLKPPS1                        00000001
+SSPCLKPPS2                        00000002
+SSPCLKPPS3                        00000003
+SSPCLKPPS4                        00000004
+SSPDATPPS                         00000EB8
+SSPDATPPS0                        00000000
+SSPDATPPS1                        00000001
+SSPDATPPS2                        00000002
+SSPDATPPS3                        00000003
+SSPDATPPS4                        00000004
+SSPEN                             00000005
+SSPIE                             00000000
+SSPIF                             00000000
+SSPIP                             00000000
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSSPPS                          00000EB9
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 42
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPSSPPS0                         00000000
+SSPSSPPS1                         00000001
+SSPSSPPS2                         00000002
+SSPSSPPS3                         00000003
+SSPSSPPS4                         00000004
+STATE                             00000002
+STATUS                            00000FD8
+STKOVF                            00000007
+STKPTR                            00000FFC
+STKPTR0                           00000000
+STKPTR1                           00000001
+STKPTR2                           00000002
+STKPTR3                           00000003
+STKPTR4                           00000004
+STKPTR5                           00000005
+STKUNF                            00000006
+STRA                              00000000
+STRB                              00000001
+STRC                              00000002
+STRD                              00000003
+SWDTEN                            00000000
+SYNC_CM1CON0                      00000000
+SYNC_CM2CON0                      00000000
+SYNC_TX1STA                       00000004
+SYNC_TXSTA                        00000004
+SYNC_TXSTA1                       00000004
+SYSCMD                            00000007
+T016BIT                           00000004
+T0ASYNC                           00000004
+T0CKIPPS                          00000EA4
+T0CKIPPS0                         00000000
+T0CKIPPS1                         00000001
+T0CKIPPS2                         00000002
+T0CKIPPS3                         00000003
+T0CKPS0                           00000000
+T0CKPS1                           00000001
+T0CKPS2                           00000002
+T0CKPS3                           00000003
+T0CON0                            00000FD5
+T0CON1                            00000FD6
+T0CS0                             00000005
+T0CS1                             00000006
+T0CS2                             00000007
+T0EN                              00000007
+T0OUT                             00000005
+T0OUTPS0                          00000000
+T0OUTPS1                          00000001
+T0OUTPS2                          00000002
+T0OUTPS3                          00000003
+T0PR0                             00000000
+T0PR1                             00000001
+T0PR2                             00000002
+T0PR3                             00000003
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 43
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T0PR4                             00000004
+T0PR5                             00000005
+T0PR6                             00000006
+T0PR7                             00000007
+T0PS0                             00000000
+T0PS1                             00000001
+T0PS2                             00000002
+T0PS3                             00000003
+T1CKIPPS                          00000EA5
+T1CKIPPS0                         00000000
+T1CKIPPS1                         00000001
+T1CKIPPS2                         00000002
+T1CKIPPS3                         00000003
+T1CKIPPS4                         00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CLK                             00000FD2
+T1CON                             00000FCF
+T1CS0                             00000000
+T1CS1                             00000001
+T1CS2                             00000002
+T1CS3                             00000003
+T1GATE                            00000FD1
+T1GCON                            00000FD0
+T1GE                              00000007
+T1GGO                             00000003
+T1GGO_NOT_DONE                    00000003
+T1GPOL                            00000006
+T1GPPS                            00000EA6
+T1GPPS0                           00000000
+T1GPPS1                           00000001
+T1GPPS2                           00000002
+T1GPPS3                           00000003
+T1GPPS4                           00000004
+T1GSPM                            00000004
+T1GSS0                            00000000
+T1GSS1                            00000001
+T1GSS2                            00000002
+T1GSS3                            00000003
+T1GTM                             00000005
+T1GVAL                            00000002
+T1RD16                            00000001
+T2CKPOL                           00000006
+T2CKPS0                           00000004
+T2CKPS1                           00000005
+T2CKPS2                           00000006
+T2CKSYNC                          00000005
+T2CLK                             00000FBF
+T2CLKCON                          00000FBF
+T2CON                             00000FBD
+T2CS0                             00000000
+T2CS1                             00000001
+T2CS2                             00000002
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 44
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T2CS3                             00000003
+T2HLT                             00000FBE
+T2INPPS                           00000EAB
+T2INPPS0                          00000000
+T2INPPS1                          00000001
+T2INPPS2                          00000002
+T2INPPS3                          00000003
+T2INPPS4                          00000004
+T2MODE0                           00000000
+T2MODE1                           00000001
+T2MODE2                           00000002
+T2MODE3                           00000003
+T2MODE4                           00000004
+T2ON                              00000007
+T2OUTPS0                          00000000
+T2OUTPS1                          00000001
+T2OUTPS2                          00000002
+T2OUTPS3                          00000003
+T2PR                              00000FBC
+T2PSYNC                           00000007
+T2RSEL0                           00000000
+T2RSEL1                           00000001
+T2RSEL2                           00000002
+T2RSEL3                           00000003
+T2RST                             00000FC0
+T2TMR                             00000FBB
+T3CKIPPS                          00000EA7
+T3CKIPPS0                         00000000
+T3CKIPPS1                         00000001
+T3CKIPPS2                         00000002
+T3CKIPPS3                         00000003
+T3CKIPPS4                         00000004
+T3CKPS0                           00000004
+T3CKPS1                           00000005
+T3CLK                             00000FCC
+T3CON                             00000FC9
+T3CS0                             00000000
+T3CS1                             00000001
+T3CS2                             00000002
+T3CS3                             00000003
+T3GATE                            00000FCB
+T3GCON                            00000FCA
+T3GE                              00000007
+T3GGO                             00000003
+T3GGO_NOT_DONE                    00000003
+T3GPOL                            00000006
+T3GPPS                            00000EA8
+T3GPPS0                           00000000
+T3GPPS1                           00000001
+T3GPPS2                           00000002
+T3GPPS3                           00000003
+T3GPPS4                           00000004
+T3GSPM                            00000004
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 45
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T3GSS0                            00000000
+T3GSS1                            00000001
+T3GSS2                            00000002
+T3GSS3                            00000003
+T3GTM                             00000005
+T3GVAL                            00000002
+T3RD16                            00000001
+T4CKPOL                           00000006
+T4CKPS0                           00000004
+T4CKPS1                           00000005
+T4CKPS2                           00000006
+T4CKSYNC                          00000005
+T4CLK                             00000FB9
+T4CLKCON                          00000FB9
+T4CON                             00000FB7
+T4CS0                             00000000
+T4CS1                             00000001
+T4CS2                             00000002
+T4CS3                             00000003
+T4HLT                             00000FB8
+T4INPPS                           00000EAC
+T4INPPS0                          00000000
+T4INPPS1                          00000001
+T4INPPS2                          00000002
+T4INPPS3                          00000003
+T4INPPS4                          00000004
+T4MODE0                           00000000
+T4MODE1                           00000001
+T4MODE2                           00000002
+T4MODE3                           00000003
+T4MODE4                           00000004
+T4ON                              00000007
+T4OUTPS0                          00000000
+T4OUTPS1                          00000001
+T4OUTPS2                          00000002
+T4OUTPS3                          00000003
+T4PR                              00000FB6
+T4PSYNC                           00000007
+T4RSEL0                           00000000
+T4RSEL1                           00000001
+T4RSEL2                           00000002
+T4RSEL3                           00000003
+T4RST                             00000FBA
+T4TMR                             00000FB5
+T5CKIPPS                          00000EA9
+T5CKIPPS0                         00000000
+T5CKIPPS1                         00000001
+T5CKIPPS2                         00000002
+T5CKIPPS3                         00000003
+T5CKIPPS4                         00000004
+T5CKPS0                           00000004
+T5CKPS1                           00000005
+T5CLK                             00000FC6
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 46
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T5CON                             00000FC3
+T5CS0                             00000000
+T5CS1                             00000001
+T5CS2                             00000002
+T5CS3                             00000003
+T5GATE                            00000FC5
+T5GCON                            00000FC4
+T5GE                              00000007
+T5GGO                             00000003
+T5GGO_NOT_DONE                    00000003
+T5GPOL                            00000006
+T5GPPS                            00000EAA
+T5GPPS0                           00000000
+T5GPPS1                           00000001
+T5GPPS2                           00000002
+T5GPPS3                           00000003
+T5GPPS4                           00000004
+T5GSPM                            00000004
+T5GSS0                            00000000
+T5GSS1                            00000001
+T5GSS2                            00000002
+T5GSS3                            00000003
+T5GTM                             00000005
+T5GVAL                            00000002
+T5RD16                            00000001
+T6CKPOL                           00000006
+T6CKPS0                           00000004
+T6CKPS1                           00000005
+T6CKPS2                           00000006
+T6CKSYNC                          00000005
+T6CLK                             00000FB3
+T6CLKCON                          00000FB3
+T6CON                             00000FB1
+T6CS0                             00000000
+T6CS1                             00000001
+T6CS2                             00000002
+T6CS3                             00000003
+T6HLT                             00000FB2
+T6INPPS                           00000EAD
+T6INPPS0                          00000000
+T6INPPS1                          00000001
+T6INPPS2                          00000002
+T6INPPS3                          00000003
+T6INPPS4                          00000004
+T6MODE0                           00000000
+T6MODE1                           00000001
+T6MODE2                           00000002
+T6MODE3                           00000003
+T6MODE4                           00000004
+T6ON                              00000007
+T6OUTPS0                          00000000
+T6OUTPS1                          00000001
+T6OUTPS2                          00000002
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 47
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T6OUTPS3                          00000003
+T6PR                              00000FB0
+T6PSYNC                           00000007
+T6RSEL0                           00000000
+T6RSEL1                           00000001
+T6RSEL2                           00000002
+T6RSEL3                           00000003
+T6RST                             00000FB4
+T6TMR                             00000FAF
+TABLAT                            00000FF5
+TBLPTR                            00000FF6
+TBLPTRH                           00000FF7
+TBLPTRL                           00000FF6
+TBLPTRU                           00000FF8
+TMR0                              00000FD3
+TMR0H                             00000FD4
+TMR0H0                            00000000
+TMR0H1                            00000001
+TMR0H2                            00000002
+TMR0H3                            00000003
+TMR0H4                            00000004
+TMR0H5                            00000005
+TMR0H6                            00000006
+TMR0H7                            00000007
+TMR0IE                            00000005
+TMR0IF                            00000005
+TMR0IP                            00000005
+TMR0L                             00000FD3
+TMR0L0                            00000000
+TMR0L1                            00000001
+TMR0L2                            00000002
+TMR0L3                            00000003
+TMR0L4                            00000004
+TMR0L5                            00000005
+TMR0L6                            00000006
+TMR0L7                            00000007
+TMR0MD                            00000000
+TMR1                              00000FCD
+TMR10                             00000000
+TMR11                             00000001
+TMR110                            00000002
+TMR111                            00000003
+TMR112                            00000004
+TMR113                            00000005
+TMR114                            00000006
+TMR115                            00000007
+TMR12                             00000002
+TMR13                             00000003
+TMR14                             00000004
+TMR15                             00000005
+TMR16                             00000006
+TMR17                             00000007
+TMR18                             00000000
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 48
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR19                             00000001
+TMR1CLK                           00000FD2
+TMR1GATE                          00000FD1
+TMR1GIE                           00000000
+TMR1GIF                           00000000
+TMR1GIP                           00000000
+TMR1H                             00000FCE
+TMR1H0                            00000000
+TMR1H1                            00000001
+TMR1H2                            00000002
+TMR1H3                            00000003
+TMR1H4                            00000004
+TMR1H5                            00000005
+TMR1H6                            00000006
+TMR1H7                            00000007
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1IP                            00000000
+TMR1L                             00000FCD
+TMR1L0                            00000000
+TMR1L1                            00000001
+TMR1L2                            00000002
+TMR1L3                            00000003
+TMR1L4                            00000004
+TMR1L5                            00000005
+TMR1L6                            00000006
+TMR1L7                            00000007
+TMR1MD                            00000001
+TMR1ON                            00000000
+TMR2                              00000FBB
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2IP                            00000001
+TMR2MD                            00000002
+TMR2ON                            00000007
+TMR3                              00000FC7
+TMR30                             00000000
+TMR31                             00000001
+TMR310                            00000002
+TMR311                            00000003
+TMR312                            00000004
+TMR313                            00000005
+TMR314                            00000006
+TMR315                            00000007
+TMR32                             00000002
+TMR33                             00000003
+TMR34                             00000004
+TMR35                             00000005
+TMR36                             00000006
+TMR37                             00000007
+TMR38                             00000000
+TMR39                             00000001
+TMR3CLK                           00000FCC
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 49
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR3GATE                          00000FCB
+TMR3GIE                           00000001
+TMR3GIF                           00000001
+TMR3GIP                           00000001
+TMR3H                             00000FC8
+TMR3H0                            00000000
+TMR3H1                            00000001
+TMR3H2                            00000002
+TMR3H3                            00000003
+TMR3H4                            00000004
+TMR3H5                            00000005
+TMR3H6                            00000006
+TMR3H7                            00000007
+TMR3IE                            00000002
+TMR3IF                            00000002
+TMR3IP                            00000002
+TMR3L                             00000FC7
+TMR3L0                            00000000
+TMR3L1                            00000001
+TMR3L2                            00000002
+TMR3L3                            00000003
+TMR3L4                            00000004
+TMR3L5                            00000005
+TMR3L6                            00000006
+TMR3L7                            00000007
+TMR3MD                            00000003
+TMR3ON                            00000000
+TMR4                              00000FB5
+TMR4IE                            00000003
+TMR4IF                            00000003
+TMR4IP                            00000003
+TMR4MD                            00000004
+TMR4ON                            00000007
+TMR5                              00000FC1
+TMR50                             00000000
+TMR51                             00000001
+TMR510                            00000002
+TMR511                            00000003
+TMR512                            00000004
+TMR513                            00000005
+TMR514                            00000006
+TMR515                            00000007
+TMR52                             00000002
+TMR53                             00000003
+TMR54                             00000004
+TMR55                             00000005
+TMR56                             00000006
+TMR57                             00000007
+TMR58                             00000000
+TMR59                             00000001
+TMR5CLK                           00000FC6
+TMR5GATE                          00000FC5
+TMR5GIE                           00000002
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 50
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR5GIF                           00000002
+TMR5GIP                           00000002
+TMR5H                             00000FC2
+TMR5H0                            00000000
+TMR5H1                            00000001
+TMR5H2                            00000002
+TMR5H3                            00000003
+TMR5H4                            00000004
+TMR5H5                            00000005
+TMR5H6                            00000006
+TMR5H7                            00000007
+TMR5IE                            00000004
+TMR5IF                            00000004
+TMR5IP                            00000004
+TMR5L                             00000FC1
+TMR5L0                            00000000
+TMR5L1                            00000001
+TMR5L2                            00000002
+TMR5L3                            00000003
+TMR5L4                            00000004
+TMR5L5                            00000005
+TMR5L6                            00000006
+TMR5L7                            00000007
+TMR5MD                            00000005
+TMR5ON                            00000000
+TMR6                              00000FAF
+TMR6IE                            00000005
+TMR6IF                            00000005
+TMR6IP                            00000005
+TMR6MD                            00000006
+TMR6ON                            00000007
+TO                                00000006
+TOS                               00000FFD
+TOSH                              00000FFE
+TOSL                              00000FFD
+TOSU                              00000FFF
+TRISA                             00000F88
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000F89
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 51
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISB7                            00000007
+TRISC                             00000F8A
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRMT                              00000001
+TSEL0                             00000000
+TSEL1                             00000001
+TSEL2                             00000002
+TSEL3                             00000003
+TSEN                              00000005
+TSRNG                             00000004
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TUN5                              00000005
+TX1IE                             00000004
+TX1IF                             00000004
+TX1PPS                            00000EB6
+TX1REG                            00000F9A
+TX1STA                            00000F9E
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXIP                              00000004
+TXPPS                             00000EB6
+TXPPS0                            00000000
+TXPPS1                            00000001
+TXPPS2                            00000002
+TXPPS3                            00000003
+TXPPS4                            00000004
+TXREG                             00000F9A
+TXREG1                            00000F9A
+TXSTA                             00000F9E
+TXSTA1                            00000F9E
+UA                                00000001
+UART1MD                           00000006
+VREGCON                           00000EDF
+VREGPM0                           00000000
+VREGPM1                           00000001
+W                                 00000000
+WCOL                              00000007
+WDTCON0                           00000ED2
+WDTCON1                           00000ED3
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 52
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WDTCS0                            00000004
+WDTCS1                            00000005
+WDTCS2                            00000006
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WDTPS4                            00000005
+WDTPSCNT0                         00000000
+WDTPSCNT1                         00000001
+WDTPSCNT10                        00000002
+WDTPSCNT11                        00000003
+WDTPSCNT12                        00000004
+WDTPSCNT13                        00000005
+WDTPSCNT14                        00000006
+WDTPSCNT15                        00000007
+WDTPSCNT16                        00000000
+WDTPSCNT17                        00000001
+WDTPSCNT2                         00000002
+WDTPSCNT3                         00000003
+WDTPSCNT4                         00000004
+WDTPSCNT5                         00000005
+WDTPSCNT6                         00000006
+WDTPSCNT7                         00000007
+WDTPSCNT8                         00000000
+WDTPSCNT9                         00000001
+WDTPSH                            00000ED5
+WDTPSL                            00000ED4
+WDTSEN                            00000000
+WDTSTATE                          00000002
+WDTTMR                            00000ED6
+WDTTMR0                           00000003
+WDTTMR1                           00000004
+WDTTMR2                           00000005
+WDTTMR3                           00000006
+WDTTMR4                           00000007
+WDTWINDOW0                        00000000
+WDTWINDOW1                        00000001
+WDTWINDOW2                        00000002
+WDTWV                             00000005
+WINDOW0                           00000000
+WINDOW1                           00000001
+WINDOW2                           00000002
+WPUA                              00000F10
+WPUA0                             00000000
+WPUA1                             00000001
+WPUA2                             00000002
+WPUA3                             00000003
+WPUA4                             00000004
+WPUA5                             00000005
+WPUA6                             00000006
+WPUA7                             00000007
+WPUB                              00000F18
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 53
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WPUB0                             00000000
+WPUB1                             00000001
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WPUC                              00000F20
+WPUC0                             00000000
+WPUC1                             00000001
+WPUC2                             00000002
+WPUC3                             00000003
+WPUC4                             00000004
+WPUC5                             00000005
+WPUC6                             00000006
+WPUC7                             00000007
+WPUE                              00000F2D
+WPUE3                             00000003
+WR                                00000001
+WREG                              00000FE8
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+X1                                00000001
+X10                               00000002
+X11                               00000003
+X12                               00000004
+X13                               00000005
+X14                               00000006
+X15                               00000007
+X2                                00000002
+X3                                00000003
+X4                                00000004
+X5                                00000005
+X6                                00000006
+X7                                00000007
+X8                                00000000
+X9                                00000001
+Z                                 00000002
+ZCDCON                            00000F32
+ZCDIE                             00000006
+ZCDIF                             00000006
+ZCDINTN                           00000000
+ZCDINTP                           00000001
+ZCDIP                             00000006
+ZCDMD                             00000000
+ZCDOUT                            00000005
+ZCDPOL                            00000004
+ZCDSEN                            00000007
+_BOREN_NOSLP_2L                   000000BF
+_BOREN_OFF_2L                     0000003F
+_BOREN_ON_2L                      0000007F
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 54
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_BOREN_SBORDIS_2L                 000000FF
+_BORV_VBOR_245_2H                 000000FE
+_BORV_VBOR_270_2H                 000000FD
+_BORV_VBOR_285_2H                 000000FC
+_BORV_VBOR_2P45_2H                000000FF
+_CLKOUTEN_OFF_1H                  000000FF
+_CLKOUTEN_ON_1H                   000000FE
+_CONFIG1H                         00300001
+_CONFIG1L                         00300000
+_CONFIG2H                         00300003
+_CONFIG2L                         00300002
+_CONFIG3H                         00300005
+_CONFIG3L                         00300004
+_CONFIG4H                         00300007
+_CONFIG4L                         00300006
+_CONFIG5H                         00300009
+_CONFIG5L                         00300008
+_CONFIG6H                         0030000B
+_CONFIG6L                         0030000A
+_CPD_OFF_5L                       000000FF
+_CPD_ON_5L                        000000FD
+_CP_OFF_5L                        000000FF
+_CP_ON_5L                         000000FE
+_CSWEN_OFF_1H                     000000F7
+_CSWEN_ON_1H                      000000FF
+_DEBUG_OFF_2H                     000000FF
+_DEBUG_ON_2H                      000000DF
+_DEVID1                           003FFFFE
+_DEVID2                           003FFFFF
+_EBTR0_OFF_6L                     000000FF
+_EBTR0_ON_6L                      000000FE
+_EBTR1_OFF_6L                     000000FF
+_EBTR1_ON_6L                      000000FD
+_EBTR2_OFF_6L                     000000FF
+_EBTR2_ON_6L                      000000FB
+_EBTR3_OFF_6L                     000000FF
+_EBTR3_ON_6L                      000000F7
+_EBTRB_OFF_6H                     000000FF
+_EBTRB_ON_6H                      000000FD
+_FCMEN_OFF_1H                     000000DF
+_FCMEN_ON_1H                      000000FF
+_FEXTOSC_ECH_1L                   000000FF
+_FEXTOSC_ECL_1L                   000000FD
+_FEXTOSC_ECM_1L                   000000FE
+_FEXTOSC_HS_1L                    000000FA
+_FEXTOSC_LP_1L                    000000F8
+_FEXTOSC_OFF_1L                   000000FC
+_FEXTOSC_RESERVED_1L              000000FB
+_FEXTOSC_XT_1L                    000000F9
+_IDLOC0                           00200000
+_IDLOC1                           00200001
+_IDLOC10                          0020000A
+_IDLOC11                          0020000B
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 55
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_IDLOC12                          0020000C
+_IDLOC13                          0020000D
+_IDLOC14                          0020000E
+_IDLOC15                          0020000F
+_IDLOC2                           00200002
+_IDLOC3                           00200003
+_IDLOC4                           00200004
+_IDLOC5                           00200005
+_IDLOC6                           00200006
+_IDLOC7                           00200007
+_IDLOC8                           00200008
+_IDLOC9                           00200009
+_LPBOREN_OFF_2L                   000000FF
+_LPBOREN_ON_2L                    000000DF
+_LVP_OFF_4H                       000000DF
+_LVP_ON_4H                        000000FF
+_MAIN_PROG_0070                   00000070
+_MCLRE_EXTMCLR_2L                 000000FF
+_MCLRE_INTMCLR_2L                 000000FE
+_PPS1WAY_OFF_2H                   000000F7
+_PPS1WAY_ON_2H                    000000FF
+_PWRTE_OFF_2L                     000000FF
+_PWRTE_ON_2L                      000000FD
+_RSTOSC_EXTOSC_1L                 000000FF
+_RSTOSC_EXTOSC_4PLL_1L            000000AF
+_RSTOSC_HFINTOSC_1MHZ_1L          000000EF
+_RSTOSC_HFINTOSC_64MHZ_1L         0000008F
+_RSTOSC_LFINTOSC_1L               000000DF
+_RSTOSC_RESERVED_1_1L             0000009F
+_RSTOSC_RESERVED_2_1L             000000BF
+_RSTOSC_SOSC_1L                   000000CF
+_SCANE_OFF_4H                     000000EF
+_SCANE_ON_4H                      000000FF
+_STVREN_OFF_2H                    000000EF
+_STVREN_ON_2H                     000000FF
+_WDTCCS_HFINTOSC_3H               000000CF
+_WDTCCS_LFINTOSC_3H               000000C7
+_WDTCCS_SC_3H                     000000FF
+_WDTCPS_WDTCPS_0_3L               000000E0
+_WDTCPS_WDTCPS_10_3L              000000EA
+_WDTCPS_WDTCPS_11_3L              000000EB
+_WDTCPS_WDTCPS_12_3L              000000EC
+_WDTCPS_WDTCPS_13_3L              000000ED
+_WDTCPS_WDTCPS_14_3L              000000EE
+_WDTCPS_WDTCPS_15_3L              000000EF
+_WDTCPS_WDTCPS_16_3L              000000F0
+_WDTCPS_WDTCPS_17_3L              000000F1
+_WDTCPS_WDTCPS_18_3L              000000F2
+_WDTCPS_WDTCPS_19_3L              000000F3
+_WDTCPS_WDTCPS_1_3L               000000E1
+_WDTCPS_WDTCPS_20_3L              000000F4
+_WDTCPS_WDTCPS_21_3L              000000F5
+_WDTCPS_WDTCPS_22_3L              000000F6
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 56
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTCPS_WDTCPS_23_3L              000000F7
+_WDTCPS_WDTCPS_24_3L              000000F8
+_WDTCPS_WDTCPS_25_3L              000000F9
+_WDTCPS_WDTCPS_26_3L              000000FA
+_WDTCPS_WDTCPS_27_3L              000000FB
+_WDTCPS_WDTCPS_28_3L              000000FC
+_WDTCPS_WDTCPS_29_3L              000000FD
+_WDTCPS_WDTCPS_2_3L               000000E2
+_WDTCPS_WDTCPS_30_3L              000000FE
+_WDTCPS_WDTCPS_31_3L              000000FF
+_WDTCPS_WDTCPS_3_3L               000000E3
+_WDTCPS_WDTCPS_4_3L               000000E4
+_WDTCPS_WDTCPS_5_3L               000000E5
+_WDTCPS_WDTCPS_6_3L               000000E6
+_WDTCPS_WDTCPS_7_3L               000000E7
+_WDTCPS_WDTCPS_8_3L               000000E8
+_WDTCPS_WDTCPS_9_3L               000000E9
+_WDTCWS_WDTCWS_0_3H               000000F8
+_WDTCWS_WDTCWS_1_3H               000000F9
+_WDTCWS_WDTCWS_2_3H               000000FA
+_WDTCWS_WDTCWS_3_3H               000000FB
+_WDTCWS_WDTCWS_4_3H               000000FC
+_WDTCWS_WDTCWS_5_3H               000000FD
+_WDTCWS_WDTCWS_6_3H               000000FE
+_WDTCWS_WDTCWS_7_3H               000000FF
+_WDTE_NSLEEP_3L                   000000DF
+_WDTE_OFF_3L                      0000009F
+_WDTE_ON_3L                       000000FF
+_WDTE_SWDTEN_3L                   000000BF
+_WRT0_OFF_4L                      000000FF
+_WRT0_ON_4L                       000000FE
+_WRT1_OFF_4L                      000000FF
+_WRT1_ON_4L                       000000FD
+_WRT2_OFF_4L                      000000FF
+_WRT2_ON_4L                       000000FB
+_WRT3_OFF_4L                      000000FF
+_WRT3_ON_4L                       000000F7
+_WRTB_OFF_4H                      000000FF
+_WRTB_ON_4H                       000000FD
+_WRTC_OFF_4H                      000000FF
+_WRTC_ON_4H                       000000FE
+_WRTD_OFF_4H                      000000FF
+_WRTD_ON_4H                       000000FB
+_XINST_OFF_2H                     000000FF
+_XINST_ON_2H                      0000007F
+_ZCD_OFF_2H                       000000FF
+_ZCD_ON_2H                        000000FB
+__18F25K40                        00000001
+allumerLed                        00000098
+boucle                            00000088
+cinq                              00000007
+deux                              00000004
+eteindreLed                       0000009E
+MPASM 5.87                 PASSAGEHELICE.ASM   2-1-2024  15:14:06         PAGE 57
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+huit                              0000000A
+incre                             0000000E
+isbtn0pressed                     00000002
+isbtn1pressed                     00000001
+luminosite                        0000000F
+prog                              00000000
+quatre                            00000006
+sept                              00000009
+six                               00000008
+trois                             00000005
+un                                00000003
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

@@ -1,0 +1,6 @@
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX7.X\EX7.ASM 19 : Found label after column 1. (cherche_min_max)
+Warning[202] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX7.X\EX7.ASM 24 : Argument out of range.  Least significant bits used.
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX7.X\EX7.ASM 38 : Found label after column 1. (MAIN)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX7.X\EX7.ASM 45 : Found label after column 1. (Boucle_Principale)
+Warning[202] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX7.X\EX7.ASM 46 : Argument out of range.  Least significant bits used.
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX7.X\EX7.ASM 51 : Found label after column 1. (Fin)

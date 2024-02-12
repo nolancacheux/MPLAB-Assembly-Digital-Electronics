@@ -1,0 +1,77 @@
+#include <p18f25k40.inc>
+
+; CONFIGURATION BITS (the actual configuration bits should match your application requirements)
+CONFIG FEXTOSC=OFF, RSTOSC=HFINTOSC_1MHZ, CLKOUTEN=OFF, CSWEN=ON, FCMEN=ON
+CONFIG MCLRE=EXTMCLR, PWRTE=OFF, LPBOREN=OFF, BOREN=SBORDIS
+CONFIG BORV=VBOR_2P45, ZCD=OFF, PPS1WAY=ON, STVREN=ON, DEBUG=OFF, XINST=OFF
+CONFIG WDTCPS=WDTCPS_31, WDTE=OFF, WDTCWS=WDTCWS_7, WDTCCS=SC
+CONFIG WRT0=OFF, WRT1=OFF, WRT2=OFF, WRT3=OFF, WRTC=OFF, WRTB=OFF, WRTD=OFF, SCANE=ON, LVP=OFF
+CONFIG CP=OFF, CPD=OFF, EBTR0=OFF, EBTR1=OFF, EBTR2=OFF, EBTR3=OFF, EBTRB=OFF
+
+; VARIABLE DEFINITIONS
+GPR_VAR UDATA
+cpt1 RES 1
+cpt2 RES 1
+cpt3 RES 1
+
+; RESET VECTOR
+RES_VECT CODE 0x0000
+    GOTO START0
+
+; MAIN PROGRAM
+MAIN_PROG CODE
+
+START0
+ 
+
+    ; Initialize PORTA and PORTC for LED output
+    CLRF LATA
+    CLRF LATB
+    CLRF LATC
+    MOVLW 0x00 ; Configure all pins on PORTA and PORTC as output
+    MOVWF TRISA
+    MOVWF TRISB
+    MOVWF TRISC
+
+
+
+
+
+
+loop
+    CALL etat1
+    CALL routine_tempo
+    CALL etat2
+    CALL routine_tempo
+    GOTO loop
+
+routine_tempo
+    MOVLW 0xFF
+    MOVWF cpt1
+    MOVLW 0xFF
+    MOVWF cpt2
+
+delay_loop
+    DECFSZ cpt1, F
+    GOTO delay_loop
+    DECFSZ cpt2, F
+    GOTO delay_loop
+    RETURN
+
+etat1
+    ; Turn on every other LED
+    MOVLW 0x55
+    MOVWF LATA
+    MOVWF LATB
+    MOVWF LATC
+    RETURN
+
+etat2
+    ; Turn on alternate LEDs
+    MOVLW 0xAA
+    MOVWF LATA
+    MOVWF LATB
+    MOVWF LATC
+    RETURN
+
+    END

@@ -1,0 +1,3 @@
+build/default/production/MERGEFINAL.o:  \
+	C:/Users/nolan/MPLABXProjects/TEST13_MERGE_BOUTON_POTENTIOMETRE_FOURCHE_OPTIQUE.X/MERGEFINAL.asm  \
+

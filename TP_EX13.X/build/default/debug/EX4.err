@@ -1,0 +1,7 @@
+Warning[205] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 1 : Found directive in column 1. (include)
+Warning[203] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 4 : Found opcode in column 1. (goto)
+Warning[226] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 4 : Destination address must be word aligned
+Warning[205] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 6 : Found directive in column 1. (uDATA)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 15 : Found label after column 1. (BOUCLE)
+Error[115]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 26 : Duplicate label ("START" or redefining symbol that cannot be redefined)
+Warning[205] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX4.X\EX4.ASM 34 : Found directive in column 1. (end)

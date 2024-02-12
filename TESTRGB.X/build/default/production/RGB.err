@@ -1,0 +1,11 @@
+Warning[207] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 100 : Found label after column 1. (cpt1)
+Warning[207] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 101 : Found label after column 1. (cpt2)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 164 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 165 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 166 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 167 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 168 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 169 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 234 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 235 : Found opcode in column 1. (BCF)
+Warning[202] C:\USERS\NOLAN\MPLABXPROJECTS\TESTRGB.X\RGB.ASM 256 : Argument out of range.  Least significant bits used.

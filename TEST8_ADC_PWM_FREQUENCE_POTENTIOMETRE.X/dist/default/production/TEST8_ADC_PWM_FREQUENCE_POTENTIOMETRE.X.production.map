@@ -1,0 +1,95 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Thu Feb 01 12:57:12 2024
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                MAIN_PROG       code   0x000006    program   0x000188
+.config_300000_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300003    program   0x000001
+.config_300004_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300004    program   0x000001
+.config_300005_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300006    program   0x000001
+.config_300007_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300007    program   0x000001
+.config_300008_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x300008    program   0x000001
+.config_30000A_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/PRODUCTION/FREQUEN    romdata   0x30000b    program   0x000001
+                  INT_VAR      udata   0x000000       data   0x000004
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00018d      
+                            0x300000    0x300008      
+                            0x30000a    0x30000b      
+            409 out of 33054 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                   BOUCLE   0x000092    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_0   0x0000f6    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_1   0x000100    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_2   0x000106    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_3   0x00010c    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_4   0x000112    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_5   0x000118    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_6   0x000122    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_7   0x000128    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                LED_RESET   0x00012e    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+          _MAIN_PROG_0094   0x00009a    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence1   0x000134    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence12   0x00015c    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence16   0x000166    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence2   0x00013e    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence32   0x000170    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence4   0x000148    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence48   0x00017a    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence64   0x000184    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence8   0x000152    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                   NB_LED   0x000000       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                 RESULTHI   0x000001       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                 RESULTLO   0x000002       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    incre   0x000003       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                   BOUCLE   0x000092    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+          _MAIN_PROG_0094   0x00009a    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_0   0x0000f6    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_1   0x000100    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_2   0x000106    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_3   0x00010c    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_4   0x000112    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_5   0x000118    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_6   0x000122    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    LED_7   0x000128    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                LED_RESET   0x00012e    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence1   0x000134    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence2   0x00013e    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence4   0x000148    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+               frequence8   0x000152    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence12   0x00015c    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence16   0x000166    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence32   0x000170    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence48   0x00017a    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+              frequence64   0x000184    program     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                   NB_LED   0x000000       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                 RESULTHI   0x000001       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                 RESULTLO   0x000002       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+                    incre   0x000003       data     static C:\Users\nolan\MPLABXProjects\TEST8_ADC_PWM_FREQUENCE_POTENTIOMETRE.X\frequencepotentiometre.asm
+
+

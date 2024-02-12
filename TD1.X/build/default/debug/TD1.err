@@ -1,0 +1,110 @@
+Warning[205] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 127 : Found directive in column 1. (INCLUDE)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 144 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 145 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 148 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 149 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 152 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 153 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 156 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 157 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 160 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 161 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 164 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 165 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 168 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 169 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 170 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 171 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 174 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 175 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 176 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 177 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 178 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 181 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 182 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 183 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 184 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 185 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 188 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 189 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 190 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 191 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 192 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 195 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 196 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 197 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 198 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 199 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 202 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 203 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 204 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 205 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 206 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 209 : Found opcode in column 1. (MOVLB)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 212 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 213 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 214 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 217 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 218 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 219 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 221 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 222 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 223 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 225 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 226 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 227 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 229 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 230 : Found opcode in column 1. (XORLW)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 231 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 239 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 239 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 242 : Found opcode in column 1. (MOVF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 242 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 243 : Found opcode in column 1. (XORLW)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 243 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 244 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 244 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 245 : Found opcode in column 1. (MOVWF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 245 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 248 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 248 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 249 : Found opcode in column 1. (MOVF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 249 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 250 : Found opcode in column 1. (XORLW)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 250 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 251 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 251 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 252 : Found opcode in column 1. (MOVWF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 252 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 254 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 254 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 255 : Found opcode in column 1. (MOVF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 255 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 256 : Found opcode in column 1. (XORLW)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 256 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 257 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 257 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 258 : Found opcode in column 1. (MOVWF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 258 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 260 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 260 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 261 : Found opcode in column 1. (MOVF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 261 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 262 : Found opcode in column 1. (XORLW)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 262 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 263 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 263 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 264 : Found opcode in column 1. (MOVWF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 264 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 266 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 266 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 267 : Found opcode in column 1. (MOVF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 267 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 268 : Found opcode in column 1. (XORLW)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 268 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 269 : Found opcode in column 1. (MOVLB)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 269 : Executable code and data must be defined in an appropriate section
+Warning[203] C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 270 : Found opcode in column 1. (MOVWF)
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 270 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 277 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\NOLAN\MPLABXPROJECTS\TD1.X\TD1.ASM 277 : Executable code and data must be defined in an appropriate section

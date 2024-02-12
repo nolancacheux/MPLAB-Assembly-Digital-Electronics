@@ -1,0 +1,129 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Fri Feb 02 14:27:26 2024
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                MAIN_PROG       code   0x000006    program   0x00016a
+.config_300000_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300003    program   0x000001
+.config_300004_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300004    program   0x000001
+.config_300005_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300006    program   0x000001
+.config_300007_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300007    program   0x000001
+.config_300008_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x300008    program   0x000001
+.config_30000A_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/PRODUCTION/TESTBOU    romdata   0x30000b    program   0x000001
+                  GPR_VAR      udata   0x000000       data   0x00000b
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00016f      
+                            0x300000    0x300008      
+                            0x30000a    0x30000b      
+            379 out of 33054 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              BP0_PRESSED   0x00011c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+             BP0_released   0x00013a    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+              BP1_PRESSED   0x000104    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+             BP1_released   0x000134    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   START0   0x000006    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+             eteindre_led   0x0000fa    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     ife2   0x000076    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     ife3   0x00008c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab1   0x0000a2    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab2   0x0000ae    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab3   0x0000ba    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab4   0x0000c6    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab5   0x0000d2    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab6   0x0000de    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab7   0x0000ea    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab8   0x0000f6    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     loop   0x000066    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog1   0x000140    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog2   0x000146    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog3   0x00014c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog4   0x000152    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog5   0x000158    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog6   0x00015e    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog7   0x000164    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog8   0x00016a    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   resete   0x00012e    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   resett   0x000116    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     skip   0x00011a    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    skip2   0x000132    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    suite   0x00007c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   suite2   0x000092    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     cinq   0x000007       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     deux   0x000004       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     huit   0x00000a       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+            isbtn0pressed   0x000002       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+            isbtn1pressed   0x000001       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     prog   0x000000       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   quatre   0x000006       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     sept   0x000009       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                      six   0x000008       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    trois   0x000005       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                       un   0x000003       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   START0   0x000006    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     loop   0x000066    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     ife2   0x000076    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    suite   0x00007c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     ife3   0x00008c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   suite2   0x000092    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab1   0x0000a2    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab2   0x0000ae    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab3   0x0000ba    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab4   0x0000c6    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab5   0x0000d2    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab6   0x0000de    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab7   0x0000ea    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     lab8   0x0000f6    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+             eteindre_led   0x0000fa    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+              BP1_PRESSED   0x000104    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   resett   0x000116    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     skip   0x00011a    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+              BP0_PRESSED   0x00011c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   resete   0x00012e    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    skip2   0x000132    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+             BP1_released   0x000134    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+             BP0_released   0x00013a    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog1   0x000140    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog2   0x000146    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog3   0x00014c    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog4   0x000152    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog5   0x000158    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog6   0x00015e    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog7   0x000164    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    prog8   0x00016a    program     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     prog   0x000000       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+            isbtn1pressed   0x000001       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+            isbtn0pressed   0x000002       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                       un   0x000003       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     deux   0x000004       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                    trois   0x000005       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                   quatre   0x000006       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     cinq   0x000007       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                      six   0x000008       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     sept   0x000009       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+                     huit   0x00000a       data     static C:\Users\nolan\MPLABXProjects\TESTBOUTON.X\TESTBOUTON.asm
+
+

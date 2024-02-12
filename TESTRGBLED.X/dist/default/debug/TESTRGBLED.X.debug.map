@@ -1,0 +1,81 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Wed Jan 31 09:55:01 2024
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                MAIN_PROG       code   0x000006    program   0x00014e
+.config_300000_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300003    program   0x000001
+.config_300004_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300004    program   0x000001
+.config_300005_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300006    program   0x000001
+.config_300007_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300007    program   0x000001
+.config_300008_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x300008    program   0x000001
+.config_30000A_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/DEBUG/RGBLED.O    romdata   0x30000b    program   0x000001
+                  INT_VAR      udata   0x000000       data   0x000004
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000153      
+                            0x300000    0x300008      
+                            0x30000a    0x30000b      
+            351 out of 33054 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                   BOUCLE   0x000066    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_0   0x00011a    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_1   0x000120    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_2   0x000126    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_3   0x00012c    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_4   0x000132    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_5   0x000138    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_6   0x000142    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_7   0x000148    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                LED_RESET   0x00014e    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+          _MAIN_PROG_00B8   0x0000be    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    send0   0x00006a    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    send1   0x00008e    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                   NB_LED   0x000000       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                 RESULTHI   0x000001       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                 RESULTLO   0x000002       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    incre   0x000003       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                   BOUCLE   0x000066    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    send0   0x00006a    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    send1   0x00008e    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+          _MAIN_PROG_00B8   0x0000be    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_0   0x00011a    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_1   0x000120    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_2   0x000126    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_3   0x00012c    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_4   0x000132    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_5   0x000138    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_6   0x000142    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    LED_7   0x000148    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                LED_RESET   0x00014e    program     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                   NB_LED   0x000000       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                 RESULTHI   0x000001       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                 RESULTLO   0x000002       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+                    incre   0x000003       data     static C:\Users\nolan\MPLABXProjects\TESTRGBLED.X\RGBLED.asm
+
+

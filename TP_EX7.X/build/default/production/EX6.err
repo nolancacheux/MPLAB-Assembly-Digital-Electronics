@@ -1,0 +1,6 @@
+Warning[202] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX6.X\EX6.ASM 22 : Argument out of range.  Least significant bits used.
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX6.X\EX6.ASM 27 : Found label after column 1. (cherche_min_max)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX6.X\EX6.ASM 39 : Found label after column 1. (MAIN)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX6.X\EX6.ASM 47 : Found label after column 1. (Boucle_Principale)
+Warning[202] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX6.X\EX6.ASM 48 : Argument out of range.  Least significant bits used.
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX6.X\EX6.ASM 53 : Found label after column 1. (Fin)

@@ -1,0 +1,38 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Tue Nov 07 17:39:07 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .cinit    romdata   0x000000    program   0x000002
+                MAIN_PROG       code   0x000002    program   0x000076
+                   groupl      udata   0x000100       data   0x000010
+                   group2      udata   0x000200       data   0x000010
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000077      
+            120 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+          _MAIN_PROG_0072   0x000074    program     static C:\Users\Administrateur\MPLABXProjects\TD1.X\TD1.asm
+                   crypto   0x000200       data     static C:\Users\Administrateur\MPLABXProjects\TD1.X\TD1.asm
+                 password   0x000100       data     static C:\Users\Administrateur\MPLABXProjects\TD1.X\TD1.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+          _MAIN_PROG_0072   0x000074    program     static C:\Users\Administrateur\MPLABXProjects\TD1.X\TD1.asm
+                 password   0x000100       data     static C:\Users\Administrateur\MPLABXProjects\TD1.X\TD1.asm
+                   crypto   0x000200       data     static C:\Users\Administrateur\MPLABXProjects\TD1.X\TD1.asm
+
+

@@ -1,0 +1,9 @@
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 15 : Found label after column 1. (ecrire_tableau)
+Warning[202] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 31 : Argument out of range.  Least significant bits used.
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 43 : Found label after column 1. (cherche_min)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 57 : Found label after column 1. (Boucle_Min)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 64 : Found label after column 1. (Fin_Min)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 68 : Found label after column 1. (cherche_max)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 82 : Found label after column 1. (Boucle_Max)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 89 : Found label after column 1. (Fin_Max)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX5.X\EX5.ASM 93 : Found label after column 1. (MAIN)

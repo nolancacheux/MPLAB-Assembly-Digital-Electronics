@@ -1,0 +1,5 @@
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX8.X\EX8.ASM 10 : Found label after column 1. (MAIN)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX8.X\EX8.ASM 20 : Found label after column 1. (Boucle_LEDs)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX8.X\EX8.ASM 32 : Found label after column 1. (Delay)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX8.X\EX8.ASM 36 : Found label after column 1. (Boucle_Delay)
+Warning[207] C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TP_EX8.X\EX8.ASM 41 : Found label after column 1. (Fin_Delay)

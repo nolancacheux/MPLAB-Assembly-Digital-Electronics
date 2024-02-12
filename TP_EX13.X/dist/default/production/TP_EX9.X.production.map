@@ -1,0 +1,48 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Tue Nov 28 23:13:37 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000044
+                   .cinit    romdata   0x000044    program   0x000002
+.config_300001_BUILD/DEFAULT/PRODUCTION/EX9.O    romdata   0x300001    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/EX9.O    romdata   0x300003    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/EX9.O    romdata   0x300006    program   0x000001
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000045      
+                            0x300001    0x300001      
+                            0x300003    0x300003      
+                            0x300006    0x300006      
+            73 out of 8472 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     MAIN   0x000024    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_leds   0x00002c    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_var0   0x000008    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_var1   0x00000c    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_var2   0x000010    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+            routine_tempo   0x000004    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+            routine_tempo   0x000004    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_var0   0x000008    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_var1   0x00000c    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_var2   0x000010    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+                     MAIN   0x000024    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+              boucle_leds   0x00002c    program     static C:\Users\Administrateur\MPLABXProjects\TP_EX9.X\EX9.asm
+
+

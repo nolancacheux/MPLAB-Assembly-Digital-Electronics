@@ -1,0 +1,40 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Tue Nov 28 16:41:12 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x00004e
+                   .cinit    romdata   0x00004e    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00004f      
+            80 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+    CalculateStringLength   0x000004    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                  EndLoop   0x000018    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                     Loop   0x000008    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                 LoopMain   0x00004a    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                     Main   0x00001a    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+    CalculateStringLength   0x000004    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                     Loop   0x000008    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                  EndLoop   0x000018    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                     Main   0x00001a    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                 LoopMain   0x00004a    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+
+

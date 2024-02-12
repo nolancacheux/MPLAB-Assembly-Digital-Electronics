@@ -1,0 +1,17 @@
+Error[150]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 5 : Labels must be defined in a code or data section when making an object file
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 6 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 7 : Executable code and data must be defined in an appropriate section
+Error[150]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 9 : Labels must be defined in a code or data section when making an object file
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 10 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 11 : Executable code and data must be defined in an appropriate section
+Error[151]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 12 : Operand contains unresolvable labels or is too complex
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 12 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 12 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 13 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 14 : Executable code and data must be defined in an appropriate section
+Error[151]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 15 : Operand contains unresolvable labels or is too complex
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 15 : Executable code and data must be defined in an appropriate section
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 15 : Executable code and data must be defined in an appropriate section
+Error[150]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 17 : Labels must be defined in a code or data section when making an object file
+Error[152]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 18 : Executable code and data must be defined in an appropriate section
+Error[116]   C:\USERS\ADMINISTRATEUR\MPLABXPROJECTS\TD2_EX2.X\TD2EX2.ASM 57 : Address label duplicated or different in second pass (Loop)

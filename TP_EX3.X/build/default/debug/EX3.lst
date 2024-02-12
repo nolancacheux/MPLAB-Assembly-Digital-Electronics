@@ -1,0 +1,89 @@
+MPASM 5.87                           EX3.ASM   11-28-2023  22:40:06         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (include)
+Error[105]  : Cannot open file (Include File ""p18F23K20.inc" not found)
+                      00001 include "p18F23K20.inc
+                      00002 
+                      00003 RES_VECT  CODE    0x0000            ; processor reset vector
+Warning[203]: Found opcode in column 1. (goto)
+Error[113]  : Symbol not previously defined (Main)
+000000 EF00 F000      00004 goto Main
+                      00005 
+                      00006 groupc UDATA 0x100 
+000100                00007 somme_High RES 1   ; Réserve 1 emplacement mémoire pour 'somme_High' (octet de poids fort)
+000101                00008 somme_Low RES 1    ; Réserve 1 emplacement mémoire pour 'somme_Low' (octet de poids faible)
+000102                00009 I RES 1            ; Réserve 1 emplacement mémoire pour 'i'
+                      00010 
+                      00011 MAIN_PROG CODE                      ; let linker place main program
+                      00012 
+Warning[207]: Found label after column 1. (calcul_somme)
+000000                00013  calcul_somme:
+000000 6E??           00014     MOVWF I
+Error[113]  : Symbol not previously defined (WREG)
+000002 6A00           00015     CLRF WREG
+Error[113]  : Symbol not previously defined (SOMME_L)
+000004 6E00           00016     MOVWF SOMME_L
+Error[113]  : Symbol not previously defined (SOMME_H)
+000006 6E00           00017     MOVWF SOMME_H
+                      00018 
+Warning[207]: Found label after column 1. (BOUCLE)
+000008                00019     BOUCLE 
+                      00020     ; Tu regqrdes sur l'octet de poids faible ;
+                      00021     ;MOVF SOMME_L
+000008 2400           00022     ADDWF I,0 ; ajoute I dans la somme depuis le WREG, dans le WREG
+Error[113]  : Symbol not previously defined (SOMME_L)
+00000A 6E00           00023     MOVWF SOMME_L ; et on remet la valeur calculée ds WREG dans SOMME 
+                      00024 
+Error[113]  : Symbol not previously defined (C)
+Error[113]  : Symbol not previously defined (STATUS)
+00000C B000           00025     BTFSC STATUS,C ;  si le bit de la carry est clear ça skip la ligne d'après
+Error[113]  : Symbol not previously defined (SOMME_H)
+00000E 2A00           00026     INCF SOMME_H
+                      00027 
+                      00028 
+000010 06??           00029     DECF I ; decremente le I
+                      00030 
+000012 66??           00031     TSTFSZ I ; teste si I =0 , si c'est le cas on skip le suivant
+000014 EF?? F???      00032     GOTO BOUCLE
+                      00033 
+000018 0012           00034     RETURN 
+                      00035 
+00001A                00036 START2
+                      00037 
+00001A 0F05           00038     ADDLW 0x05 ; valeur que l'on veut
+00001C EC?? F???      00039     CALL calcul_somme
+                      00040 
+MPASM 5.87                           EX3.ASM   11-28-2023  22:40:06         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00041 
+Warning[205]: Found directive in column 1. (END)
+                      00042 END
+MPASM 5.87                           EX3.ASM   11-28-2023  22:40:06         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BOUCLE                            00000008
+I                                 00000102
+START2                            0000001A
+__18F23K20                        00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+calcul_somme                      00000000
+somme_High                        00000100
+somme_Low                         00000101
+
+Errors   :     9
+Warnings :     5 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

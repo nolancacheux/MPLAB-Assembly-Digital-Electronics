@@ -1,0 +1,235 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Thu Feb 01 15:38:29 2024
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                MAIN_PROG       code   0x000006    program   0x000ab2
+.config_300000_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300003    program   0x000001
+.config_300004_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300004    program   0x000001
+.config_300005_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300006    program   0x000001
+.config_300007_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300007    program   0x000001
+.config_300008_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x300008    program   0x000001
+.config_30000A_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/PRODUCTION/MERGEEE    romdata   0x30000b    program   0x000001
+                  INT_VAR      udata   0x000000       data   0x000010
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000ab7      
+                            0x300000    0x300008      
+                            0x30000a    0x30000b      
+            2755 out of 33054 program addresses used, program memory utilization is 8%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              BP0_PRESSED   0x0001c6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             BP0_released   0x0001d6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              BP1_PRESSED   0x0001ae    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             BP1_released   0x0001d0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE1   0x000a56    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE2   0x0009f4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE3   0x000992    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE4   0x000930    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN1   0x000746    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN2   0x0006e4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN3   0x000682    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN4   0x000620    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE1   0x0005be    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE2   0x00055c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE3   0x0004fa    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE4   0x000498    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE1   0x000436    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE2   0x0003d4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE3   0x000372    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE4   0x000310    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE1   0x0008ce    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE2   0x00086c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE3   0x00080a    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE4   0x0007a8    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE0   0x000186    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE1   0x00018c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE2   0x000192    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE3   0x000198    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE4   0x00019e    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+          _MAIN_PROG_0070   0x000076    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+          _MAIN_PROG_0146   0x00014c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     bit0   0x0002cc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     bit1   0x0002ec    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             eteindre_led   0x0001a4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     ife2   0x0000c0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     ife3   0x0000d6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab1   0x0000ec    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab2   0x0000f8    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab3   0x000104    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab4   0x000110    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab5   0x00011c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab6   0x000128    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab7   0x000134    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab8   0x000140    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum0pr1   0x0001ec    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum0pr2   0x000252    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum0skip1   0x0001f0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum0skip2   0x000256    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum1pr1   0x0001fc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum1pr2   0x000262    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum1skip1   0x000204    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum1skip2   0x00026a    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum2pr1   0x000210    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum2pr2   0x000276    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum2skip1   0x000218    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum2skip2   0x00027e    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum3pr1   0x000224    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum3pr2   0x00028a    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum3skip1   0x00022c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum3skip2   0x000292    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum4pr1   0x000238    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum4pr2   0x00029e    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum4skip1   0x000240    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum4skip2   0x0002a6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     loop   0x0000b0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog1   0x0001dc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog2   0x000242    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog3   0x0002a8    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog4   0x0002ae    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog5   0x0002b4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog6   0x0002ba    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog7   0x0002c0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog8   0x0002c6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   resett   0x0001c0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     skip   0x0001c4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    suite   0x0000c6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   suite2   0x0000dc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              trigger_led   0x000144    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   NB_LED   0x00000b       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 RESULTHI   0x00000c       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 RESULTLO   0x00000d       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     cinq   0x000007       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     deux   0x000004       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     huit   0x00000a       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    incre   0x00000e       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+            isbtn0pressed   0x000002       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+            isbtn1pressed   0x000001       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               luminosite   0x00000f       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     prog   0x000000       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   quatre   0x000006       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     sept   0x000009       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                      six   0x000008       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    trois   0x000005       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                       un   0x000003       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+          _MAIN_PROG_0070   0x000076    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     loop   0x0000b0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     ife2   0x0000c0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    suite   0x0000c6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     ife3   0x0000d6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   suite2   0x0000dc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab1   0x0000ec    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab2   0x0000f8    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab3   0x000104    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab4   0x000110    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab5   0x00011c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab6   0x000128    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab7   0x000134    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     lab8   0x000140    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              trigger_led   0x000144    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+          _MAIN_PROG_0146   0x00014c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE0   0x000186    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE1   0x00018c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE2   0x000192    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE3   0x000198    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              LUMINOSITE4   0x00019e    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             eteindre_led   0x0001a4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              BP1_PRESSED   0x0001ae    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   resett   0x0001c0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     skip   0x0001c4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+              BP0_PRESSED   0x0001c6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             BP1_released   0x0001d0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             BP0_released   0x0001d6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog1   0x0001dc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum0pr1   0x0001ec    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum0skip1   0x0001f0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum1pr1   0x0001fc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum1skip1   0x000204    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum2pr1   0x000210    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum2skip1   0x000218    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum3pr1   0x000224    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum3skip1   0x00022c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum4pr1   0x000238    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum4skip1   0x000240    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog2   0x000242    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum0pr2   0x000252    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum0skip2   0x000256    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum1pr2   0x000262    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum1skip2   0x00026a    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum2pr2   0x000276    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum2skip2   0x00027e    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum3pr2   0x00028a    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum3skip2   0x000292    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               ledlum4pr2   0x00029e    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+             ledlum4skip2   0x0002a6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog3   0x0002a8    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog4   0x0002ae    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog5   0x0002b4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog6   0x0002ba    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog7   0x0002c0    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    prog8   0x0002c6    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     bit0   0x0002cc    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     bit1   0x0002ec    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE4   0x000310    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE3   0x000372    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE2   0x0003d4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 LEDROSE1   0x000436    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE4   0x000498    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE3   0x0004fa    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE2   0x00055c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDJAUNE1   0x0005be    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN4   0x000620    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN3   0x000682    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN2   0x0006e4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDGREEN1   0x000746    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE4   0x0007a8    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE3   0x00080a    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE2   0x00086c    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDROUGE1   0x0008ce    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE4   0x000930    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE3   0x000992    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE2   0x0009f4    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                LEDBLEUE1   0x000a56    program     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     prog   0x000000       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+            isbtn1pressed   0x000001       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+            isbtn0pressed   0x000002       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                       un   0x000003       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     deux   0x000004       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    trois   0x000005       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   quatre   0x000006       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     cinq   0x000007       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                      six   0x000008       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     sept   0x000009       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                     huit   0x00000a       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                   NB_LED   0x00000b       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 RESULTHI   0x00000c       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                 RESULTLO   0x00000d       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+                    incre   0x00000e       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+               luminosite   0x00000f       data     static C:\Users\nolan\MPLABXProjects\TEST10_MERGE_2BOUTON_POTENTIOMETRE_et_MOTIF.X\MERGEEE.asm
+
+

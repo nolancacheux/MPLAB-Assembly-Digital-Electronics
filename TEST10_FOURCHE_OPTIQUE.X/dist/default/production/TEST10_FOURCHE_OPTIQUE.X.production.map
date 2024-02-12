@@ -1,0 +1,87 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Thu Feb 01 15:14:07 2024
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                MAIN_PROG       code   0x000006    program   0x0000a4
+.config_300000_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300000    program   0x000001
+.config_300001_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300003    program   0x000001
+.config_300004_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300004    program   0x000001
+.config_300005_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300006    program   0x000001
+.config_300007_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300007    program   0x000001
+.config_300008_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x300008    program   0x000001
+.config_30000A_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/PRODUCTION/PASSAGE    romdata   0x30000b    program   0x000001
+                  INT_VAR      udata   0x000000       data   0x000010
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x0000a9      
+                            0x300000    0x300008      
+                            0x30000a    0x30000b      
+            181 out of 33054 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+          _MAIN_PROG_0070   0x000076    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+               allumerLed   0x00009e    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                   boucle   0x00008e    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+              eteindreLed   0x0000a4    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                   NB_LED   0x00000b       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                 RESULTHI   0x00000c       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                 RESULTLO   0x00000d       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     cinq   0x000007       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     deux   0x000004       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     huit   0x00000a       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                    incre   0x00000e       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+            isbtn0pressed   0x000002       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+            isbtn1pressed   0x000001       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+               luminosite   0x00000f       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     prog   0x000000       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                   quatre   0x000006       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     sept   0x000009       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                      six   0x000008       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                    trois   0x000005       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                       un   0x000003       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000006    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+          _MAIN_PROG_0070   0x000076    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                   boucle   0x00008e    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+               allumerLed   0x00009e    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+              eteindreLed   0x0000a4    program     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     prog   0x000000       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+            isbtn1pressed   0x000001       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+            isbtn0pressed   0x000002       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                       un   0x000003       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     deux   0x000004       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                    trois   0x000005       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                   quatre   0x000006       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     cinq   0x000007       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                      six   0x000008       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     sept   0x000009       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                     huit   0x00000a       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                   NB_LED   0x00000b       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                 RESULTHI   0x00000c       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                 RESULTLO   0x00000d       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+                    incre   0x00000e       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+               luminosite   0x00000f       data     static C:\Users\nolan\MPLABXProjects\TEST10_FOURCHE_OPTIQUE.X\passagehelice.asm
+
+

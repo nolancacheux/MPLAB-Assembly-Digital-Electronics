@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>TP_EX15</name>
+            <name>TP_EX14</name>
+            <name>TP_EX13</name>
+            <name>TP_EX12</name>
+            <name>TP_EX11</name>
+            <name>TP_EX10</name>
+            <name>TP_EX9</name>
+            <name>TP_EX8</name>
+            <name>TP_EX7</name>
+            <name>TP_EX6</name>
+            <name>TP_EX5</name>
+            <name>TP_EX4</name>
+            <name>TP_EX3</name>
+            <creation-uuid>d45393ee-39a5-42ec-98aa-93b977c6de08</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <c-extensions/>
+            <cpp-extensions/>
+            <header-extensions/>
+            <asminc-extensions/>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList/>
+            <confList>
+                <confElem>
+                    <name>default</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>

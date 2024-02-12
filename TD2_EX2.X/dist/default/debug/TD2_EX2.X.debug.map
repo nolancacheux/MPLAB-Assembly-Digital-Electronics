@@ -1,0 +1,42 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Tue Nov 28 17:06:00 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                   .org_1       code   0x000008    program   0x00004c
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000005      
+                            0x000008    0x000053      
+            82 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+    CalculateStringLength   0x000040    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+          EndStringLength   0x000050    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                 LoopMain   0x00003c    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+              LoopRoutine   0x000046    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                     Main   0x000008    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     Main   0x000008    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+                 LoopMain   0x00003c    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+    CalculateStringLength   0x000040    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+              LoopRoutine   0x000046    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+          EndStringLength   0x000050    program     static C:\Users\Administrateur\MPLABXProjects\TD2_EX2.X\EX.asm
+
+

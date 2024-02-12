@@ -1,0 +1,4434 @@
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 #include "p18f25k40.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 06 2020
+                      00005 ;  MPASM PIC18F25K40 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2020 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      04494         LIST
+                      00002 
+                      00003 ; CONFIG1L
+                      00004   CONFIG  FEXTOSC = OFF         ; External Oscillator mode Selection bits (EC (external clock) above 8 M
+                            Hz; PFM set to high power)
+                      00005   CONFIG  RSTOSC = EXTOSC       ; Power-up default value for COSC bits (EXTOSC operating per FEXTOSC bit
+                            s (device manufacturing default))
+                      00006 
+                      00007 ; CONFIG1H
+                      00008   CONFIG  CLKOUTEN = OFF        ; Clock Out Enable bit (CLKOUT function is disabled)
+                      00009   CONFIG  CSWEN = ON            ; Clock Switch Enable bit (Writing to NOSC and NDIV is allowed)
+                      00010   CONFIG  FCMEN = ON            ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor enabled)
+                      00011 
+                      00012 ; CONFIG2L
+                      00013   CONFIG  MCLRE = EXTMCLR       ; Master Clear Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3
+                             pin function is MCLR )
+                      00014   CONFIG  PWRTE = OFF           ; Power-up Timer Enable bit (Power up timer disabled)
+                      00015   CONFIG  LPBOREN = OFF         ; Low-power BOR enable bit (ULPBOR disabled)
+                      00016   CONFIG  BOREN = SBORDIS       ; Brown-out Reset Enable bits (Brown-out Reset enabled , SBOREN bit is i
+                            gnored)
+                      00017 
+                      00018 ; CONFIG2H
+                      00019   CONFIG  BORV = VBOR_2P45      ; Brown Out Reset Voltage selection bits (Brown-out Reset Voltage (VBOR)
+                             set to 2.45V)
+                      00020   CONFIG  ZCD = OFF             ; ZCD Disable bit (ZCD disabled. ZCD can be enabled by setting the ZCDSE
+                            N bit of ZCDCON)
+                      00021   CONFIG  PPS1WAY = ON          ; PPSLOCK bit One-Way Set Enable bit (PPSLOCK bit can be cleared and set
+                             only once; PPS registers remain locked after one clear/set cycle)
+                      00022   CONFIG  STVREN = ON           ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause
+                             Reset)
+                      00023   CONFIG  DEBUG = OFF           ; Debugger Enable bit (Background debugger disabled)
+                      00024   CONFIG  XINST = OFF           ; Extended Instruction Set Enable bit (Extended Instruction Set and Inde
+                            xed Addressing Mode disabled)
+                      00025 
+                      00026 ; CONFIG3L
+                      00027   CONFIG  WDTCPS = WDTCPS_31    ; WDT Period Select bits (Divider ratio 1:65536; software control of WDT
+                            PS)
+                      00028   CONFIG  WDTE = OFF             ; WDT operating mode (WDT enabled regardless of sleep)
+                      00029 
+                      00030 ; CONFIG3H
+                      00031   CONFIG  WDTCWS = WDTCWS_7     ; WDT Window Select bits (window always open (100%); software control; k
+                            eyed access not required)
+                      00032   CONFIG  WDTCCS = SC           ; WDT input clock selector (Software Control)
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00033 
+                      00034 ; CONFIG4L
+                      00035   CONFIG  WRT0 = OFF            ; Write Protection Block 0 (Block 0 (000800-001FFFh) not write-protected
+                            )
+                      00036   CONFIG  WRT1 = OFF            ; Write Protection Block 1 (Block 1 (002000-003FFFh) not write-protected
+                            )
+                      00037   CONFIG  WRT2 = OFF            ; Write Protection Block 2 (Block 2 (004000-005FFFh) not write-protected
+                            )
+                      00038   CONFIG  WRT3 = OFF            ; Write Protection Block 3 (Block 3 (006000-007FFFh) not write-protected
+                            )
+                      00039 
+                      00040 ; CONFIG4H
+                      00041   CONFIG  WRTC = OFF            ; Configuration Register Write Protection bit (Configuration registers (
+                            300000-30000Bh) not write-protected)
+                      00042   CONFIG  WRTB = OFF            ; Boot Block Write Protection bit (Boot Block (000000-0007FFh) not write
+                            -protected)
+                      00043   CONFIG  WRTD = OFF            ; Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+                      00044   CONFIG  SCANE = ON            ; Scanner Enable bit (Scanner module is available for use, SCANMD bit ca
+                            n control the module)
+                      00045   CONFIG  LVP = OFF              ; Low Voltage Programming Enable bit (Low voltage programming enabled. 
+                            MCLR/VPP pin function is MCLR. MCLRE configuration bit is ignored)
+                      00046 
+                      00047 ; CONFIG5L
+                      00048   CONFIG  CP = OFF              ; UserNVM Program Memory Code Protection bit (UserNVM code protection di
+                            sabled)
+                      00049   CONFIG  CPD = OFF             ; DataNVM Memory Code Protection bit (DataNVM code protection disabled)
+                      00050 
+                      00051 ; CONFIG5H
+                      00052 
+                      00053 ; CONFIG6L
+                      00054   CONFIG  EBTR0 = OFF           ; Table Read Protection Block 0 (Block 0 (000800-001FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00055   CONFIG  EBTR1 = OFF           ; Table Read Protection Block 1 (Block 1 (002000-003FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00056   CONFIG  EBTR2 = OFF           ; Table Read Protection Block 2 (Block 2 (004000-005FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00057   CONFIG  EBTR3 = OFF           ; Table Read Protection Block 3 (Block 3 (006000-007FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00058 
+                      00059 ; CONFIG6H
+                      00060   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not 
+                            protected from table reads executed in other blocks)
+                      00061 
+                      00062 
+                      00063 
+                      00064 
+                      00065 ;*******************************************************************************
+                      00066 ;
+                      00067 ; TODO Step #3 - Variable Definitions
+                      00068 ;
+                      00069 ; Refer to datasheet for available data memory (RAM) organization assuming
+                      00070 ; relocatible code organization (which is an option in project
+                      00071 ; properties > mpasm (Global Options)).  Absolute mode generally should
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00072 ; be used sparingly.
+                      00073 ;
+                      00074 ; Example of using GPR Uninitialized Data
+                      00075 ;
+                      00076 ;   GPR_VAR        UDATA
+                      00077 ;   MYVAR1         RES        1      ; User variable linker places
+                      00078 ;   MYVAR2         RES        1      ; User variable linker places
+                      00079 ;   MYVAR3         RES        1      ; User variable linker places
+                      00080 ;
+                      00081 ;   ; Example of using Access Uninitialized Data Section (when available)
+                      00082 ;   ; The variables for the context saving in the device datasheet may need
+                      00083 ;   ; memory reserved here.
+                      00084 ;   INT_VAR        UDATA_ACS
+                      00085 ;   W_TEMP         RES        1      ; w register for context saving (ACCESS)
+                      00086 ;   STATUS_TEMP    RES        1      ; status used for context saving
+                      00087 ;   BSR_TEMP       RES        1      ; bank select used for ISR context saving
+                      00088 ;
+                      00089 ;*******************************************************************************
+                      00090 
+                      00091 ; TODO PLACE VARIABLE DEFINITIONS GO HERE
+  00000000            00092 LED_PIN equ RB0 ; Définir la broche de la LED
+                      00093 
+                      00094 INT_VAR UDATA_ACS
+000000                00095 prog RES 1
+000001                00096 isbtn1pressed RES 1
+000002                00097 isbtn0pressed RES 1
+000003                00098 un RES 1
+000004                00099 deux RES 1
+000005                00100 trois RES 1
+000006                00101 quatre RES 1
+000007                00102 cinq RES 1
+000008                00103 six RES 1
+000009                00104 sept RES 1
+00000A                00105 huit RES 1
+00000B                00106 NB_LED RES 1
+00000C                00107 RESULTHI RES 1
+00000D                00108 RESULTLO RES 1
+00000E                00109 incre RES 1
+00000F                00110 luminosite RES 1
+                      00111 
+                      00112 ;*******************************************************************************
+                      00113 ; Reset Vector
+                      00114 ;*******************************************************************************
+                      00115 
+                      00116 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00117     GOTO    BEGIN                   ; go to beginning of program
+                      00118 
+                      00119 ;*******************************************************************************
+                      00120 ; TODO Step #4 - Interrupt Service Routines
+                      00121 ;
+                      00122 ; There are a few different ways to structure interrupt routines in the 8
+                      00123 ; bit device families.  On PIC18's the high priority and low priority
+                      00124 ; interrupts are located at 0x0008 and 0x0018, respectively.  On PIC16's and
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00125 ; lower the interrupt is at 0x0004.  Between device families there is subtle
+                      00126 ; variation in the both the hardware supporting the ISR (for restoring
+                      00127 ; interrupt context) as well as the software used to restore the context
+                      00128 ; (without corrupting the STATUS bits).
+                      00129 ;
+                      00130 ; General formats are shown below in relocatible format.
+                      00131 ;
+                      00132 ;------------------------------PIC16's and below--------------------------------
+                      00133 ;
+                      00134 ; ISR       CODE    0x0004           ; interrupt vector location
+                      00135 ;
+                      00136 ;     <Search the device datasheet for 'context' and copy interrupt
+                      00137 ;     context saving code here.  Older devices need context saving code,
+                      00138 ;     but newer devices like the 16F#### don't need context saving code.>
+                      00139 ;
+                      00140 ;     RETFIE
+                      00141 ;
+                      00142 ;----------------------------------PIC18's--------------------------------------
+                      00143 ;
+                      00144 ; ISRHV     CODE    0x0008
+                      00145 ;     GOTO    HIGH_ISR
+                      00146 ; ISRLV     CODE    0x0018
+                      00147 ;     GOTO    LOW_ISR
+                      00148 ;
+                      00149 ; ISRH      CODE                     ; let linker place high ISR routine
+                      00150 ; HIGH_ISR
+                      00151 ;     <Insert High Priority ISR Here - no SW context saving>
+                      00152 ;     RETFIE  FAST
+                      00153 ;
+                      00154 ; ISRL      CODE                     ; let linker place low ISR routine
+                      00155 ; LOW_ISR
+                      00156 ;       <Search the device datasheet for 'context' and copy interrupt
+                      00157 ;       context saving code here>
+                      00158 ;     RETFIE
+                      00159 ;
+                      00160 ;*******************************************************************************
+                      00161 
+                      00162 ; TODO INSERT ISR HERE
+                      00163 
+                      00164 ;*******************************************************************************
+                      00165 ; MAIN PROGRAM
+                      00166 ;*******************************************************************************
+                      00167     
+                      00168 MAIN_PROG CODE                      ; let linker place main program
+                      00169   
+000000                00170 BEGIN
+                      00171     
+                      00172 ; On met la fréquence à 16MHz
+000000 0E60           00173     MOVLW b'01100000'
+000002 6FD8           00174     MOVWF OSCCON1
+000004 6FD9           00175     MOVWF OSCCON2
+                      00176     
+                      00177 ; Configurat    ion des ports en sortie
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000006 0E07           00178     movlw 0x07
+000008 6E89           00179     movwf TRISB
+00000A 0E30           00180     movlw 0x30
+00000C 6E88           00181     movwf TRISA
+00000E 010F           00182     BANKSEL ANSELB
+000010 9519           00183     BCF ANSELB,2
+000012 9319           00184     BCF ANSELB,1
+                      00185 
+                      00186     
+000014 010E           00187     MOVLB 0x0E  
+000016 968A           00188     BCF TRISC, 3
+                      00189 
+                      00190 ; Configuration des bits de configuration du microcontrôleur
+  00000000            00191 LED_PIN equ LATC0 ; Définir la broche de la LED sur LATC0
+                      00192 
+                      00193 ; début de la configuration de l'ADC
+000018 010F           00194     MOVLB 0x0F; ;sélection de la banque d'adresse, 
+                      00195     ;data sheet ADPCH : F5Fh, donc F adresse de la bank
+00001A 0E05           00196     MOVLW b'00000101' ; schéma ADC : ANA5 => datasheet ANA 5 = 000101 (p447)
+00001C 6F5F           00197     MOVWF ADPCH, 1 ; sélection du channel ADC
+00001E 0E00           00198     MOVLW b'00000000' ;voir datasheet (aide cours)
+000020 6F58           00199     MOVWF ADREF, 1 ; configuration des références analogiques
+000022 0E01           00200     MOVLW b'00000001' ; bit 7-6 Unimplemented: Read as ?0? bit 5-0 000001 = FOSC/4
+000024 6F57           00201     MOVWF ADCLK, 1 ; configuration de l?horloge de l?ADC : 1µs ? TAD ? 6µs
+000026 0EFF           00202     MOVLW b'11111111'
+000028 6F5E           00203     MOVWF ADPRE, 1 ; configuration du temps de précharge (max. par défaut)
+00002A 6F5C           00204     MOVWF ADACQ, 1 ; configuration du temps d?acquisition (max. par défaut)
+00002C 6B5D           00205     CLRF ADCAP, 1 ; pas de capacité additionnelle
+00002E 0E00           00206     MOVLW b'00000000'
+000030 6F56           00207     MOVWF ADACT, 1 ; pas d?activation auto. de l?ADC sur événement
+000032 0E00           00208     MOVLW b'00000000'
+000034 6F5B           00209     MOVWF ADCON3, 1 ; pas d?interruption sur l?ADC
+000036 0E00           00210     MOVLW b'00000000'
+000038 6F5A           00211     MOVWF ADCON2, 1 ; configuration de l?ADC en mode basique
+00003A 0E00           00212     MOVLW b'00000000'
+00003C 6F59           00213     MOVWF ADCON1, 1 ; configuration des options de précharge
+00003E 0E80           00214     MOVLW b'10000000'
+000040 6E60           00215     MOVWF ADCON0 ; configuration générale et format du résultat
+                      00216    ; fin de la configuration
+                      00217     
+                      00218     ;PWM
+                      00219 ; début de la configuration
+000042 0E04           00220     MOVLW b'00000100'
+000044 6EAE           00221     MOVWF CCPTMRS ; associe le module CCP2 avec le timer 2
+000046 010E           00222     MOVLB 0x0E ; sélection de la banque d?adresse
+000048 0E06           00223     MOVLW 0x06
+00004A 6FF8           00224     MOVWF RC1PPS, 1 ; associe le pin RC1 avec le module CCP2 (voir p.213)
+00004C 828A           00225     BSF TRISC, 1 ; désactivation de la sortie PWM pour configuration
+00004E 0E3D           00226     MOVLW d'61' 
+000050 6EBC           00227     MOVWF T2PR ; fixe la période de PWM (voir formule p.271)
+000052 0E9C           00228     MOVLW b'10011100'
+000054 6EA8           00229     MOVWF CCP2CON ; configuration du module CCP2 et format des données
+000056 0E20           00230     MOVLW d'32' ; A la base 128 mais comme a gauche on divise par 4 donc 32 
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000058 6EA7           00231     MOVWF CCPR2H
+00005A 0E00           00232     MOVLW d'0'
+00005C 6EA6           00233     MOVWF CCPR2L ; fixe le rapport cyclique du signal (voir formule p.272)
+00005E 0E01           00234     MOVLW b'00000001'
+000060 6EBF           00235     MOVWF T2CLKCON ; configuration de l?horloge du timer 2 = Fosc/4
+000062 0E80           00236     MOVLW b'10000000'
+000064 6EBD           00237     MOVWF T2CON ; choix des options du timer 2 (voir p.256)
+000066 928A           00238     BCF TRISC, 1 ; activation de la sortie PWM
+                      00239 ; fin de la configuration
+                      00240     
+                      00241     ; CONVERSION ADC
+000068 0E80           00242     MOVLW b'10000000' ;Select channel AN0
+00006A 6E60           00243     MOVWF ADCON0 ;Turn ADC On
+                      00244 
+00006C 8060           00245     BSF ADCON0,ADGO ;Start conversion
+00006E B060           00246     BTFSC ADCON0,ADGO ;Is conversion done?
+000070 EF?? F???      00247     GOTO $-2 ;No, test again
+000074 010F           00248     BANKSEL ADRESH ;
+000076 5064           00249     MOVF ADRESH,W ;Read upper 2 bits
+000078 6E??           00250     MOVWF RESULTHI ;store in GPR space
+00007A 010F           00251     BANKSEL ADRESL ;
+00007C 5063           00252     MOVF ADRESL,W ;Read lower 8 bits
+00007E 6E??           00253     MOVWF RESULTLO ;Store in GPR space
+                      00254 ; FIN CONVERSION ADC
+                      00255     
+                      00256     
+000080 0E01           00257  movlw 0x01
+000082 6E??           00258  movwf prog
+000084 6A??           00259  CLRF isbtn1pressed
+000086 6A??           00260  CLRF isbtn0pressed
+000088 6A??           00261  CLRF luminosite
+                      00262  
+00008A 0E01           00263  movlw b'00000001'
+00008C 6E??           00264  movwf un
+00008E 0E02           00265  movlw b'00000010'
+000090 6E??           00266  movwf deux
+000092 0E04           00267  movlw b'00000100'
+000094 6E??           00268  movwf trois
+000096 0E08           00269  movlw b'00001000'
+000098 6E??           00270  movwf quatre
+00009A 0E10           00271  movlw b'00010000'
+00009C 6E??           00272  movwf cinq
+00009E 0E20           00273  movlw b'00100000'
+0000A0 6E??           00274  movwf six
+0000A2 0E40           00275  movlw b'01000000'
+0000A4 6E??           00276  movwf sept
+0000A6 0E80           00277  movlw b'10000000'
+0000A8 6E??           00278  movwf huit
+                      00279  
+                      00280 
+                      00281     
+0000AA                00282 loop 
+                      00283     
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00284 
+0000AA B48E           00285     BTFSC PORTB,2
+0000AC EC?? F???      00286     CALL BP1_released
+0000B0 A48E           00287     BTFSS PORTB,2
+0000B2 EF?? F???      00288     goto ife2
+0000B6 EF?? F???      00289     goto suite
+0000BA                00290 ife2
+0000BA A0??           00291     BTFSS isbtn1pressed,0
+0000BC EC?? F???      00292     CALL BP1_PRESSED
+0000C0                00293 suite
+0000C0 B28E           00294     BTFSC PORTB,1
+0000C2 EC?? F???      00295     CALL BP0_released
+0000C6 A28E           00296     BTFSS PORTB,1
+0000C8 EF?? F???      00297     goto ife3
+0000CC EF?? F???      00298     goto suite2
+0000D0                00299 ife3
+0000D0 A0??           00300     BTFSS isbtn0pressed,0
+0000D2 EC?? F???      00301     CALL BP0_PRESSED
+                      00302     
+0000D6                00303 suite2
+0000D6 EC?? F???      00304     call eteindre_led
+0000DA 0E01           00305     movlw 0x01
+0000DC 62??           00306     CPFSEQ prog
+0000DE EF?? F???      00307     goto lab1
+0000E2 EC?? F???      00308     CALL prog1
+0000E6                00309 lab1
+0000E6 0E02           00310     movlw 0x02
+0000E8 62??           00311     CPFSEQ prog
+0000EA EF?? F???      00312     goto lab2
+0000EE EC?? F???      00313     CALL prog2
+0000F2                00314 lab2
+0000F2 0E03           00315     movlw 0x03
+0000F4 62??           00316     CPFSEQ prog
+0000F6 EF?? F???      00317     goto lab3
+0000FA EC?? F???      00318     CALL prog3
+0000FE                00319 lab3
+0000FE 0E04           00320     movlw 0x04
+000100 62??           00321     CPFSEQ prog
+000102 EF?? F???      00322     goto lab4
+000106 EC?? F???      00323     CALL prog4
+00010A                00324 lab4
+00010A 0E05           00325     movlw 0x05
+00010C 62??           00326     CPFSEQ prog
+00010E EF?? F???      00327     goto lab5
+000112 EC?? F???      00328     CALL prog5
+000116                00329 lab5
+000116 0E06           00330     movlw 0x06
+000118 62??           00331     CPFSEQ prog
+00011A EF?? F???      00332     goto lab6
+00011E EC?? F???      00333     CALL prog6
+000122                00334 lab6
+000122 0E07           00335     movlw 0x07
+000124 62??           00336     CPFSEQ prog
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000126 EF?? F???      00337     goto lab7
+00012A EC?? F???      00338     CALL prog7
+00012E                00339 lab7
+00012E 0E08           00340     movlw 0x08
+000130 62??           00341     CPFSEQ prog
+000132 EF?? F???      00342     goto lab8
+000136 EC?? F???      00343     CALL prog8
+00013A                00344 lab8
+                      00345     
+                      00346 
+                      00347     
+Warning[203]: Found opcode in column 1. (goto)
+00013A EF?? F???      00348 goto loop
+                      00349     
+                      00350     
+                      00351 ;functions
+                      00352     
+                      00353     
+00013E                00354 trigger_led
+                      00355     
+                      00356      ; CONVERSION ADC
+00013E 0E80           00357     MOVLW b'10000000' ;Select channel AN0
+000140 6E60           00358     MOVWF ADCON0 ;Turn ADC On
+                      00359 
+000142 8060           00360     BSF ADCON0,ADGO ;Start conversion
+000144 B060           00361     BTFSC ADCON0,ADGO ;Is conversion done?
+000146 EF?? F???      00362     GOTO $-2 ;No, test again
+00014A 010F           00363     BANKSEL ADRESH ;
+00014C 5064           00364     MOVF ADRESH,W ;Read upper 2 bits
+00014E 6E??           00365     MOVWF RESULTHI ;store in GPR space
+000150 010F           00366     BANKSEL ADRESL ;
+000152 5063           00367     MOVF ADRESL,W ;Read lower 8 bits
+000154 6E??           00368     MOVWF RESULTLO ;Store in GPR space
+                      00369 ; FIN CONVERSION ADC
+                      00370     
+000156 0E00           00371     MOVLW 0x00
+000158 6064           00372     CPFSLT ADRESH
+00015A EC?? F???      00373     CALL LUMINOSITE0
+                      00374     
+00015E 0E33           00375     MOVLW 0x33
+000160 6064           00376     CPFSLT ADRESH
+000162 EC?? F???      00377     CALL LUMINOSITE1
+                      00378     
+000166 0E66           00379     MOVLW 0x66
+000168 6064           00380     CPFSLT ADRESH
+00016A EC?? F???      00381     CALL LUMINOSITE2
+                      00382 ;    
+00016E 0E99           00383     MOVLW 0x99
+000170 6064           00384     CPFSLT ADRESH
+000172 EC?? F???      00385     CALL LUMINOSITE3
+                      00386 ;    
+000176 0EFF           00387     MOVLW 0xFF
+000178 6064           00388     CPFSLT ADRESH
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00017A EC?? F???      00389     CALL LUMINOSITE4
+                      00390 
+                      00391     
+00017E 0012           00392     return
+                      00393     
+                      00394     
+000180                00395 LUMINOSITE0
+000180 0E00           00396     movlw 0x00
+000182 6E??           00397     movwf luminosite
+                      00398     
+000184 0012           00399     return
+                      00400     
+000186                00401 LUMINOSITE1
+                      00402    
+000186 0E01           00403     movlw 0x01
+000188 6E??           00404     movwf luminosite
+                      00405     
+                      00406 
+00018A 0012           00407     return
+                      00408     
+00018C                00409 LUMINOSITE2
+                      00410    
+00018C 0E02           00411     movlw 0x02
+00018E 6E??           00412     movwf luminosite
+                      00413     
+                      00414 
+000190 0012           00415     return
+                      00416     
+                      00417     
+000192                00418 LUMINOSITE3
+                      00419    
+000192 0E03           00420     movlw 0x03
+000194 6E??           00421     movwf luminosite
+                      00422     
+                      00423 
+000196 0012           00424     return
+                      00425     
+000198                00426 LUMINOSITE4
+                      00427    
+000198 0E04           00428     movlw 0x04
+00019A 6E??           00429     movwf luminosite
+                      00430     
+                      00431 
+00019C 0012           00432     return
+                      00433     
+                      00434     
+                      00435 
+                      00436     
+                      00437     
+                      00438 
+                      00439     
+00019E                00440 eteindre_led
+00019E 0E00           00441     movlw 0x00
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001A0 6E84           00442     movwf LATB
+0001A2 0E00           00443     movlw 0x00
+0001A4 6E83           00444     movwf LATA
+0001A6 0012           00445     return
+                      00446 
+                      00447     
+0001A8                00448 BP1_PRESSED
+0001A8 0E01           00449     movlw 0X01
+0001AA 6E??           00450     movwf isbtn1pressed
+0001AC 2A??           00451     INCF prog
+0001AE 0E09           00452     movlw 0x09
+0001B0 62??           00453     CPFSEQ prog
+0001B2 EF?? F???      00454     goto skip
+0001B6 EF?? F???      00455     goto resett
+                      00456     
+0001BA                00457 resett
+0001BA 0E01           00458     movlw 0x01
+0001BC 6E??           00459     movwf prog
+0001BE                00460 skip
+                      00461     
+0001BE 0012           00462     return
+0001C0                00463 BP0_PRESSED
+0001C0 0E01           00464     movlw 0X01
+0001C2 6E??           00465     movwf isbtn0pressed
+                      00466 
+0001C4 EC?? F???      00467     call trigger_led
+0001C8 0012           00468     return
+                      00469 
+0001CA                00470 BP1_released
+0001CA 0E00           00471     movlw 0X00
+0001CC 6E??           00472     movwf isbtn1pressed
+0001CE 0012           00473     return
+0001D0                00474 BP0_released
+0001D0 0E00           00475     movlw 0X00
+0001D2 6E??           00476     movwf isbtn0pressed
+0001D4 0012           00477     return
+                      00478     
+0001D6                00479 prog1
+0001D6 5000           00480     movf un,0
+0001D8 6E83           00481     movwf LATA
+                      00482     
+0001DA 0E00           00483     movlw 0x00
+0001DC 62??           00484     CPFSEQ luminosite
+0001DE EF?? F???      00485     goto ledlum0skip1
+0001E2 EF?? F???      00486     goto ledlum0pr1
+                      00487     
+0001E6                00488 ledlum0pr1
+0001E6 EC?? F???      00489     call eteindre_led
+                      00490     
+0001EA                00491 ledlum0skip1
+0001EA 0E01           00492     movlw 0x01
+0001EC 62??           00493     CPFSEQ luminosite
+0001EE EF?? F???      00494     goto ledlum1skip1
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001F2 EF?? F???      00495     goto ledlum1pr1
+                      00496     
+0001F6                00497 ledlum1pr1
+0001F6 EC?? F???      00498     call LEDROUGE1
+0001FA EC?? F???      00499     call LEDROSE1
+                      00500     
+0001FE                00501 ledlum1skip1
+                      00502    
+                      00503     
+0001FE 0E02           00504     movlw 0x02
+000200 62??           00505     CPFSEQ luminosite
+000202 EF?? F???      00506     goto ledlum2skip1
+000206 EF?? F???      00507     goto ledlum2pr1
+                      00508 
+                      00509     
+00020A                00510 ledlum2pr1
+00020A EC?? F???      00511     call LEDROUGE2
+00020E EC?? F???      00512     call LEDROSE2
+                      00513     
+                      00514     
+000212                00515 ledlum2skip1
+                      00516     
+000212 0E03           00517     movlw 0x03
+000214 62??           00518     CPFSEQ luminosite
+000216 EF?? F???      00519     goto ledlum3skip1
+00021A EF?? F???      00520     goto ledlum3pr1
+                      00521 
+                      00522     
+00021E                00523 ledlum3pr1
+00021E EC?? F???      00524     call LEDROUGE3
+000222 EC?? F???      00525     call LEDROSE3
+                      00526     
+000226                00527 ledlum3skip1
+                      00528     
+000226 0E04           00529     movlw 0x04
+000228 62??           00530     CPFSEQ luminosite
+00022A EF?? F???      00531     goto ledlum4skip1
+00022E EF?? F???      00532     goto ledlum4pr1
+                      00533 
+                      00534     
+000232                00535 ledlum4pr1
+000232 EC?? F???      00536     call LEDROUGE4
+000236 EC?? F???      00537     call LEDROSE4
+                      00538     
+00023A                00539 ledlum4skip1
+00023A 0012           00540     return
+                      00541     
+                      00542     
+00023C                00543 prog2
+00023C 5000           00544     movf deux,0
+00023E 6E83           00545     movwf LATA
+000240 0E00           00546     movlw 0x00
+000242 62??           00547     CPFSEQ luminosite
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000244 EF?? F???      00548     goto ledlum0skip2
+000248 EF?? F???      00549     goto ledlum0pr2
+                      00550     
+00024C                00551 ledlum0pr2
+00024C EC?? F???      00552     call eteindre_led
+                      00553     
+000250                00554 ledlum0skip2
+000250 0E01           00555     movlw 0x01
+000252 62??           00556     CPFSEQ luminosite
+000254 EF?? F???      00557     goto ledlum1skip2
+000258 EF?? F???      00558     goto ledlum1pr2
+                      00559     
+00025C                00560 ledlum1pr2
+00025C EC?? F???      00561     call LEDJAUNE1
+000260 EC?? F???      00562     call LEDBLEUE1
+                      00563     
+000264                00564 ledlum1skip2
+                      00565    
+                      00566     
+000264 0E02           00567     movlw 0x02
+000266 62??           00568     CPFSEQ luminosite
+000268 EF?? F???      00569     goto ledlum2skip2
+00026C EF?? F???      00570     goto ledlum2pr2
+                      00571 
+                      00572     
+000270                00573 ledlum2pr2
+000270 EC?? F???      00574     call LEDJAUNE2
+000274 EC?? F???      00575     call LEDBLEUE2
+                      00576     
+                      00577     
+000278                00578 ledlum2skip2
+                      00579     
+000278 0E03           00580     movlw 0x03
+00027A 62??           00581     CPFSEQ luminosite
+00027C EF?? F???      00582     goto ledlum3skip2
+000280 EF?? F???      00583     goto ledlum3pr2
+                      00584 
+                      00585     
+000284                00586 ledlum3pr2
+000284 EC?? F???      00587     call LEDJAUNE3
+000288 EC?? F???      00588     call LEDBLEUE3
+                      00589     
+00028C                00590 ledlum3skip2
+                      00591     
+00028C 0E04           00592     movlw 0x04
+00028E 62??           00593     CPFSEQ luminosite
+000290 EF?? F???      00594     goto ledlum4skip2
+000294 EF?? F???      00595     goto ledlum4pr2
+                      00596 
+                      00597     
+000298                00598 ledlum4pr2
+000298 EC?? F???      00599     call LEDJAUNE4
+00029C EC?? F???      00600     call LEDBLEUE4
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00601     
+0002A0                00602 ledlum4skip2
+0002A0 0012           00603     return
+0002A2                00604 prog3
+0002A2 5000           00605     movf trois,0
+0002A4 6E83           00606     movwf LATA
+0002A6 0012           00607     return
+0002A8                00608 prog4
+0002A8 5000           00609     movf quatre,0
+0002AA 6E83           00610     movwf LATA
+0002AC 0012           00611     return
+                      00612     
+0002AE                00613 prog5
+0002AE 5000           00614     movf cinq,0
+0002B0 6E84           00615     movwf LATB
+0002B2 0012           00616     return
+0002B4                00617 prog6
+0002B4 5000           00618     movf six,0
+0002B6 6E84           00619     movwf LATB
+0002B8 0012           00620     return
+0002BA                00621 prog7
+0002BA 5000           00622     movf sept,0
+0002BC 6E84           00623     movwf LATB
+0002BE 0012           00624     return
+0002C0                00625 prog8
+0002C0 5000           00626     movf huit,0
+0002C2 6E84           00627     movwf LATB
+0002C4 0012           00628     return
+0002C6                00629 bit0
+                      00630     ; 1
+0002C6 8685           00631     BSF LATC, 3
+0002C8 0000           00632     NOP ; 1 NOP = 0,0625 µs (= 1/16 MHz car 1 NOP = 1 cycle clk)
+0002CA 0000           00633     NOP
+0002CC 0000           00634     NOP
+0002CE 0000           00635     NOP
+0002D0 0000           00636     NOP
+0002D2 9685           00637     BCF LATC, 3
+                      00638     
+0002D4 0000           00639     NOP ; 10 NOP = 0,875 µs
+0002D6 0000           00640     NOP
+0002D8 0000           00641     NOP
+0002DA 0000           00642     NOP
+0002DC 0000           00643     NOP
+0002DE 0000           00644     NOP
+0002E0 0000           00645     NOP
+0002E2 0000           00646     NOP
+                      00647 
+                      00648     
+0002E4 0012           00649     RETURN
+                      00650     
+0002E6                00651 bit1
+                      00652     ; 1
+0002E6 8685           00653     BSF LATC, 3
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0002E8 0000           00654     NOP ; 1 NOP = 0,0625 µs (= 1/16 MHz car 1 NOP = 1 cycle clk)
+0002EA 0000           00655     NOP
+0002EC 0000           00656     NOP
+0002EE 0000           00657     NOP
+0002F0 0000           00658     NOP
+0002F2 0000           00659     NOP
+0002F4 0000           00660     NOP
+0002F6 0000           00661     NOP
+0002F8 0000           00662     NOP
+0002FA 0000           00663     NOP
+0002FC 9685           00664     BCF LATC, 3
+                      00665     
+0002FE 0000           00666     NOP ; 10 NOP = 0,875 µs
+000300 0000           00667     NOP
+000302 0000           00668     NOP
+000304 0000           00669     NOP 
+000306 0000           00670     NOP
+                      00671 
+                      00672 
+                      00673 
+                      00674     
+000308 0012           00675     RETURN
+                      00676     
+                      00677     
+                      00678 
+                      00679    
+                      00680     
+                      00681     
+00030A                00682 LEDROSE4
+                      00683     
+00030A EC?? F???      00684     call bit0
+00030E EC?? F???      00685     call bit0
+000312 EC?? F???      00686     call bit0
+000316 EC?? F???      00687     call bit0
+00031A EC?? F???      00688     call bit0
+00031E EC?? F???      00689     call bit0
+000322 EC?? F???      00690     call bit0
+000326 EC?? F???      00691     call bit0
+                      00692     
+00032A EC?? F???      00693     call bit1
+00032E EC?? F???      00694     call bit0
+000332 EC?? F???      00695     call bit0
+000336 EC?? F???      00696     call bit0
+00033A EC?? F???      00697     call bit0
+00033E EC?? F???      00698     call bit0
+000342 EC?? F???      00699     call bit0
+000346 EC?? F???      00700     call bit0
+                      00701     
+00034A EC?? F???      00702     call bit1
+00034E EC?? F???      00703     call bit0
+000352 EC?? F???      00704     call bit0
+000356 EC?? F???      00705     call bit0
+00035A EC?? F???      00706     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00035E EC?? F???      00707     call bit0
+000362 EC?? F???      00708     call bit0
+000366 EC?? F???      00709     call bit0
+                      00710     
+00036A 0012           00711     RETURN
+                      00712     
+00036C                00713 LEDROSE3
+                      00714     
+00036C EC?? F???      00715     call bit0
+000370 EC?? F???      00716     call bit0
+000374 EC?? F???      00717     call bit0
+000378 EC?? F???      00718     call bit0
+00037C EC?? F???      00719     call bit0
+000380 EC?? F???      00720     call bit0
+000384 EC?? F???      00721     call bit0
+000388 EC?? F???      00722     call bit0
+                      00723     
+00038C EC?? F???      00724     call bit0
+000390 EC?? F???      00725     call bit1
+000394 EC?? F???      00726     call bit0
+000398 EC?? F???      00727     call bit0
+00039C EC?? F???      00728     call bit0
+0003A0 EC?? F???      00729     call bit0
+0003A4 EC?? F???      00730     call bit0
+0003A8 EC?? F???      00731     call bit0
+                      00732     
+0003AC EC?? F???      00733     call bit0
+0003B0 EC?? F???      00734     call bit1
+0003B4 EC?? F???      00735     call bit0
+0003B8 EC?? F???      00736     call bit0
+0003BC EC?? F???      00737     call bit0
+0003C0 EC?? F???      00738     call bit0
+0003C4 EC?? F???      00739     call bit0
+0003C8 EC?? F???      00740     call bit0
+                      00741     
+0003CC 0012           00742     RETURN
+                      00743 
+0003CE                00744 LEDROSE2
+                      00745     
+0003CE EC?? F???      00746     call bit0
+0003D2 EC?? F???      00747     call bit0
+0003D6 EC?? F???      00748     call bit0
+0003DA EC?? F???      00749     call bit0
+0003DE EC?? F???      00750     call bit0
+0003E2 EC?? F???      00751     call bit0
+0003E6 EC?? F???      00752     call bit0
+0003EA EC?? F???      00753     call bit0
+                      00754     
+0003EE EC?? F???      00755     call bit0
+0003F2 EC?? F???      00756     call bit0
+0003F6 EC?? F???      00757     call bit1
+0003FA EC?? F???      00758     call bit0
+0003FE EC?? F???      00759     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000402 EC?? F???      00760     call bit0
+000406 EC?? F???      00761     call bit0
+00040A EC?? F???      00762     call bit0
+                      00763     
+00040E EC?? F???      00764     call bit0
+000412 EC?? F???      00765     call bit0
+000416 EC?? F???      00766     call bit1
+00041A EC?? F???      00767     call bit0
+00041E EC?? F???      00768     call bit0
+000422 EC?? F???      00769     call bit0
+000426 EC?? F???      00770     call bit0
+00042A EC?? F???      00771     call bit0
+                      00772     
+00042E 0012           00773     RETURN
+                      00774 
+000430                00775 LEDROSE1
+                      00776     
+000430 EC?? F???      00777     call bit0
+000434 EC?? F???      00778     call bit0
+000438 EC?? F???      00779     call bit0
+00043C EC?? F???      00780     call bit0
+000440 EC?? F???      00781     call bit0
+000444 EC?? F???      00782     call bit0
+000448 EC?? F???      00783     call bit0
+00044C EC?? F???      00784     call bit0
+                      00785     
+000450 EC?? F???      00786     call bit0
+000454 EC?? F???      00787     call bit0
+000458 EC?? F???      00788     call bit0
+00045C EC?? F???      00789     call bit1
+000460 EC?? F???      00790     call bit0
+000464 EC?? F???      00791     call bit0
+000468 EC?? F???      00792     call bit0
+00046C EC?? F???      00793     call bit0
+                      00794     
+000470 EC?? F???      00795     call bit0
+000474 EC?? F???      00796     call bit0
+000478 EC?? F???      00797     call bit0
+00047C EC?? F???      00798     call bit1
+000480 EC?? F???      00799     call bit0
+000484 EC?? F???      00800     call bit0
+000488 EC?? F???      00801     call bit0
+00048C EC?? F???      00802     call bit0
+                      00803     
+000490 0012           00804     RETURN
+                      00805     
+000492                00806 LEDJAUNE4
+                      00807     
+000492 EC?? F???      00808     call bit1
+000496 EC?? F???      00809     call bit0
+00049A EC?? F???      00810     call bit0
+00049E EC?? F???      00811     call bit0
+0004A2 EC?? F???      00812     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0004A6 EC?? F???      00813     call bit0
+0004AA EC?? F???      00814     call bit0
+0004AE EC?? F???      00815     call bit0
+                      00816     
+0004B2 EC?? F???      00817     call bit1
+0004B6 EC?? F???      00818     call bit0
+0004BA EC?? F???      00819     call bit0
+0004BE EC?? F???      00820     call bit0
+0004C2 EC?? F???      00821     call bit0
+0004C6 EC?? F???      00822     call bit0
+0004CA EC?? F???      00823     call bit0
+0004CE EC?? F???      00824     call bit0
+                      00825     
+0004D2 EC?? F???      00826     call bit0
+0004D6 EC?? F???      00827     call bit0
+0004DA EC?? F???      00828     call bit0
+0004DE EC?? F???      00829     call bit0
+0004E2 EC?? F???      00830     call bit0
+0004E6 EC?? F???      00831     call bit0
+0004EA EC?? F???      00832     call bit0
+0004EE EC?? F???      00833     call bit0
+                      00834     
+0004F2 0012           00835     RETURN
+                      00836 
+0004F4                00837 LEDJAUNE3
+                      00838     
+0004F4 EC?? F???      00839     call bit0
+0004F8 EC?? F???      00840     call bit1
+0004FC EC?? F???      00841     call bit0
+000500 EC?? F???      00842     call bit0
+000504 EC?? F???      00843     call bit0
+000508 EC?? F???      00844     call bit0
+00050C EC?? F???      00845     call bit0
+000510 EC?? F???      00846     call bit0
+                      00847     
+000514 EC?? F???      00848     call bit0
+000518 EC?? F???      00849     call bit1
+00051C EC?? F???      00850     call bit0
+000520 EC?? F???      00851     call bit0
+000524 EC?? F???      00852     call bit0
+000528 EC?? F???      00853     call bit0
+00052C EC?? F???      00854     call bit0
+000530 EC?? F???      00855     call bit0
+                      00856     
+000534 EC?? F???      00857     call bit0
+000538 EC?? F???      00858     call bit0
+00053C EC?? F???      00859     call bit0
+000540 EC?? F???      00860     call bit0
+000544 EC?? F???      00861     call bit0
+000548 EC?? F???      00862     call bit0
+00054C EC?? F???      00863     call bit0
+000550 EC?? F???      00864     call bit0
+                      00865     
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000554 0012           00866     RETURN
+                      00867 
+000556                00868 LEDJAUNE2
+                      00869     
+000556 EC?? F???      00870     call bit0
+00055A EC?? F???      00871     call bit0
+00055E EC?? F???      00872     call bit1
+000562 EC?? F???      00873     call bit0
+000566 EC?? F???      00874     call bit0
+00056A EC?? F???      00875     call bit0
+00056E EC?? F???      00876     call bit0
+000572 EC?? F???      00877     call bit0
+                      00878     
+000576 EC?? F???      00879     call bit0
+00057A EC?? F???      00880     call bit0
+00057E EC?? F???      00881     call bit1
+000582 EC?? F???      00882     call bit0
+000586 EC?? F???      00883     call bit0
+00058A EC?? F???      00884     call bit0
+00058E EC?? F???      00885     call bit0
+000592 EC?? F???      00886     call bit0
+                      00887     
+000596 EC?? F???      00888     call bit0
+00059A EC?? F???      00889     call bit0
+00059E EC?? F???      00890     call bit0
+0005A2 EC?? F???      00891     call bit0
+0005A6 EC?? F???      00892     call bit0
+0005AA EC?? F???      00893     call bit0
+0005AE EC?? F???      00894     call bit0
+0005B2 EC?? F???      00895     call bit0
+                      00896     
+0005B6 0012           00897     RETURN
+                      00898  
+0005B8                00899 LEDJAUNE1
+                      00900     
+0005B8 EC?? F???      00901     call bit0
+0005BC EC?? F???      00902     call bit0
+0005C0 EC?? F???      00903     call bit0
+0005C4 EC?? F???      00904     call bit1
+0005C8 EC?? F???      00905     call bit0
+0005CC EC?? F???      00906     call bit0
+0005D0 EC?? F???      00907     call bit0
+0005D4 EC?? F???      00908     call bit0
+                      00909     
+0005D8 EC?? F???      00910     call bit0
+0005DC EC?? F???      00911     call bit0
+0005E0 EC?? F???      00912     call bit0
+0005E4 EC?? F???      00913     call bit1
+0005E8 EC?? F???      00914     call bit0
+0005EC EC?? F???      00915     call bit0
+0005F0 EC?? F???      00916     call bit0
+0005F4 EC?? F???      00917     call bit0
+                      00918     
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0005F8 EC?? F???      00919     call bit0
+0005FC EC?? F???      00920     call bit0
+000600 EC?? F???      00921     call bit0
+000604 EC?? F???      00922     call bit0
+000608 EC?? F???      00923     call bit0
+00060C EC?? F???      00924     call bit0
+000610 EC?? F???      00925     call bit0
+000614 EC?? F???      00926     call bit0
+                      00927     
+000618 0012           00928     RETURN
+                      00929  
+00061A                00930 LEDGREEN4
+                      00931        
+00061A EC?? F???      00932     call bit1
+00061E EC?? F???      00933     call bit0
+000622 EC?? F???      00934     call bit0
+000626 EC?? F???      00935     call bit0
+00062A EC?? F???      00936     call bit0
+00062E EC?? F???      00937     call bit0
+000632 EC?? F???      00938     call bit0
+000636 EC?? F???      00939     call bit0
+                      00940     
+00063A EC?? F???      00941     call bit0
+00063E EC?? F???      00942     call bit0
+000642 EC?? F???      00943     call bit0
+000646 EC?? F???      00944     call bit0
+00064A EC?? F???      00945     call bit0
+00064E EC?? F???      00946     call bit0
+000652 EC?? F???      00947     call bit0
+000656 EC?? F???      00948     call bit0
+                      00949     
+00065A EC?? F???      00950     call bit0
+00065E EC?? F???      00951     call bit0
+000662 EC?? F???      00952     call bit0
+000666 EC?? F???      00953     call bit0
+00066A EC?? F???      00954     call bit0
+00066E EC?? F???      00955     call bit0
+000672 EC?? F???      00956     call bit0
+000676 EC?? F???      00957     call bit0
+                      00958     
+00067A 0012           00959     RETURN 
+                      00960  
+00067C                00961 LEDGREEN3
+                      00962        
+00067C EC?? F???      00963     call bit0
+000680 EC?? F???      00964     call bit1
+000684 EC?? F???      00965     call bit0
+000688 EC?? F???      00966     call bit0
+00068C EC?? F???      00967     call bit0
+000690 EC?? F???      00968     call bit0
+000694 EC?? F???      00969     call bit0
+000698 EC?? F???      00970     call bit0
+                      00971     
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00069C EC?? F???      00972     call bit0
+0006A0 EC?? F???      00973     call bit0
+0006A4 EC?? F???      00974     call bit0
+0006A8 EC?? F???      00975     call bit0
+0006AC EC?? F???      00976     call bit0
+0006B0 EC?? F???      00977     call bit0
+0006B4 EC?? F???      00978     call bit0
+0006B8 EC?? F???      00979     call bit0
+                      00980     
+0006BC EC?? F???      00981     call bit0
+0006C0 EC?? F???      00982     call bit0
+0006C4 EC?? F???      00983     call bit0
+0006C8 EC?? F???      00984     call bit0
+0006CC EC?? F???      00985     call bit0
+0006D0 EC?? F???      00986     call bit0
+0006D4 EC?? F???      00987     call bit0
+0006D8 EC?? F???      00988     call bit0
+                      00989     
+0006DC 0012           00990     RETURN     
+                      00991 
+0006DE                00992 LEDGREEN2
+                      00993        
+0006DE EC?? F???      00994     call bit0
+0006E2 EC?? F???      00995     call bit0
+0006E6 EC?? F???      00996     call bit1
+0006EA EC?? F???      00997     call bit0
+0006EE EC?? F???      00998     call bit0
+0006F2 EC?? F???      00999     call bit0
+0006F6 EC?? F???      01000     call bit0
+0006FA EC?? F???      01001     call bit0
+                      01002     
+0006FE EC?? F???      01003     call bit0
+000702 EC?? F???      01004     call bit0
+000706 EC?? F???      01005     call bit0
+00070A EC?? F???      01006     call bit0
+00070E EC?? F???      01007     call bit0
+000712 EC?? F???      01008     call bit0
+000716 EC?? F???      01009     call bit0
+00071A EC?? F???      01010     call bit0
+                      01011     
+00071E EC?? F???      01012     call bit0
+000722 EC?? F???      01013     call bit0
+000726 EC?? F???      01014     call bit0
+00072A EC?? F???      01015     call bit0
+00072E EC?? F???      01016     call bit0
+000732 EC?? F???      01017     call bit0
+000736 EC?? F???      01018     call bit0
+00073A EC?? F???      01019     call bit0
+                      01020     
+00073E 0012           01021     RETURN    
+                      01022 
+000740                01023 LEDGREEN1
+                      01024        
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000740 EC?? F???      01025     call bit0
+000744 EC?? F???      01026     call bit0
+000748 EC?? F???      01027     call bit0
+00074C EC?? F???      01028     call bit1
+000750 EC?? F???      01029     call bit0
+000754 EC?? F???      01030     call bit0
+000758 EC?? F???      01031     call bit0
+00075C EC?? F???      01032     call bit0
+                      01033     
+000760 EC?? F???      01034     call bit0
+000764 EC?? F???      01035     call bit0
+000768 EC?? F???      01036     call bit0
+00076C EC?? F???      01037     call bit0
+000770 EC?? F???      01038     call bit0
+000774 EC?? F???      01039     call bit0
+000778 EC?? F???      01040     call bit0
+00077C EC?? F???      01041     call bit0
+                      01042     
+000780 EC?? F???      01043     call bit0
+000784 EC?? F???      01044     call bit0
+000788 EC?? F???      01045     call bit0
+00078C EC?? F???      01046     call bit0
+000790 EC?? F???      01047     call bit0
+000794 EC?? F???      01048     call bit0
+000798 EC?? F???      01049     call bit0
+00079C EC?? F???      01050     call bit0
+                      01051     
+0007A0 0012           01052     RETURN    
+                      01053 
+0007A2                01054 LEDROUGE4
+                      01055     
+                      01056         
+0007A2 EC?? F???      01057     call bit0
+0007A6 EC?? F???      01058     call bit0
+0007AA EC?? F???      01059     call bit0
+0007AE EC?? F???      01060     call bit0
+0007B2 EC?? F???      01061     call bit0
+0007B6 EC?? F???      01062     call bit0
+0007BA EC?? F???      01063     call bit0
+0007BE EC?? F???      01064     call bit0
+                      01065     
+0007C2 EC?? F???      01066     call bit1
+0007C6 EC?? F???      01067     call bit0
+0007CA EC?? F???      01068     call bit0
+0007CE EC?? F???      01069     call bit0
+0007D2 EC?? F???      01070     call bit0
+0007D6 EC?? F???      01071     call bit0
+0007DA EC?? F???      01072     call bit0
+0007DE EC?? F???      01073     call bit0
+                      01074     
+0007E2 EC?? F???      01075     call bit0
+0007E6 EC?? F???      01076     call bit0
+0007EA EC?? F???      01077     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0007EE EC?? F???      01078     call bit0
+0007F2 EC?? F???      01079     call bit0
+0007F6 EC?? F???      01080     call bit0
+0007FA EC?? F???      01081     call bit0
+0007FE EC?? F???      01082     call bit0
+                      01083     
+000802 0012           01084     RETURN
+                      01085     
+000804                01086 LEDROUGE3
+                      01087     
+000804 EC?? F???      01088     call bit0
+000808 EC?? F???      01089     call bit0
+00080C EC?? F???      01090     call bit0
+000810 EC?? F???      01091     call bit0
+000814 EC?? F???      01092     call bit0
+000818 EC?? F???      01093     call bit0
+00081C EC?? F???      01094     call bit0
+000820 EC?? F???      01095     call bit0
+                      01096     
+000824 EC?? F???      01097     call bit0
+000828 EC?? F???      01098     call bit1
+00082C EC?? F???      01099     call bit0
+000830 EC?? F???      01100     call bit0
+000834 EC?? F???      01101     call bit0
+000838 EC?? F???      01102     call bit0
+00083C EC?? F???      01103     call bit0
+000840 EC?? F???      01104     call bit0
+                      01105     
+                      01106     
+000844 EC?? F???      01107     call bit0
+000848 EC?? F???      01108     call bit0
+00084C EC?? F???      01109     call bit0
+000850 EC?? F???      01110     call bit0
+000854 EC?? F???      01111     call bit0
+000858 EC?? F???      01112     call bit0
+00085C EC?? F???      01113     call bit0
+000860 EC?? F???      01114     call bit0
+                      01115     
+000864 0012           01116     RETURN
+                      01117     
+000866                01118 LEDROUGE2
+                      01119     
+000866 EC?? F???      01120     call bit0
+00086A EC?? F???      01121     call bit0
+00086E EC?? F???      01122     call bit0
+000872 EC?? F???      01123     call bit0
+000876 EC?? F???      01124     call bit0
+00087A EC?? F???      01125     call bit0
+00087E EC?? F???      01126     call bit0
+000882 EC?? F???      01127     call bit0
+                      01128     
+000886 EC?? F???      01129     call bit0
+00088A EC?? F???      01130     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00088E EC?? F???      01131     call bit1
+000892 EC?? F???      01132     call bit0
+000896 EC?? F???      01133     call bit0
+00089A EC?? F???      01134     call bit0
+00089E EC?? F???      01135     call bit0
+0008A2 EC?? F???      01136     call bit0
+                      01137     
+0008A6 EC?? F???      01138     call bit0
+0008AA EC?? F???      01139     call bit0
+0008AE EC?? F???      01140     call bit0
+0008B2 EC?? F???      01141     call bit0
+0008B6 EC?? F???      01142     call bit0
+0008BA EC?? F???      01143     call bit0
+0008BE EC?? F???      01144     call bit0
+0008C2 EC?? F???      01145     call bit0
+                      01146     
+0008C6 0012           01147     RETURN
+                      01148     
+0008C8                01149 LEDROUGE1
+                      01150     
+0008C8 EC?? F???      01151     call bit0
+0008CC EC?? F???      01152     call bit0
+0008D0 EC?? F???      01153     call bit0
+0008D4 EC?? F???      01154     call bit0
+0008D8 EC?? F???      01155     call bit0
+0008DC EC?? F???      01156     call bit0
+0008E0 EC?? F???      01157     call bit0
+0008E4 EC?? F???      01158     call bit0
+                      01159     
+0008E8 EC?? F???      01160     call bit0
+0008EC EC?? F???      01161     call bit0
+0008F0 EC?? F???      01162     call bit0
+0008F4 EC?? F???      01163     call bit1
+0008F8 EC?? F???      01164     call bit0
+0008FC EC?? F???      01165     call bit0
+000900 EC?? F???      01166     call bit0
+000904 EC?? F???      01167     call bit0
+                      01168     
+000908 EC?? F???      01169     call bit0
+00090C EC?? F???      01170     call bit0
+000910 EC?? F???      01171     call bit0
+000914 EC?? F???      01172     call bit0
+000918 EC?? F???      01173     call bit0
+00091C EC?? F???      01174     call bit0
+000920 EC?? F???      01175     call bit0
+000924 EC?? F???      01176     call bit0
+                      01177     
+000928 0012           01178     RETURN
+                      01179     
+                      01180 ;bleues
+                      01181     
+00092A                01182 LEDBLEUE4
+                      01183     
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00092A EC?? F???      01184     call bit0
+00092E EC?? F???      01185     call bit0
+000932 EC?? F???      01186     call bit0
+000936 EC?? F???      01187     call bit0
+00093A EC?? F???      01188     call bit0
+00093E EC?? F???      01189     call bit0
+000942 EC?? F???      01190     call bit0
+000946 EC?? F???      01191     call bit0
+                      01192     
+00094A EC?? F???      01193     call bit0
+00094E EC?? F???      01194     call bit0
+000952 EC?? F???      01195     call bit0
+000956 EC?? F???      01196     call bit0
+00095A EC?? F???      01197     call bit0
+00095E EC?? F???      01198     call bit0
+000962 EC?? F???      01199     call bit0
+000966 EC?? F???      01200     call bit0
+                      01201     
+00096A EC?? F???      01202     call bit1
+00096E EC?? F???      01203     call bit0
+000972 EC?? F???      01204     call bit0
+000976 EC?? F???      01205     call bit0
+00097A EC?? F???      01206     call bit0
+00097E EC?? F???      01207     call bit0
+000982 EC?? F???      01208     call bit0
+000986 EC?? F???      01209     call bit0
+                      01210 
+                      01211     
+00098A 0012           01212     RETURN
+                      01213     
+00098C                01214 LEDBLEUE3
+                      01215     
+00098C EC?? F???      01216     call bit0
+000990 EC?? F???      01217     call bit0
+000994 EC?? F???      01218     call bit0
+000998 EC?? F???      01219     call bit0
+00099C EC?? F???      01220     call bit0
+0009A0 EC?? F???      01221     call bit0
+0009A4 EC?? F???      01222     call bit0
+0009A8 EC?? F???      01223     call bit0
+                      01224         
+0009AC EC?? F???      01225     call bit0
+0009B0 EC?? F???      01226     call bit0
+0009B4 EC?? F???      01227     call bit0
+0009B8 EC?? F???      01228     call bit0
+0009BC EC?? F???      01229     call bit0
+0009C0 EC?? F???      01230     call bit0
+0009C4 EC?? F???      01231     call bit0
+0009C8 EC?? F???      01232     call bit0
+                      01233     
+0009CC EC?? F???      01234     call bit0
+0009D0 EC?? F???      01235     call bit1
+0009D4 EC?? F???      01236     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0009D8 EC?? F???      01237     call bit0
+0009DC EC?? F???      01238     call bit0
+0009E0 EC?? F???      01239     call bit0
+0009E4 EC?? F???      01240     call bit0
+0009E8 EC?? F???      01241     call bit0
+                      01242     
+0009EC 0012           01243     RETURN
+                      01244     
+0009EE                01245 LEDBLEUE2
+                      01246     
+0009EE EC?? F???      01247     call bit0
+0009F2 EC?? F???      01248     call bit0
+0009F6 EC?? F???      01249     call bit0
+0009FA EC?? F???      01250     call bit0
+0009FE EC?? F???      01251     call bit0
+000A02 EC?? F???      01252     call bit0
+000A06 EC?? F???      01253     call bit0
+000A0A EC?? F???      01254     call bit0
+                      01255      
+000A0E EC?? F???      01256     call bit0
+000A12 EC?? F???      01257     call bit0
+000A16 EC?? F???      01258     call bit0
+000A1A EC?? F???      01259     call bit0
+000A1E EC?? F???      01260     call bit0
+000A22 EC?? F???      01261     call bit0
+000A26 EC?? F???      01262     call bit0
+000A2A EC?? F???      01263     call bit0
+                      01264     
+000A2E EC?? F???      01265     call bit0
+000A32 EC?? F???      01266     call bit0
+000A36 EC?? F???      01267     call bit1
+000A3A EC?? F???      01268     call bit0
+000A3E EC?? F???      01269     call bit0
+000A42 EC?? F???      01270     call bit0
+000A46 EC?? F???      01271     call bit0
+000A4A EC?? F???      01272     call bit0
+                      01273     
+000A4E 0012           01274     RETURN
+                      01275     
+000A50                01276 LEDBLEUE1
+                      01277     
+000A50 EC?? F???      01278     call bit0
+000A54 EC?? F???      01279     call bit0
+000A58 EC?? F???      01280     call bit0
+000A5C EC?? F???      01281     call bit0
+000A60 EC?? F???      01282     call bit0
+000A64 EC?? F???      01283     call bit0
+000A68 EC?? F???      01284     call bit0
+000A6C EC?? F???      01285     call bit0
+                      01286     
+                      01287     
+000A70 EC?? F???      01288     call bit0
+000A74 EC?? F???      01289     call bit0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000A78 EC?? F???      01290     call bit0
+000A7C EC?? F???      01291     call bit0
+000A80 EC?? F???      01292     call bit0
+000A84 EC?? F???      01293     call bit0
+000A88 EC?? F???      01294     call bit0
+000A8C EC?? F???      01295     call bit0
+                      01296     
+000A90 EC?? F???      01297     call bit0
+000A94 EC?? F???      01298     call bit0
+000A98 EC?? F???      01299     call bit0
+000A9C EC?? F???      01300     call bit1
+000AA0 EC?? F???      01301     call bit0
+000AA4 EC?? F???      01302     call bit0
+000AA8 EC?? F???      01303     call bit0
+000AAC EC?? F???      01304     call bit0
+                      01305     
+000AB0 0012           01306     RETURN  
+                      01307     end
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 27
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+A                                 00000000
+ABDEN                             00000000
+ABDOVF                            00000007
+ACC0                              00000000
+ACC1                              00000001
+ACC10                             00000002
+ACC11                             00000003
+ACC12                             00000004
+ACC13                             00000005
+ACC14                             00000006
+ACC15                             00000007
+ACC2                              00000002
+ACC3                              00000003
+ACC4                              00000004
+ACC5                              00000005
+ACC6                              00000006
+ACC7                              00000007
+ACC8                              00000000
+ACC9                              00000001
+ACCESS                            00000000
+ACCM                              00000004
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACKTIM                            00000007
+ADACC                             00000F70
+ADACC0                            00000000
+ADACC1                            00000001
+ADACC10                           00000002
+ADACC11                           00000003
+ADACC12                           00000004
+ADACC13                           00000005
+ADACC14                           00000006
+ADACC15                           00000007
+ADACC2                            00000002
+ADACC3                            00000003
+ADACC4                            00000004
+ADACC5                            00000005
+ADACC6                            00000006
+ADACC7                            00000007
+ADACC8                            00000000
+ADACC9                            00000001
+ADACCH                            00000F71
+ADACCL                            00000F70
+ADACLR                            00000003
+ADACQ                             00000F5C
+ADACQ0                            00000000
+ADACQ1                            00000001
+ADACQ2                            00000002
+ADACQ3                            00000003
+ADACQ4                            00000004
+ADACQ5                            00000005
+ADACQ6                            00000006
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 28
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADACQ7                            00000007
+ADACT                             00000F56
+ADACT0                            00000000
+ADACT1                            00000001
+ADACT2                            00000002
+ADACT3                            00000003
+ADACT4                            00000004
+ADACTPPS                          00000EAE
+ADACTPPS0                         00000000
+ADACTPPS1                         00000001
+ADACTPPS2                         00000002
+ADACTPPS3                         00000003
+ADACTPPS4                         00000004
+ADAOV                             00000007
+ADCALC0                           00000004
+ADCALC1                           00000005
+ADCALC2                           00000006
+ADCAP                             00000F5D
+ADCAP0                            00000000
+ADCAP1                            00000001
+ADCAP2                            00000002
+ADCAP3                            00000003
+ADCAP4                            00000004
+ADCLK                             00000F57
+ADCMD                             00000005
+ADCNT                             00000F67
+ADCNT0                            00000000
+ADCNT1                            00000001
+ADCNT2                            00000002
+ADCNT3                            00000003
+ADCNT4                            00000004
+ADCNT5                            00000005
+ADCNT6                            00000006
+ADCNT7                            00000007
+ADCON0                            00000F60
+ADCON1                            00000F59
+ADCON2                            00000F5A
+ADCON3                            00000F5B
+ADCONT                            00000006
+ADCRS0                            00000004
+ADCRS1                            00000005
+ADCRS2                            00000006
+ADCS                              00000004
+ADCS0                             00000000
+ADCS1                             00000001
+ADCS2                             00000002
+ADCS3                             00000003
+ADCS4                             00000004
+ADCS5                             00000005
+ADDEN                             00000003
+ADDSEN                            00000000
+ADERR                             00000F6E
+ADERR0                            00000000
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 29
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADERR1                            00000001
+ADERR10                           00000002
+ADERR11                           00000003
+ADERR12                           00000004
+ADERR13                           00000005
+ADERR14                           00000006
+ADERR15                           00000007
+ADERR2                            00000002
+ADERR3                            00000003
+ADERR4                            00000004
+ADERR5                            00000005
+ADERR6                            00000006
+ADERR7                            00000007
+ADERR8                            00000000
+ADERR9                            00000001
+ADERRH                            00000F6F
+ADERRL                            00000F6E
+ADFLTR                            00000F72
+ADFLTR0                           00000000
+ADFLTR1                           00000001
+ADFLTR10                          00000002
+ADFLTR11                          00000003
+ADFLTR12                          00000004
+ADFLTR13                          00000005
+ADFLTR14                          00000006
+ADFLTR15                          00000007
+ADFLTR2                           00000002
+ADFLTR3                           00000003
+ADFLTR4                           00000004
+ADFLTR5                           00000005
+ADFLTR6                           00000006
+ADFLTR7                           00000007
+ADFLTR8                           00000000
+ADFLTR9                           00000001
+ADFLTRH                           00000F73
+ADFLTRL                           00000F72
+ADFM                              00000002
+ADFM0                             00000002
+ADFVR0                            00000000
+ADFVR1                            00000001
+ADGO                              00000000
+ADGPOL                            00000005
+ADIE                              00000000
+ADIF                              00000000
+ADIP                              00000000
+ADIPEN                            00000006
+ADLTH                             00000F6A
+ADLTH0                            00000000
+ADLTH1                            00000001
+ADLTH10                           00000002
+ADLTH11                           00000003
+ADLTH12                           00000004
+ADLTH13                           00000005
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 30
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADLTH14                           00000006
+ADLTH15                           00000007
+ADLTH2                            00000002
+ADLTH3                            00000003
+ADLTH4                            00000004
+ADLTH5                            00000005
+ADLTH6                            00000006
+ADLTH7                            00000007
+ADLTH8                            00000000
+ADLTH9                            00000001
+ADLTHH                            00000F6B
+ADLTHL                            00000F6A
+ADLTHR                            00000005
+ADMATH                            00000004
+ADMD0                             00000000
+ADMD1                             00000001
+ADMD2                             00000002
+ADMSK1                            00000001
+ADMSK2                            00000002
+ADMSK3                            00000003
+ADMSK4                            00000004
+ADMSK5                            00000005
+ADNREF                            00000004
+ADOEN                             00000002
+ADON                              00000007
+ADOR                              00000002
+ADPCH                             00000F5F
+ADPCH0                            00000000
+ADPCH1                            00000001
+ADPCH2                            00000002
+ADPCH3                            00000003
+ADPCH4                            00000004
+ADPCH5                            00000005
+ADPPOL                            00000007
+ADPRE                             00000F5E
+ADPRE0                            00000000
+ADPRE1                            00000001
+ADPRE2                            00000002
+ADPRE3                            00000003
+ADPRE4                            00000004
+ADPRE5                            00000005
+ADPRE6                            00000006
+ADPRE7                            00000007
+ADPREF0                           00000000
+ADPREF1                           00000001
+ADPREV                            00000F61
+ADPREV0                           00000000
+ADPREV1                           00000001
+ADPREV10                          00000002
+ADPREV11                          00000003
+ADPREV12                          00000004
+ADPREV13                          00000005
+ADPREV14                          00000006
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 31
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADPREV15                          00000007
+ADPREV2                           00000002
+ADPREV3                           00000003
+ADPREV4                           00000004
+ADPREV5                           00000005
+ADPREV6                           00000006
+ADPREV7                           00000007
+ADPREV8                           00000000
+ADPREV9                           00000001
+ADPREVH                           00000F62
+ADPREVL                           00000F61
+ADPSIS                            00000007
+ADR0                              00000000
+ADR1                              00000001
+ADR2                              00000002
+ADR3                              00000003
+ADR4                              00000004
+ADR5                              00000005
+ADR6                              00000006
+ADR7                              00000007
+ADREF                             00000F58
+ADRES                             00000F63
+ADRES0                            00000000
+ADRES1                            00000001
+ADRES10                           00000002
+ADRES11                           00000003
+ADRES12                           00000004
+ADRES13                           00000005
+ADRES14                           00000006
+ADRES15                           00000007
+ADRES2                            00000002
+ADRES3                            00000003
+ADRES4                            00000004
+ADRES5                            00000005
+ADRES6                            00000006
+ADRES7                            00000007
+ADRES8                            00000000
+ADRES9                            00000001
+ADRESH                            00000F64
+ADRESL                            00000F63
+ADRPT                             00000F66
+ADRPT0                            00000000
+ADRPT1                            00000001
+ADRPT2                            00000002
+ADRPT3                            00000003
+ADRPT4                            00000004
+ADRPT5                            00000005
+ADRPT6                            00000006
+ADRPT7                            00000007
+ADSOI                             00000003
+ADSTAT                            00000F65
+ADSTAT0                           00000000
+ADSTAT1                           00000001
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 32
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADSTAT2                           00000002
+ADSTPT                            00000F68
+ADSTPT0                           00000000
+ADSTPT1                           00000001
+ADSTPT10                          00000002
+ADSTPT11                          00000003
+ADSTPT12                          00000004
+ADSTPT13                          00000005
+ADSTPT14                          00000006
+ADSTPT15                          00000007
+ADSTPT2                           00000002
+ADSTPT3                           00000003
+ADSTPT4                           00000004
+ADSTPT5                           00000005
+ADSTPT6                           00000006
+ADSTPT7                           00000007
+ADSTPT8                           00000000
+ADSTPT9                           00000001
+ADSTPTH                           00000F69
+ADSTPTL                           00000F68
+ADTIE                             00000001
+ADTIF                             00000001
+ADTIP                             00000001
+ADTMD0                            00000000
+ADTMD1                            00000001
+ADTMD2                            00000002
+ADUTH                             00000F6C
+ADUTH0                            00000000
+ADUTH1                            00000001
+ADUTH10                           00000002
+ADUTH11                           00000003
+ADUTH12                           00000004
+ADUTH13                           00000005
+ADUTH14                           00000006
+ADUTH15                           00000007
+ADUTH2                            00000002
+ADUTH3                            00000003
+ADUTH4                            00000004
+ADUTH5                            00000005
+ADUTH6                            00000006
+ADUTH7                            00000007
+ADUTH8                            00000000
+ADUTH9                            00000001
+ADUTHH                            00000F6D
+ADUTHL                            00000F6C
+ADUTHR                            00000006
+AHEN                              00000001
+ANSELA                            00000F11
+ANSELA0                           00000000
+ANSELA1                           00000001
+ANSELA2                           00000002
+ANSELA3                           00000003
+ANSELA4                           00000004
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 33
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ANSELA5                           00000005
+ANSELA6                           00000006
+ANSELA7                           00000007
+ANSELB                            00000F19
+ANSELB0                           00000000
+ANSELB1                           00000001
+ANSELB2                           00000002
+ANSELB3                           00000003
+ANSELB4                           00000004
+ANSELB5                           00000005
+ANSELB6                           00000006
+ANSELB7                           00000007
+ANSELC                            00000F21
+ANSELC0                           00000000
+ANSELC1                           00000001
+ANSELC2                           00000002
+ANSELC3                           00000003
+ANSELC4                           00000004
+ANSELC5                           00000005
+ANSELC6                           00000006
+ANSELC7                           00000007
+AS0E                              00000000
+AS1E                              00000001
+AS2E                              00000002
+AS3E                              00000003
+AS4E                              00000004
+AS5E                              00000005
+BANKED                            00000001
+BAUD1CON                          00000F9F
+BAUDCON                           00000F9F
+BAUDCON1                          00000F9F
+BAUDCTL                           00000F9F
+BAUDCTL1                          00000F9F
+BCL1IE                            00000001
+BCL1IF                            00000001
+BCL1IP                            00000001
+BCLIE                             00000001
+BCLIF                             00000001
+BCLIP                             00000001
+BEGIN                             00000000
+BF                                00000000
+BIT                               00000000
+BOEN                              00000004
+BOR                               00000000
+BORCON                            00000EE0
+BORRDY                            00000000
+BP0_PRESSED                       000001C0
+BP0_released                      000001D0
+BP1_PRESSED                       000001A8
+BP1_released                      000001CA
+BRG16                             00000003
+BRGH                              00000002
+BSR                               00000FE0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 34
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BUSY                              00000005
+C                                 00000000
+C1EN                              00000007
+C1HYS                             00000001
+C1IE                              00000000
+C1IF                              00000000
+C1INTN                            00000000
+C1INTP                            00000001
+C1IP                              00000000
+C1NCH0                            00000000
+C1NCH1                            00000001
+C1NCH2                            00000002
+C1OUT                             00000006
+C1PCH0                            00000000
+C1PCH1                            00000001
+C1PCH2                            00000002
+C1POL                             00000004
+C1SYNC                            00000000
+C1TSEL0                           00000000
+C1TSEL1                           00000001
+C2EN                              00000007
+C2HYS                             00000001
+C2IE                              00000001
+C2IF                              00000001
+C2INTN                            00000000
+C2INTP                            00000001
+C2IP                              00000001
+C2NCH0                            00000000
+C2NCH1                            00000001
+C2NCH2                            00000002
+C2OUT                             00000006
+C2PCH0                            00000000
+C2PCH1                            00000001
+C2PCH2                            00000002
+C2POL                             00000004
+C2SYNC                            00000000
+C2TSEL0                           00000002
+C2TSEL1                           00000003
+CCP1CAP                           00000FAD
+CCP1CON                           00000FAC
+CCP1CTS0                          00000000
+CCP1CTS1                          00000001
+CCP1EN                            00000007
+CCP1FMT                           00000004
+CCP1IE                            00000000
+CCP1IF                            00000000
+CCP1IP                            00000000
+CCP1MD                            00000000
+CCP1MODE0                         00000000
+CCP1MODE1                         00000001
+CCP1MODE2                         00000002
+CCP1MODE3                         00000003
+CCP1OUT                           00000005
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 35
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCP1PPS                           00000EAF
+CCP1PPS0                          00000000
+CCP1PPS1                          00000001
+CCP1PPS2                          00000002
+CCP1PPS3                          00000003
+CCP1PPS4                          00000004
+CCP2CAP                           00000FA9
+CCP2CON                           00000FA8
+CCP2CTS0                          00000000
+CCP2CTS1                          00000001
+CCP2EN                            00000007
+CCP2FMT                           00000004
+CCP2IE                            00000001
+CCP2IF                            00000001
+CCP2IP                            00000001
+CCP2MD                            00000001
+CCP2MODE0                         00000000
+CCP2MODE1                         00000001
+CCP2MODE2                         00000002
+CCP2MODE3                         00000003
+CCP2OUT                           00000005
+CCP2PPS                           00000EB0
+CCP2PPS0                          00000000
+CCP2PPS1                          00000001
+CCP2PPS2                          00000002
+CCP2PPS3                          00000003
+CCP2PPS4                          00000004
+CCPR1                             00000FAA
+CCPR1H                            00000FAB
+CCPR1L                            00000FAA
+CCPR2                             00000FA6
+CCPR2H                            00000FA7
+CCPR2L                            00000FA6
+CCPTMRS                           00000FAE
+CDAFVR0                           00000002
+CDAFVR1                           00000003
+CDIV0                             00000000
+CDIV1                             00000001
+CDIV2                             00000002
+CDIV3                             00000003
+CHPOL                             00000005
+CHS0                              00000000
+CHS1                              00000001
+CHS2                              00000002
+CHSYNC                            00000004
+CK1PPS                            00000EB6
+CKE                               00000006
+CKP                               00000004
+CKPOL                             00000006
+CKPPS                             00000EB6
+CKPS0                             00000004
+CKPS1                             00000005
+CKPS2                             00000006
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 36
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CKSYNC                            00000005
+CLK0                              00000000
+CLK1                              00000001
+CLK2                              00000002
+CLKRCLK                           00000F3F
+CLKRCLK0                          00000000
+CLKRCLK1                          00000001
+CLKRCLK2                          00000002
+CLKRCON                           00000F3E
+CLKRDC0                           00000003
+CLKRDC1                           00000004
+CLKRDIV0                          00000000
+CLKRDIV1                          00000001
+CLKRDIV2                          00000002
+CLKREN                            00000007
+CLKRMD                            00000001
+CLPOL                             00000001
+CLS0                              00000000
+CLS1                              00000001
+CLS2                              00000002
+CLSYNC                            00000000
+CM1CON0                           00000F39
+CM1CON1                           00000F3A
+CM1NCH                            00000F3B
+CM1PCH                            00000F3C
+CM2CON0                           00000F35
+CM2CON1                           00000F36
+CM2NCH                            00000F37
+CM2PCH                            00000F38
+CMOUT                             00000F3D
+CMP1MD                            00000001
+CMP2MD                            00000002
+COSC0                             00000004
+COSC1                             00000005
+COSC2                             00000006
+CPUDOZE                           00000ED7
+CRCACC                            00000F76
+CRCACCH                           00000F77
+CRCACCL                           00000F76
+CRCCON0                           00000F7C
+CRCCON1                           00000F7D
+CRCDATA                           00000F74
+CRCDATH                           00000F75
+CRCDATL                           00000F74
+CRCEN                             00000007
+CRCGO                             00000006
+CRCIE                             00000006
+CRCIF                             00000006
+CRCIP                             00000006
+CRCMD                             00000004
+CRCSHFT                           00000F78
+CRCSHIFTH                         00000F79
+CRCSHIFTL                         00000F78
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 37
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CRCXOR                            00000F7A
+CRCXORH                           00000F7B
+CRCXORL                           00000F7A
+CREN                              00000004
+CS                                00000000
+CS0                               00000000
+CS1                               00000001
+CS2                               00000002
+CS3                               00000003
+CSRC                              00000007
+CSWHOLD                           00000007
+CSWIE                             00000006
+CSWIF                             00000006
+CSWIP                             00000006
+CTS0                              00000000
+CTS1                              00000001
+CWG1AS0                           00000F46
+CWG1AS1                           00000F47
+CWG1CLK                           00000F40
+CWG1CLKCON                        00000F40
+CWG1CON0                          00000F44
+CWG1CON1                          00000F45
+CWG1CS                            00000000
+CWG1DBF                           00000F43
+CWG1DBF0                          00000000
+CWG1DBF1                          00000001
+CWG1DBF2                          00000002
+CWG1DBF3                          00000003
+CWG1DBF4                          00000004
+CWG1DBF5                          00000005
+CWG1DBR                           00000F42
+CWG1DBR0                          00000000
+CWG1DBR1                          00000001
+CWG1DBR2                          00000002
+CWG1DBR3                          00000003
+CWG1DBR4                          00000004
+CWG1DBR5                          00000005
+CWG1EN                            00000007
+CWG1IE                            00000000
+CWG1IF                            00000000
+CWG1IN                            00000005
+CWG1INPPS0                        00000000
+CWG1INPPS1                        00000001
+CWG1INPPS2                        00000002
+CWG1INPPS3                        00000003
+CWG1INPPS4                        00000004
+CWG1IP                            00000000
+CWG1ISM                           00000F41
+CWG1ISM0                          00000000
+CWG1ISM1                          00000001
+CWG1ISM2                          00000002
+CWG1ISM3                          00000003
+CWG1LD                            00000006
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 38
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CWG1LSAC0                         00000002
+CWG1LSAC1                         00000003
+CWG1LSBD0                         00000004
+CWG1LSBD1                         00000005
+CWG1MD                            00000000
+CWG1MODE0                         00000000
+CWG1MODE1                         00000001
+CWG1MODE2                         00000002
+CWG1OVRA                          00000004
+CWG1OVRB                          00000005
+CWG1OVRC                          00000006
+CWG1OVRD                          00000007
+CWG1POLA                          00000000
+CWG1POLB                          00000001
+CWG1POLC                          00000002
+CWG1POLD                          00000003
+CWG1PPS                           00000EB1
+CWG1REN                           00000006
+CWG1SHUTDOWN                      00000007
+CWG1STR                           00000F48
+CWG1STRA                          00000000
+CWG1STRB                          00000001
+CWG1STRC                          00000002
+CWG1STRD                          00000003
+CWGIE                             00000000
+CWGIF                             00000000
+CWGINPPS                          00000EB1
+CWGINPPS0                         00000000
+CWGINPPS1                         00000001
+CWGINPPS2                         00000002
+CWGINPPS3                         00000003
+CWGINPPS4                         00000004
+CWGIP                             00000000
+CWGMD                             00000000
+DABORT                            00000004
+DAC1CON0                          00000F33
+DAC1CON1                          00000F34
+DAC1EN                            00000007
+DAC1NSS                           00000000
+DAC1OE1                           00000005
+DAC1OE2                           00000004
+DAC1PSS0                          00000002
+DAC1PSS1                          00000003
+DAC1R0                            00000000
+DAC1R1                            00000001
+DAC1R2                            00000002
+DAC1R3                            00000003
+DAC1R4                            00000004
+DACMD                             00000006
+DATA0                             00000000
+DATA1                             00000001
+DATA10                            00000002
+DATA11                            00000003
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 39
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DATA12                            00000004
+DATA13                            00000005
+DATA14                            00000006
+DATA15                            00000007
+DATA2                             00000002
+DATA3                             00000003
+DATA4                             00000004
+DATA5                             00000005
+DATA6                             00000006
+DATA7                             00000007
+DATA8                             00000000
+DATA9                             00000001
+DATA_ADDRESS                      00000005
+DBF0                              00000000
+DBF1                              00000001
+DBF2                              00000002
+DBF3                              00000003
+DBF4                              00000004
+DBF5                              00000005
+DBR0                              00000000
+DBR1                              00000001
+DBR2                              00000002
+DBR3                              00000003
+DBR4                              00000004
+DBR5                              00000005
+DC                                00000001
+DC0_CLKRCON                       00000003
+DC0_PWM3DCL                       00000006
+DC0_PWM4DCL                       00000006
+DC1_CLKRCON                       00000004
+DC1_PWM3DCL                       00000007
+DC1_PWM4DCL                       00000007
+DC2                               00000000
+DC3                               00000001
+DC4                               00000002
+DC5                               00000003
+DC6                               00000004
+DC7                               00000005
+DC8                               00000006
+DC9                               00000007
+DDRA                              TRISA
+DDRB                              TRISB
+DDRC                              TRISC
+DDRD                              TRISD
+DDRE                              TRISE
+DHEN                              00000000
+DIV0                              00000000
+DIV1                              00000001
+DIV2                              00000002
+DLEN0                             00000004
+DLEN1                             00000005
+DLEN2                             00000006
+DLEN3                             00000007
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 40
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DOE                               00000004
+DONE                              00000000
+DOZE0                             00000000
+DOZE1                             00000001
+DOZE2                             00000002
+DOZEN                             00000006
+DSMMD                             00000000
+D_A                               00000005
+D_NOT_A                           00000005
+EN                                00000007
+EXTOEN                            00000007
+EXTOR                             00000007
+FAST                              00000001
+FERR                              00000002
+FMT                               00000004
+FREE                              00000004
+FRQ0                              00000000
+FRQ1                              00000001
+FRQ2                              00000002
+FRQ3                              00000003
+FSR0                              00000000
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1                              00000001
+FSR1H                             00000FE2
+FSR1L                             00000FE1
+FSR2                              00000002
+FSR2H                             00000FDA
+FSR2L                             00000FD9
+FULL                              00000000
+FVRCON                            00000F31
+FVREN                             00000007
+FVRMD                             00000006
+FVRRDY                            00000006
+G1EN                              00000007
+GCEN                              00000007
+GE                                00000007
+GGO_NOT_DONE                      00000003
+GIE                               00000007
+GIEH                              00000007
+GIEL                              00000006
+GIE_GIEH                          00000007
+GO_ADCON0                         00000000
+GO_NOT_DONE                       00000000
+GO_SCANCON0                       00000006
+GPOL                              00000006
+GSPM                              00000004
+GSS0                              00000000
+GSS1                              00000001
+GSS2                              00000002
+GSS3                              00000003
+GTM                               00000005
+GVAL                              00000002
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 41
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+HADR0                             00000000
+HADR1                             00000001
+HADR10                            00000002
+HADR11                            00000003
+HADR12                            00000004
+HADR13                            00000005
+HADR14                            00000006
+HADR15                            00000007
+HADR16                            00000000
+HADR17                            00000001
+HADR18                            00000002
+HADR19                            00000003
+HADR2                             00000002
+HADR20                            00000004
+HADR21                            00000005
+HADR3                             00000003
+HADR4                             00000004
+HADR5                             00000005
+HADR6                             00000006
+HADR7                             00000007
+HADR8                             00000000
+HADR9                             00000001
+HFOEN                             00000006
+HFOR                              00000006
+HLVDCON0                          00000F2F
+HLVDCON1                          00000F30
+HLVDEN                            00000007
+HLVDIE                            00000007
+HLVDIF                            00000007
+HLVDINTH                          00000001
+HLVDINTL                          00000000
+HLVDIP                            00000007
+HLVDMD                            00000005
+HLVDOUT                           00000005
+HLVDRDY                           00000004
+HLVDSEL0                          00000000
+HLVDSEL1                          00000001
+HLVDSEL2                          00000002
+HLVDSEL3                          00000003
+HYS                               00000001
+I2C_DAT                           00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IDLEN                             00000007
+IN                                00000005
+INDF0                             00000FEF
+INDF1                             00000FE7
+INDF2                             00000FDF
+INLVLA                            00000F0D
+INLVLA0                           00000000
+INLVLA1                           00000001
+INLVLA2                           00000002
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 42
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INLVLA3                           00000003
+INLVLA4                           00000004
+INLVLA5                           00000005
+INLVLA6                           00000006
+INLVLA7                           00000007
+INLVLB                            00000F15
+INLVLB0                           00000000
+INLVLB1                           00000001
+INLVLB2                           00000002
+INLVLB3                           00000003
+INLVLB4                           00000004
+INLVLB5                           00000005
+INLVLB6                           00000006
+INLVLB7                           00000007
+INLVLC                            00000F1D
+INLVLC0                           00000000
+INLVLC1                           00000001
+INLVLC2                           00000002
+INLVLC3                           00000003
+INLVLC4                           00000004
+INLVLC5                           00000005
+INLVLC6                           00000006
+INLVLC7                           00000007
+INLVLE                            00000F2A
+INLVLE3                           00000003
+INT0EDG                           00000000
+INT0IE                            00000000
+INT0IF                            00000000
+INT0IP                            00000000
+INT0PPS                           00000EA1
+INT0PPS0                          00000000
+INT0PPS1                          00000001
+INT0PPS2                          00000002
+INT0PPS3                          00000003
+INT1EDG                           00000001
+INT1IE                            00000001
+INT1IF                            00000001
+INT1IP                            00000001
+INT1PPS                           00000EA2
+INT1PPS0                          00000000
+INT1PPS1                          00000001
+INT1PPS2                          00000002
+INT1PPS3                          00000003
+INT2EDG                           00000002
+INT2IE                            00000002
+INT2IF                            00000002
+INT2IP                            00000002
+INT2PPS                           00000EA3
+INT2PPS0                          00000000
+INT2PPS1                          00000001
+INT2PPS2                          00000002
+INT2PPS3                          00000003
+INTCON                            00000FF2
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 43
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INTH                              00000001
+INTL                              00000000
+INTM                              00000003
+INTN                              00000000
+INTP                              00000001
+INVALID                           00000004
+IOCAF                             00000F0A
+IOCAF0                            00000000
+IOCAF1                            00000001
+IOCAF2                            00000002
+IOCAF3                            00000003
+IOCAF4                            00000004
+IOCAF5                            00000005
+IOCAF6                            00000006
+IOCAF7                            00000007
+IOCAN                             00000F0B
+IOCAN0                            00000000
+IOCAN1                            00000001
+IOCAN2                            00000002
+IOCAN3                            00000003
+IOCAN4                            00000004
+IOCAN5                            00000005
+IOCAN6                            00000006
+IOCAN7                            00000007
+IOCAP                             00000F0C
+IOCAP0                            00000000
+IOCAP1                            00000001
+IOCAP2                            00000002
+IOCAP3                            00000003
+IOCAP4                            00000004
+IOCAP5                            00000005
+IOCAP6                            00000006
+IOCAP7                            00000007
+IOCBF                             00000F12
+IOCBF0                            00000000
+IOCBF1                            00000001
+IOCBF2                            00000002
+IOCBF3                            00000003
+IOCBF4                            00000004
+IOCBF5                            00000005
+IOCBF6                            00000006
+IOCBF7                            00000007
+IOCBN                             00000F13
+IOCBN0                            00000000
+IOCBN1                            00000001
+IOCBN2                            00000002
+IOCBN3                            00000003
+IOCBN4                            00000004
+IOCBN5                            00000005
+IOCBN6                            00000006
+IOCBN7                            00000007
+IOCBP                             00000F14
+IOCBP0                            00000000
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 44
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+IOCBP1                            00000001
+IOCBP2                            00000002
+IOCBP3                            00000003
+IOCBP4                            00000004
+IOCBP5                            00000005
+IOCBP6                            00000006
+IOCBP7                            00000007
+IOCCF                             00000F1A
+IOCCF0                            00000000
+IOCCF1                            00000001
+IOCCF2                            00000002
+IOCCF3                            00000003
+IOCCF4                            00000004
+IOCCF5                            00000005
+IOCCF6                            00000006
+IOCCF7                            00000007
+IOCCN                             00000F1B
+IOCCN0                            00000000
+IOCCN1                            00000001
+IOCCN2                            00000002
+IOCCN3                            00000003
+IOCCN4                            00000004
+IOCCN5                            00000005
+IOCCN6                            00000006
+IOCCN7                            00000007
+IOCCP                             00000F1C
+IOCCP0                            00000000
+IOCCP1                            00000001
+IOCCP2                            00000002
+IOCCP3                            00000003
+IOCCP4                            00000004
+IOCCP5                            00000005
+IOCCP6                            00000006
+IOCCP7                            00000007
+IOCEF                             00000F27
+IOCEF3                            00000003
+IOCEN                             00000F28
+IOCEN3                            00000003
+IOCEP                             00000F29
+IOCEP3                            00000003
+IOCIE                             00000004
+IOCIF                             00000004
+IOCIP                             00000004
+IOCMD                             00000000
+IPEN                              00000005
+IPR0                              00000EBA
+IPR1                              00000EBB
+IPR2                              00000EBC
+IPR3                              00000EBD
+IPR4                              00000EBE
+IPR5                              00000EBF
+IPR6                              00000EC0
+IPR7                              00000EC1
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 45
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LADR0                             00000000
+LADR1                             00000001
+LADR10                            00000002
+LADR11                            00000003
+LADR12                            00000004
+LADR13                            00000005
+LADR14                            00000006
+LADR15                            00000007
+LADR16                            00000000
+LADR17                            00000001
+LADR18                            00000002
+LADR19                            00000003
+LADR2                             00000002
+LADR20                            00000004
+LADR21                            00000005
+LADR3                             00000003
+LADR4                             00000004
+LADR5                             00000005
+LADR6                             00000006
+LADR7                             00000007
+LADR8                             00000000
+LADR9                             00000001
+LATA                              00000F83
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA3                             00000003
+LATA4                             00000004
+LATA5                             00000005
+LATA6                             00000006
+LATA7                             00000007
+LATB                              00000F84
+LATB0                             00000000
+LATB1                             00000001
+LATB2                             00000002
+LATB3                             00000003
+LATB4                             00000004
+LATB5                             00000005
+LATB6                             00000006
+LATB7                             00000007
+LATC                              00000F85
+LATC0                             00000000
+LATC1                             00000001
+LATC2                             00000002
+LATC3                             00000003
+LATC4                             00000004
+LATC5                             00000005
+LATC6                             00000006
+LATC7                             00000007
+LD                                00000006
+LEDBLEUE1                         00000A50
+LEDBLEUE2                         000009EE
+LEDBLEUE3                         0000098C
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 46
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LEDBLEUE4                         0000092A
+LEDGREEN1                         00000740
+LEDGREEN2                         000006DE
+LEDGREEN3                         0000067C
+LEDGREEN4                         0000061A
+LEDJAUNE1                         000005B8
+LEDJAUNE2                         00000556
+LEDJAUNE3                         000004F4
+LEDJAUNE4                         00000492
+LEDROSE1                          00000430
+LEDROSE2                          000003CE
+LEDROSE3                          0000036C
+LEDROSE4                          0000030A
+LEDROUGE1                         000008C8
+LEDROUGE2                         00000866
+LEDROUGE3                         00000804
+LEDROUGE4                         000007A2
+LED_PIN                           00000000
+LFOEN                             00000004
+LFOR                              00000004
+LSAC0                             00000002
+LSAC1                             00000003
+LSBD0                             00000004
+LSBD1                             00000005
+LUMINOSITE0                       00000180
+LUMINOSITE1                       00000186
+LUMINOSITE2                       0000018C
+LUMINOSITE3                       00000192
+LUMINOSITE4                       00000198
+MC1OUT                            00000000
+MC2OUT                            00000001
+MDBIT                             00000000
+MDCARH                            00000F55
+MDCARHPPS                         00000EB3
+MDCARHPPS0                        00000000
+MDCARHPPS1                        00000001
+MDCARHPPS2                        00000002
+MDCARHPPS3                        00000003
+MDCARHPPS4                        00000004
+MDCARL                            00000F54
+MDCARLPPS                         00000EB2
+MDCARLPPS0                        00000000
+MDCARLPPS1                        00000001
+MDCARLPPS2                        00000002
+MDCARLPPS3                        00000003
+MDCARLPPS4                        00000004
+MDCHPOL                           00000005
+MDCHS0                            00000000
+MDCHS1                            00000001
+MDCHS2                            00000002
+MDCHSYNC                          00000004
+MDCLPOL                           00000001
+MDCLS0                            00000000
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 47
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+MDCLS1                            00000001
+MDCLS2                            00000002
+MDCLSYNC                          00000000
+MDCON0                            00000F51
+MDCON1                            00000F52
+MDEN                              00000007
+MDOPOL                            00000004
+MDOUT                             00000005
+MDSRC                             00000F53
+MDSRCPPS                          00000EB4
+MDSRCPPS0                         00000000
+MDSRCPPS1                         00000001
+MDSRCPPS2                         00000002
+MDSRCPPS3                         00000003
+MDSRCPPS4                         00000004
+MDSRCS0                           00000000
+MDSRCS1                           00000001
+MDSRCS2                           00000002
+MDSRCS3                           00000003
+MFOEN                             00000005
+MFOR                              00000005
+MODE0                             00000000
+MODE1                             00000001
+MODE2                             00000002
+MODE3                             00000003
+MODE4                             00000004
+MSK0                              00000000
+MSK1                              00000001
+MSK2                              00000002
+MSK3                              00000003
+MSK4                              00000004
+MSK5                              00000005
+MSK6                              00000006
+MSK7                              00000007
+MSSP1MD                           00000004
+N                                 00000004
+NB_LED                            0000000B
+NCH0                              00000000
+NCH1                              00000001
+NCH2                              00000002
+NDIV0                             00000000
+NDIV1                             00000001
+NDIV2                             00000002
+NDIV3                             00000003
+NOSC0                             00000004
+NOSC1                             00000005
+NOSC2                             00000006
+NOSCR                             00000003
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BOR                           00000000
+NOT_PD                            00000005
+NOT_POR                           00000001
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 48
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_RI                            00000002
+NOT_RMCLR                         00000003
+NOT_RWDT                          00000004
+NOT_SYNC                          00000002
+NOT_T1SYNC                        00000002
+NOT_T3SYNC                        00000002
+NOT_T5SYNC                        00000002
+NOT_TO                            00000006
+NOT_W                             00000002
+NOT_WDTWV                         00000005
+NOT_WRITE                         00000002
+NSS                               00000000
+NVMADR                            00000F7E
+NVMADR0                           00000000
+NVMADR1                           00000001
+NVMADR2                           00000002
+NVMADR3                           00000003
+NVMADR4                           00000004
+NVMADR5                           00000005
+NVMADR6                           00000006
+NVMADR7                           00000007
+NVMADRL                           00000F7E
+NVMCON1                           00000F81
+NVMCON2                           00000F82
+NVMDAT                            00000F80
+NVMDAT0                           00000000
+NVMDAT1                           00000001
+NVMDAT2                           00000002
+NVMDAT3                           00000003
+NVMDAT4                           00000004
+NVMDAT5                           00000005
+NVMDAT6                           00000006
+NVMDAT7                           00000007
+NVMIE                             00000005
+NVMIF                             00000005
+NVMIP                             00000005
+NVMMD                             00000002
+NVMREG0                           00000006
+NVMREG1                           00000007
+ODCA0                             00000000
+ODCA1                             00000001
+ODCA2                             00000002
+ODCA3                             00000003
+ODCA4                             00000004
+ODCA5                             00000005
+ODCA6                             00000006
+ODCA7                             00000007
+ODCB0                             00000000
+ODCB1                             00000001
+ODCB2                             00000002
+ODCB3                             00000003
+ODCB4                             00000004
+ODCB5                             00000005
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 49
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ODCB6                             00000006
+ODCB7                             00000007
+ODCC0                             00000000
+ODCC1                             00000001
+ODCC2                             00000002
+ODCC3                             00000003
+ODCC4                             00000004
+ODCC5                             00000005
+ODCC6                             00000006
+ODCC7                             00000007
+ODCONA                            00000F0F
+ODCONB                            00000F17
+ODCONC                            00000F1F
+OE1                               00000005
+OE2                               00000004
+OERR                              00000001
+ON_T1CON                          00000000
+ON_T2CON                          00000007
+ON_T3CON                          00000000
+ON_T4CON                          00000007
+ON_T5CON                          00000000
+ON_T6CON                          00000007
+OPOL                              00000004
+ORDY                              00000004
+OSCCON1                           00000ED8
+OSCCON2                           00000ED9
+OSCCON3                           00000EDA
+OSCEN                             00000EDC
+OSCFIE                            00000007
+OSCFIF                            00000007
+OSCFIP                            00000007
+OSCFRQ                            00000EDE
+OSCSTAT                           00000EDB
+OSCSTAT1                          00000EDB
+OSCTUNE                           00000EDD
+OUTPS0                            00000000
+OUTPS1                            00000001
+OUTPS2                            00000002
+OUTPS3                            00000003
+OUT_CCP1CON                       00000005
+OUT_CCP2CON                       00000005
+OUT_CM1CON0                       00000006
+OUT_CM2CON0                       00000006
+OUT_HLVDCON0                      00000005
+OUT_MDCON0                        00000005
+OUT_PWM3CON                       00000005
+OUT_PWM4CON                       00000005
+OUT_ZCDCON                        00000005
+OV                                00000003
+OVRA                              00000004
+OVRB                              00000005
+OVRC                              00000006
+OVRD                              00000007
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 50
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+P                                 00000004
+P3TSEL0                           00000004
+P3TSEL1                           00000005
+P4TSEL0                           00000006
+P4TSEL1                           00000007
+PC                                00000FF9
+PCH0                              00000000
+PCH1                              00000001
+PCH2                              00000002
+PCIE                              00000006
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+PCON0                             00000FD7
+PD                                00000005
+PEIE                              00000006
+PEIE_GIEL                         00000006
+PEN                               00000002
+PIE0                              00000EC2
+PIE1                              00000EC3
+PIE2                              00000EC4
+PIE3                              00000EC5
+PIE4                              00000EC6
+PIE5                              00000EC7
+PIE6                              00000EC8
+PIE7                              00000EC9
+PIR0                              00000ECA
+PIR1                              00000ECB
+PIR2                              00000ECC
+PIR3                              00000ECD
+PIR4                              00000ECE
+PIR5                              00000ECF
+PIR6                              00000ED0
+PIR7                              00000ED1
+PLEN0                             00000000
+PLEN1                             00000001
+PLEN2                             00000002
+PLEN3                             00000003
+PLLR                              00000000
+PLUSW0                            00000FEB
+PLUSW1                            00000FE3
+PLUSW2                            00000FDB
+PMD0                              00000EE1
+PMD1                              00000EE2
+PMD2                              00000EE3
+PMD3                              00000EE4
+PMD4                              00000EE5
+PMD5                              00000EE6
+POL                               00000004
+POLA                              00000000
+POLB                              00000001
+POLC                              00000002
+POLD                              00000003
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 51
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+POR                               00000001
+PORT                              00000003
+PORTA                             00000F8D
+PORTB                             00000F8E
+PORTC                             00000F8F
+PORTE                             00000F91
+POSTDEC0                          00000FED
+POSTDEC1                          00000FE5
+POSTDEC2                          00000FDD
+POSTINC0                          00000FEE
+POSTINC1                          00000FE6
+POSTINC2                          00000FDE
+PPSLOCK                           00000EA0
+PPSLOCKED                         00000000
+PR0                               00000FD4
+PR1                               00000FD0
+PR2                               00000FBC
+PR3                               00000FCA
+PR4                               00000FB6
+PR5                               00000FC4
+PR6                               00000FB0
+PREINC0                           00000FEC
+PREINC1                           00000FE4
+PREINC2                           00000FDC
+PROD                              00000FF3
+PRODH                             00000FF4
+PRODL                             00000FF3
+PSCNT0                            00000000
+PSCNT1                            00000001
+PSCNT10                           00000002
+PSCNT11                           00000003
+PSCNT12                           00000004
+PSCNT13                           00000005
+PSCNT14                           00000006
+PSCNT15                           00000007
+PSCNT16                           00000000
+PSCNT17                           00000001
+PSCNT2                            00000002
+PSCNT3                            00000003
+PSCNT4                            00000004
+PSCNT5                            00000005
+PSCNT6                            00000006
+PSCNT7                            00000007
+PSCNT8                            00000000
+PSCNT9                            00000001
+PSS0                              00000002
+PSS1                              00000003
+PSYNC                             00000007
+PWM3CON                           00000FA5
+PWM3DC                            00000FA3
+PWM3DC0                           00000006
+PWM3DC1                           00000007
+PWM3DC2                           00000000
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 52
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PWM3DC3                           00000001
+PWM3DC4                           00000002
+PWM3DC5                           00000003
+PWM3DC6                           00000004
+PWM3DC7                           00000005
+PWM3DC8                           00000006
+PWM3DC9                           00000007
+PWM3DCH                           00000FA4
+PWM3DCL                           00000FA3
+PWM3EN                            00000007
+PWM3MD                            00000002
+PWM3OUT                           00000005
+PWM3POL                           00000004
+PWM4CON                           00000FA2
+PWM4DC                            00000FA0
+PWM4DC0                           00000006
+PWM4DC1                           00000007
+PWM4DC2                           00000000
+PWM4DC3                           00000001
+PWM4DC4                           00000002
+PWM4DC5                           00000003
+PWM4DC6                           00000004
+PWM4DC7                           00000005
+PWM4DC8                           00000006
+PWM4DC9                           00000007
+PWM4DCH                           00000FA1
+PWM4DCL                           00000FA0
+PWM4EN                            00000007
+PWM4MD                            00000003
+PWM4OUT                           00000005
+PWM4POL                           00000004
+PWMPW0                            00000006
+PWMPW1                            00000007
+PWMPW2                            00000000
+PWMPW3                            00000001
+PWMPW4                            00000002
+PWMPW5                            00000003
+PWMPW6                            00000004
+PWMPW7                            00000005
+PWMPW8                            00000006
+PWMPW9                            00000007
+RA0                               00000000
+RA0PPS                            00000EE7
+RA0PPS0                           00000000
+RA0PPS1                           00000001
+RA0PPS2                           00000002
+RA0PPS3                           00000003
+RA0PPS4                           00000004
+RA1                               00000001
+RA1PPS                            00000EE8
+RA1PPS0                           00000000
+RA1PPS1                           00000001
+RA1PPS2                           00000002
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 53
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA1PPS3                           00000003
+RA1PPS4                           00000004
+RA2                               00000002
+RA2PPS                            00000EE9
+RA2PPS0                           00000000
+RA2PPS1                           00000001
+RA2PPS2                           00000002
+RA2PPS3                           00000003
+RA2PPS4                           00000004
+RA3                               00000003
+RA3PPS                            00000EEA
+RA3PPS0                           00000000
+RA3PPS1                           00000001
+RA3PPS2                           00000002
+RA3PPS3                           00000003
+RA3PPS4                           00000004
+RA4                               00000004
+RA4PPS                            00000EEB
+RA4PPS0                           00000000
+RA4PPS1                           00000001
+RA4PPS2                           00000002
+RA4PPS3                           00000003
+RA4PPS4                           00000004
+RA5                               00000005
+RA5PPS                            00000EEC
+RA5PPS0                           00000000
+RA5PPS1                           00000001
+RA5PPS2                           00000002
+RA5PPS3                           00000003
+RA5PPS4                           00000004
+RA6                               00000006
+RA6PPS                            00000EED
+RA6PPS0                           00000000
+RA6PPS1                           00000001
+RA6PPS2                           00000002
+RA6PPS3                           00000003
+RA6PPS4                           00000004
+RA7                               00000007
+RA7PPS                            00000EEE
+RA7PPS0                           00000000
+RA7PPS1                           00000001
+RA7PPS2                           00000002
+RA7PPS3                           00000003
+RA7PPS4                           00000004
+RB0                               00000000
+RB0PPS                            00000EEF
+RB0PPS0                           00000000
+RB0PPS1                           00000001
+RB0PPS2                           00000002
+RB0PPS3                           00000003
+RB0PPS4                           00000004
+RB1                               00000001
+RB1PPS                            00000EF0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 54
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB1PPS0                           00000000
+RB1PPS1                           00000001
+RB1PPS2                           00000002
+RB1PPS3                           00000003
+RB1PPS4                           00000004
+RB2                               00000002
+RB2PPS                            00000EF1
+RB2PPS0                           00000000
+RB2PPS1                           00000001
+RB2PPS2                           00000002
+RB2PPS3                           00000003
+RB2PPS4                           00000004
+RB3                               00000003
+RB3PPS                            00000EF2
+RB3PPS0                           00000000
+RB3PPS1                           00000001
+RB3PPS2                           00000002
+RB3PPS3                           00000003
+RB3PPS4                           00000004
+RB4                               00000004
+RB4PPS                            00000EF3
+RB4PPS0                           00000000
+RB4PPS1                           00000001
+RB4PPS2                           00000002
+RB4PPS3                           00000003
+RB4PPS4                           00000004
+RB5                               00000005
+RB5PPS                            00000EF4
+RB5PPS0                           00000000
+RB5PPS1                           00000001
+RB5PPS2                           00000002
+RB5PPS3                           00000003
+RB5PPS4                           00000004
+RB6                               00000006
+RB6PPS                            00000EF5
+RB6PPS0                           00000000
+RB6PPS1                           00000001
+RB6PPS2                           00000002
+RB6PPS3                           00000003
+RB6PPS4                           00000004
+RB7                               00000007
+RB7PPS                            00000EF6
+RB7PPS0                           00000000
+RB7PPS1                           00000001
+RB7PPS2                           00000002
+RB7PPS3                           00000003
+RB7PPS4                           00000004
+RC0                               00000000
+RC0PPS                            00000EF7
+RC0PPS0                           00000000
+RC0PPS1                           00000001
+RC0PPS2                           00000002
+RC0PPS3                           00000003
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 55
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RC0PPS4                           00000004
+RC1                               00000001
+RC1IE                             00000005
+RC1IF                             00000005
+RC1PPS                            00000EF8
+RC1PPS0                           00000000
+RC1PPS1                           00000001
+RC1PPS2                           00000002
+RC1PPS3                           00000003
+RC1PPS4                           00000004
+RC1REG                            00000F99
+RC1STA                            00000F9D
+RC2                               00000002
+RC2PPS                            00000EF9
+RC2PPS0                           00000000
+RC2PPS1                           00000001
+RC2PPS2                           00000002
+RC2PPS3                           00000003
+RC2PPS4                           00000004
+RC3                               00000003
+RC3PPS                            00000EFA
+RC3PPS0                           00000000
+RC3PPS1                           00000001
+RC3PPS2                           00000002
+RC3PPS3                           00000003
+RC3PPS4                           00000004
+RC4                               00000004
+RC4PPS                            00000EFB
+RC4PPS0                           00000000
+RC4PPS1                           00000001
+RC4PPS2                           00000002
+RC4PPS3                           00000003
+RC4PPS4                           00000004
+RC5                               00000005
+RC5PPS                            00000EFC
+RC5PPS0                           00000000
+RC5PPS1                           00000001
+RC5PPS2                           00000002
+RC5PPS3                           00000003
+RC5PPS4                           00000004
+RC6                               00000006
+RC6PPS                            00000EFD
+RC6PPS0                           00000000
+RC6PPS1                           00000001
+RC6PPS2                           00000002
+RC6PPS3                           00000003
+RC6PPS4                           00000004
+RC7                               00000007
+RC7PPS                            00000EFE
+RC7PPS0                           00000000
+RC7PPS1                           00000001
+RC7PPS2                           00000002
+RC7PPS3                           00000003
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 56
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RC7PPS4                           00000004
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCIP                              00000005
+RCREG                             00000F99
+RCREG1                            00000F99
+RCSTA                             00000F9D
+RCSTA1                            00000F9D
+RD                                00000000
+RD16                              00000001
+RDY_FVRCON                        00000006
+RDY_HLVDCON0                      00000004
+RE3                               00000003
+READ_WRITE                        00000002
+REN                               00000006
+RESULTHI                          0000000C
+RESULTLO                          0000000D
+RI                                00000002
+RMCLR                             00000003
+ROI                               00000005
+RSEL0                             00000000
+RSEL1                             00000001
+RSEL2                             00000002
+RSEL3                             00000003
+RSEN                              00000001
+RWDT                              00000004
+RX1PPS                            00000EB5
+RX9                               00000006
+RX9D                              00000000
+RXPPS                             00000EB5
+RXPPS0                            00000000
+RXPPS1                            00000001
+RXPPS2                            00000002
+RXPPS3                            00000003
+RXPPS4                            00000004
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SBCDE                             00000002
+SBOREN                            00000007
+SCANBUSY                          00000005
+SCANCON0                          00000F4F
+SCANEN                            00000007
+SCANGO                            00000006
+SCANHADR                          00000F4C
+SCANHADR0                         00000000
+SCANHADR1                         00000001
+SCANHADR10                        00000002
+SCANHADR11                        00000003
+SCANHADR12                        00000004
+SCANHADR13                        00000005
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 57
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SCANHADR14                        00000006
+SCANHADR15                        00000007
+SCANHADR16                        00000000
+SCANHADR17                        00000001
+SCANHADR18                        00000002
+SCANHADR19                        00000003
+SCANHADR2                         00000002
+SCANHADR20                        00000004
+SCANHADR21                        00000005
+SCANHADR3                         00000003
+SCANHADR4                         00000004
+SCANHADR5                         00000005
+SCANHADR6                         00000006
+SCANHADR7                         00000007
+SCANHADR8                         00000000
+SCANHADR9                         00000001
+SCANHADRH                         00000F4D
+SCANHADRL                         00000F4C
+SCANHADRU                         00000F4E
+SCANIE                            00000007
+SCANIF                            00000007
+SCANINTM                          00000003
+SCANINVALID                       00000004
+SCANIP                            00000007
+SCANLADR                          00000F49
+SCANLADR0                         00000000
+SCANLADR1                         00000001
+SCANLADR10                        00000002
+SCANLADR11                        00000003
+SCANLADR12                        00000004
+SCANLADR13                        00000005
+SCANLADR14                        00000006
+SCANLADR15                        00000007
+SCANLADR16                        00000000
+SCANLADR17                        00000001
+SCANLADR18                        00000002
+SCANLADR19                        00000003
+SCANLADR2                         00000002
+SCANLADR20                        00000004
+SCANLADR21                        00000005
+SCANLADR3                         00000003
+SCANLADR4                         00000004
+SCANLADR5                         00000005
+SCANLADR6                         00000006
+SCANLADR7                         00000007
+SCANLADR8                         00000000
+SCANLADR9                         00000001
+SCANLADRH                         00000F4A
+SCANLADRL                         00000F49
+SCANLADRU                         00000F4B
+SCANMD                            00000003
+SCANMODE0                         00000000
+SCANMODE1                         00000001
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 58
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SCANTRIG                          00000F50
+SCANTSEL0                         00000000
+SCANTSEL1                         00000001
+SCANTSEL2                         00000002
+SCANTSEL3                         00000003
+SCIE                              00000005
+SCKP                              00000004
+SDAHT                             00000003
+SEL0                              00000000
+SEL1                              00000001
+SEL2                              00000002
+SEL3                              00000003
+SENDB                             00000003
+SEN_SSP1CON2                      00000000
+SEN_WDTCON0                       00000000
+SEN_ZCDCON                        00000007
+SHFT0                             00000000
+SHFT1                             00000001
+SHFT10                            00000002
+SHFT11                            00000003
+SHFT12                            00000004
+SHFT13                            00000005
+SHFT14                            00000006
+SHFT15                            00000007
+SHFT2                             00000002
+SHFT3                             00000003
+SHFT4                             00000004
+SHFT5                             00000005
+SHFT6                             00000006
+SHFT7                             00000007
+SHFT8                             00000000
+SHFT9                             00000001
+SHIFTM                            00000001
+SHUTDOWN                          00000007
+SLRA0                             00000000
+SLRA1                             00000001
+SLRA2                             00000002
+SLRA3                             00000003
+SLRA4                             00000004
+SLRA5                             00000005
+SLRA6                             00000006
+SLRA7                             00000007
+SLRB0                             00000000
+SLRB1                             00000001
+SLRB2                             00000002
+SLRB3                             00000003
+SLRB4                             00000004
+SLRB5                             00000005
+SLRB6                             00000006
+SLRB7                             00000007
+SLRC0                             00000000
+SLRC1                             00000001
+SLRC2                             00000002
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 59
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SLRC3                             00000003
+SLRC4                             00000004
+SLRC5                             00000005
+SLRC6                             00000006
+SLRC7                             00000007
+SLRCONA                           00000F0E
+SLRCONB                           00000F16
+SLRCONC                           00000F1E
+SMP                               00000007
+SOR                               00000003
+SOSCEN                            00000003
+SOSCPWR                           00000006
+SP0                               00000000
+SP1                               00000001
+SP1BRG                            00000F9B
+SP1BRGH                           00000F9C
+SP1BRGL                           00000F9B
+SP2                               00000002
+SP3                               00000003
+SP4                               00000004
+SP5                               00000005
+SPBRG                             00000F9B
+SPBRG1                            00000F9B
+SPBRGH                            00000F9C
+SPBRGH1                           00000F9C
+SPBRGL                            00000F9B
+SPEN                              00000007
+SRCS0                             00000000
+SRCS1                             00000001
+SRCS2                             00000002
+SRCS3                             00000003
+SREN                              00000005
+SSP1ADD                           00000F93
+SSP1BUF                           00000F92
+SSP1CLKPPS                        00000EB7
+SSP1CLKPPS0                       00000000
+SSP1CLKPPS1                       00000001
+SSP1CLKPPS2                       00000002
+SSP1CLKPPS3                       00000003
+SSP1CLKPPS4                       00000004
+SSP1CON1                          00000F96
+SSP1CON2                          00000F97
+SSP1CON3                          00000F98
+SSP1DATPPS                        00000EB8
+SSP1DATPPS0                       00000000
+SSP1DATPPS1                       00000001
+SSP1DATPPS2                       00000002
+SSP1DATPPS3                       00000003
+SSP1DATPPS4                       00000004
+SSP1IE                            00000000
+SSP1IF                            00000000
+SSP1IP                            00000000
+SSP1MSK                           00000F94
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 60
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSP1SSPPS                         00000EB9
+SSP1SSPPS0                        00000000
+SSP1SSPPS1                        00000001
+SSP1SSPPS2                        00000002
+SSP1SSPPS3                        00000003
+SSP1SSPPS4                        00000004
+SSP1STAT                          00000F95
+SSPCLKPPS                         00000EB7
+SSPCLKPPS0                        00000000
+SSPCLKPPS1                        00000001
+SSPCLKPPS2                        00000002
+SSPCLKPPS3                        00000003
+SSPCLKPPS4                        00000004
+SSPDATPPS                         00000EB8
+SSPDATPPS0                        00000000
+SSPDATPPS1                        00000001
+SSPDATPPS2                        00000002
+SSPDATPPS3                        00000003
+SSPDATPPS4                        00000004
+SSPEN                             00000005
+SSPIE                             00000000
+SSPIF                             00000000
+SSPIP                             00000000
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSSPPS                          00000EB9
+SSPSSPPS0                         00000000
+SSPSSPPS1                         00000001
+SSPSSPPS2                         00000002
+SSPSSPPS3                         00000003
+SSPSSPPS4                         00000004
+STATE                             00000002
+STATUS                            00000FD8
+STKOVF                            00000007
+STKPTR                            00000FFC
+STKPTR0                           00000000
+STKPTR1                           00000001
+STKPTR2                           00000002
+STKPTR3                           00000003
+STKPTR4                           00000004
+STKPTR5                           00000005
+STKUNF                            00000006
+STRA                              00000000
+STRB                              00000001
+STRC                              00000002
+STRD                              00000003
+SWDTEN                            00000000
+SYNC_CM1CON0                      00000000
+SYNC_CM2CON0                      00000000
+SYNC_TX1STA                       00000004
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 61
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SYNC_TXSTA                        00000004
+SYNC_TXSTA1                       00000004
+SYSCMD                            00000007
+T016BIT                           00000004
+T0ASYNC                           00000004
+T0CKIPPS                          00000EA4
+T0CKIPPS0                         00000000
+T0CKIPPS1                         00000001
+T0CKIPPS2                         00000002
+T0CKIPPS3                         00000003
+T0CKPS0                           00000000
+T0CKPS1                           00000001
+T0CKPS2                           00000002
+T0CKPS3                           00000003
+T0CON0                            00000FD5
+T0CON1                            00000FD6
+T0CS0                             00000005
+T0CS1                             00000006
+T0CS2                             00000007
+T0EN                              00000007
+T0OUT                             00000005
+T0OUTPS0                          00000000
+T0OUTPS1                          00000001
+T0OUTPS2                          00000002
+T0OUTPS3                          00000003
+T0PR0                             00000000
+T0PR1                             00000001
+T0PR2                             00000002
+T0PR3                             00000003
+T0PR4                             00000004
+T0PR5                             00000005
+T0PR6                             00000006
+T0PR7                             00000007
+T0PS0                             00000000
+T0PS1                             00000001
+T0PS2                             00000002
+T0PS3                             00000003
+T1CKIPPS                          00000EA5
+T1CKIPPS0                         00000000
+T1CKIPPS1                         00000001
+T1CKIPPS2                         00000002
+T1CKIPPS3                         00000003
+T1CKIPPS4                         00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CLK                             00000FD2
+T1CON                             00000FCF
+T1CS0                             00000000
+T1CS1                             00000001
+T1CS2                             00000002
+T1CS3                             00000003
+T1GATE                            00000FD1
+T1GCON                            00000FD0
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 62
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T1GE                              00000007
+T1GGO                             00000003
+T1GGO_NOT_DONE                    00000003
+T1GPOL                            00000006
+T1GPPS                            00000EA6
+T1GPPS0                           00000000
+T1GPPS1                           00000001
+T1GPPS2                           00000002
+T1GPPS3                           00000003
+T1GPPS4                           00000004
+T1GSPM                            00000004
+T1GSS0                            00000000
+T1GSS1                            00000001
+T1GSS2                            00000002
+T1GSS3                            00000003
+T1GTM                             00000005
+T1GVAL                            00000002
+T1RD16                            00000001
+T2CKPOL                           00000006
+T2CKPS0                           00000004
+T2CKPS1                           00000005
+T2CKPS2                           00000006
+T2CKSYNC                          00000005
+T2CLK                             00000FBF
+T2CLKCON                          00000FBF
+T2CON                             00000FBD
+T2CS0                             00000000
+T2CS1                             00000001
+T2CS2                             00000002
+T2CS3                             00000003
+T2HLT                             00000FBE
+T2INPPS                           00000EAB
+T2INPPS0                          00000000
+T2INPPS1                          00000001
+T2INPPS2                          00000002
+T2INPPS3                          00000003
+T2INPPS4                          00000004
+T2MODE0                           00000000
+T2MODE1                           00000001
+T2MODE2                           00000002
+T2MODE3                           00000003
+T2MODE4                           00000004
+T2ON                              00000007
+T2OUTPS0                          00000000
+T2OUTPS1                          00000001
+T2OUTPS2                          00000002
+T2OUTPS3                          00000003
+T2PR                              00000FBC
+T2PSYNC                           00000007
+T2RSEL0                           00000000
+T2RSEL1                           00000001
+T2RSEL2                           00000002
+T2RSEL3                           00000003
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 63
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T2RST                             00000FC0
+T2TMR                             00000FBB
+T3CKIPPS                          00000EA7
+T3CKIPPS0                         00000000
+T3CKIPPS1                         00000001
+T3CKIPPS2                         00000002
+T3CKIPPS3                         00000003
+T3CKIPPS4                         00000004
+T3CKPS0                           00000004
+T3CKPS1                           00000005
+T3CLK                             00000FCC
+T3CON                             00000FC9
+T3CS0                             00000000
+T3CS1                             00000001
+T3CS2                             00000002
+T3CS3                             00000003
+T3GATE                            00000FCB
+T3GCON                            00000FCA
+T3GE                              00000007
+T3GGO                             00000003
+T3GGO_NOT_DONE                    00000003
+T3GPOL                            00000006
+T3GPPS                            00000EA8
+T3GPPS0                           00000000
+T3GPPS1                           00000001
+T3GPPS2                           00000002
+T3GPPS3                           00000003
+T3GPPS4                           00000004
+T3GSPM                            00000004
+T3GSS0                            00000000
+T3GSS1                            00000001
+T3GSS2                            00000002
+T3GSS3                            00000003
+T3GTM                             00000005
+T3GVAL                            00000002
+T3RD16                            00000001
+T4CKPOL                           00000006
+T4CKPS0                           00000004
+T4CKPS1                           00000005
+T4CKPS2                           00000006
+T4CKSYNC                          00000005
+T4CLK                             00000FB9
+T4CLKCON                          00000FB9
+T4CON                             00000FB7
+T4CS0                             00000000
+T4CS1                             00000001
+T4CS2                             00000002
+T4CS3                             00000003
+T4HLT                             00000FB8
+T4INPPS                           00000EAC
+T4INPPS0                          00000000
+T4INPPS1                          00000001
+T4INPPS2                          00000002
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 64
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T4INPPS3                          00000003
+T4INPPS4                          00000004
+T4MODE0                           00000000
+T4MODE1                           00000001
+T4MODE2                           00000002
+T4MODE3                           00000003
+T4MODE4                           00000004
+T4ON                              00000007
+T4OUTPS0                          00000000
+T4OUTPS1                          00000001
+T4OUTPS2                          00000002
+T4OUTPS3                          00000003
+T4PR                              00000FB6
+T4PSYNC                           00000007
+T4RSEL0                           00000000
+T4RSEL1                           00000001
+T4RSEL2                           00000002
+T4RSEL3                           00000003
+T4RST                             00000FBA
+T4TMR                             00000FB5
+T5CKIPPS                          00000EA9
+T5CKIPPS0                         00000000
+T5CKIPPS1                         00000001
+T5CKIPPS2                         00000002
+T5CKIPPS3                         00000003
+T5CKIPPS4                         00000004
+T5CKPS0                           00000004
+T5CKPS1                           00000005
+T5CLK                             00000FC6
+T5CON                             00000FC3
+T5CS0                             00000000
+T5CS1                             00000001
+T5CS2                             00000002
+T5CS3                             00000003
+T5GATE                            00000FC5
+T5GCON                            00000FC4
+T5GE                              00000007
+T5GGO                             00000003
+T5GGO_NOT_DONE                    00000003
+T5GPOL                            00000006
+T5GPPS                            00000EAA
+T5GPPS0                           00000000
+T5GPPS1                           00000001
+T5GPPS2                           00000002
+T5GPPS3                           00000003
+T5GPPS4                           00000004
+T5GSPM                            00000004
+T5GSS0                            00000000
+T5GSS1                            00000001
+T5GSS2                            00000002
+T5GSS3                            00000003
+T5GTM                             00000005
+T5GVAL                            00000002
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 65
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T5RD16                            00000001
+T6CKPOL                           00000006
+T6CKPS0                           00000004
+T6CKPS1                           00000005
+T6CKPS2                           00000006
+T6CKSYNC                          00000005
+T6CLK                             00000FB3
+T6CLKCON                          00000FB3
+T6CON                             00000FB1
+T6CS0                             00000000
+T6CS1                             00000001
+T6CS2                             00000002
+T6CS3                             00000003
+T6HLT                             00000FB2
+T6INPPS                           00000EAD
+T6INPPS0                          00000000
+T6INPPS1                          00000001
+T6INPPS2                          00000002
+T6INPPS3                          00000003
+T6INPPS4                          00000004
+T6MODE0                           00000000
+T6MODE1                           00000001
+T6MODE2                           00000002
+T6MODE3                           00000003
+T6MODE4                           00000004
+T6ON                              00000007
+T6OUTPS0                          00000000
+T6OUTPS1                          00000001
+T6OUTPS2                          00000002
+T6OUTPS3                          00000003
+T6PR                              00000FB0
+T6PSYNC                           00000007
+T6RSEL0                           00000000
+T6RSEL1                           00000001
+T6RSEL2                           00000002
+T6RSEL3                           00000003
+T6RST                             00000FB4
+T6TMR                             00000FAF
+TABLAT                            00000FF5
+TBLPTR                            00000FF6
+TBLPTRH                           00000FF7
+TBLPTRL                           00000FF6
+TBLPTRU                           00000FF8
+TMR0                              00000FD3
+TMR0H                             00000FD4
+TMR0H0                            00000000
+TMR0H1                            00000001
+TMR0H2                            00000002
+TMR0H3                            00000003
+TMR0H4                            00000004
+TMR0H5                            00000005
+TMR0H6                            00000006
+TMR0H7                            00000007
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 66
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0IE                            00000005
+TMR0IF                            00000005
+TMR0IP                            00000005
+TMR0L                             00000FD3
+TMR0L0                            00000000
+TMR0L1                            00000001
+TMR0L2                            00000002
+TMR0L3                            00000003
+TMR0L4                            00000004
+TMR0L5                            00000005
+TMR0L6                            00000006
+TMR0L7                            00000007
+TMR0MD                            00000000
+TMR1                              00000FCD
+TMR10                             00000000
+TMR11                             00000001
+TMR110                            00000002
+TMR111                            00000003
+TMR112                            00000004
+TMR113                            00000005
+TMR114                            00000006
+TMR115                            00000007
+TMR12                             00000002
+TMR13                             00000003
+TMR14                             00000004
+TMR15                             00000005
+TMR16                             00000006
+TMR17                             00000007
+TMR18                             00000000
+TMR19                             00000001
+TMR1CLK                           00000FD2
+TMR1GATE                          00000FD1
+TMR1GIE                           00000000
+TMR1GIF                           00000000
+TMR1GIP                           00000000
+TMR1H                             00000FCE
+TMR1H0                            00000000
+TMR1H1                            00000001
+TMR1H2                            00000002
+TMR1H3                            00000003
+TMR1H4                            00000004
+TMR1H5                            00000005
+TMR1H6                            00000006
+TMR1H7                            00000007
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1IP                            00000000
+TMR1L                             00000FCD
+TMR1L0                            00000000
+TMR1L1                            00000001
+TMR1L2                            00000002
+TMR1L3                            00000003
+TMR1L4                            00000004
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 67
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR1L5                            00000005
+TMR1L6                            00000006
+TMR1L7                            00000007
+TMR1MD                            00000001
+TMR1ON                            00000000
+TMR2                              00000FBB
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2IP                            00000001
+TMR2MD                            00000002
+TMR2ON                            00000007
+TMR3                              00000FC7
+TMR30                             00000000
+TMR31                             00000001
+TMR310                            00000002
+TMR311                            00000003
+TMR312                            00000004
+TMR313                            00000005
+TMR314                            00000006
+TMR315                            00000007
+TMR32                             00000002
+TMR33                             00000003
+TMR34                             00000004
+TMR35                             00000005
+TMR36                             00000006
+TMR37                             00000007
+TMR38                             00000000
+TMR39                             00000001
+TMR3CLK                           00000FCC
+TMR3GATE                          00000FCB
+TMR3GIE                           00000001
+TMR3GIF                           00000001
+TMR3GIP                           00000001
+TMR3H                             00000FC8
+TMR3H0                            00000000
+TMR3H1                            00000001
+TMR3H2                            00000002
+TMR3H3                            00000003
+TMR3H4                            00000004
+TMR3H5                            00000005
+TMR3H6                            00000006
+TMR3H7                            00000007
+TMR3IE                            00000002
+TMR3IF                            00000002
+TMR3IP                            00000002
+TMR3L                             00000FC7
+TMR3L0                            00000000
+TMR3L1                            00000001
+TMR3L2                            00000002
+TMR3L3                            00000003
+TMR3L4                            00000004
+TMR3L5                            00000005
+TMR3L6                            00000006
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 68
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR3L7                            00000007
+TMR3MD                            00000003
+TMR3ON                            00000000
+TMR4                              00000FB5
+TMR4IE                            00000003
+TMR4IF                            00000003
+TMR4IP                            00000003
+TMR4MD                            00000004
+TMR4ON                            00000007
+TMR5                              00000FC1
+TMR50                             00000000
+TMR51                             00000001
+TMR510                            00000002
+TMR511                            00000003
+TMR512                            00000004
+TMR513                            00000005
+TMR514                            00000006
+TMR515                            00000007
+TMR52                             00000002
+TMR53                             00000003
+TMR54                             00000004
+TMR55                             00000005
+TMR56                             00000006
+TMR57                             00000007
+TMR58                             00000000
+TMR59                             00000001
+TMR5CLK                           00000FC6
+TMR5GATE                          00000FC5
+TMR5GIE                           00000002
+TMR5GIF                           00000002
+TMR5GIP                           00000002
+TMR5H                             00000FC2
+TMR5H0                            00000000
+TMR5H1                            00000001
+TMR5H2                            00000002
+TMR5H3                            00000003
+TMR5H4                            00000004
+TMR5H5                            00000005
+TMR5H6                            00000006
+TMR5H7                            00000007
+TMR5IE                            00000004
+TMR5IF                            00000004
+TMR5IP                            00000004
+TMR5L                             00000FC1
+TMR5L0                            00000000
+TMR5L1                            00000001
+TMR5L2                            00000002
+TMR5L3                            00000003
+TMR5L4                            00000004
+TMR5L5                            00000005
+TMR5L6                            00000006
+TMR5L7                            00000007
+TMR5MD                            00000005
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 69
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR5ON                            00000000
+TMR6                              00000FAF
+TMR6IE                            00000005
+TMR6IF                            00000005
+TMR6IP                            00000005
+TMR6MD                            00000006
+TMR6ON                            00000007
+TO                                00000006
+TOS                               00000FFD
+TOSH                              00000FFE
+TOSL                              00000FFD
+TOSU                              00000FFF
+TRISA                             00000F88
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000F89
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000F8A
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRMT                              00000001
+TSEL0                             00000000
+TSEL1                             00000001
+TSEL2                             00000002
+TSEL3                             00000003
+TSEN                              00000005
+TSRNG                             00000004
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TUN5                              00000005
+TX1IE                             00000004
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 70
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TX1IF                             00000004
+TX1PPS                            00000EB6
+TX1REG                            00000F9A
+TX1STA                            00000F9E
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXIP                              00000004
+TXPPS                             00000EB6
+TXPPS0                            00000000
+TXPPS1                            00000001
+TXPPS2                            00000002
+TXPPS3                            00000003
+TXPPS4                            00000004
+TXREG                             00000F9A
+TXREG1                            00000F9A
+TXSTA                             00000F9E
+TXSTA1                            00000F9E
+UA                                00000001
+UART1MD                           00000006
+VREGCON                           00000EDF
+VREGPM0                           00000000
+VREGPM1                           00000001
+W                                 00000000
+WCOL                              00000007
+WDTCON0                           00000ED2
+WDTCON1                           00000ED3
+WDTCS0                            00000004
+WDTCS1                            00000005
+WDTCS2                            00000006
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WDTPS4                            00000005
+WDTPSCNT0                         00000000
+WDTPSCNT1                         00000001
+WDTPSCNT10                        00000002
+WDTPSCNT11                        00000003
+WDTPSCNT12                        00000004
+WDTPSCNT13                        00000005
+WDTPSCNT14                        00000006
+WDTPSCNT15                        00000007
+WDTPSCNT16                        00000000
+WDTPSCNT17                        00000001
+WDTPSCNT2                         00000002
+WDTPSCNT3                         00000003
+WDTPSCNT4                         00000004
+WDTPSCNT5                         00000005
+WDTPSCNT6                         00000006
+WDTPSCNT7                         00000007
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 71
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WDTPSCNT8                         00000000
+WDTPSCNT9                         00000001
+WDTPSH                            00000ED5
+WDTPSL                            00000ED4
+WDTSEN                            00000000
+WDTSTATE                          00000002
+WDTTMR                            00000ED6
+WDTTMR0                           00000003
+WDTTMR1                           00000004
+WDTTMR2                           00000005
+WDTTMR3                           00000006
+WDTTMR4                           00000007
+WDTWINDOW0                        00000000
+WDTWINDOW1                        00000001
+WDTWINDOW2                        00000002
+WDTWV                             00000005
+WINDOW0                           00000000
+WINDOW1                           00000001
+WINDOW2                           00000002
+WPUA                              00000F10
+WPUA0                             00000000
+WPUA1                             00000001
+WPUA2                             00000002
+WPUA3                             00000003
+WPUA4                             00000004
+WPUA5                             00000005
+WPUA6                             00000006
+WPUA7                             00000007
+WPUB                              00000F18
+WPUB0                             00000000
+WPUB1                             00000001
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WPUC                              00000F20
+WPUC0                             00000000
+WPUC1                             00000001
+WPUC2                             00000002
+WPUC3                             00000003
+WPUC4                             00000004
+WPUC5                             00000005
+WPUC6                             00000006
+WPUC7                             00000007
+WPUE                              00000F2D
+WPUE3                             00000003
+WR                                00000001
+WREG                              00000FE8
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 72
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+X1                                00000001
+X10                               00000002
+X11                               00000003
+X12                               00000004
+X13                               00000005
+X14                               00000006
+X15                               00000007
+X2                                00000002
+X3                                00000003
+X4                                00000004
+X5                                00000005
+X6                                00000006
+X7                                00000007
+X8                                00000000
+X9                                00000001
+Z                                 00000002
+ZCDCON                            00000F32
+ZCDIE                             00000006
+ZCDIF                             00000006
+ZCDINTN                           00000000
+ZCDINTP                           00000001
+ZCDIP                             00000006
+ZCDMD                             00000000
+ZCDOUT                            00000005
+ZCDPOL                            00000004
+ZCDSEN                            00000007
+_BOREN_NOSLP_2L                   000000BF
+_BOREN_OFF_2L                     0000003F
+_BOREN_ON_2L                      0000007F
+_BOREN_SBORDIS_2L                 000000FF
+_BORV_VBOR_245_2H                 000000FE
+_BORV_VBOR_270_2H                 000000FD
+_BORV_VBOR_285_2H                 000000FC
+_BORV_VBOR_2P45_2H                000000FF
+_CLKOUTEN_OFF_1H                  000000FF
+_CLKOUTEN_ON_1H                   000000FE
+_CONFIG1H                         00300001
+_CONFIG1L                         00300000
+_CONFIG2H                         00300003
+_CONFIG2L                         00300002
+_CONFIG3H                         00300005
+_CONFIG3L                         00300004
+_CONFIG4H                         00300007
+_CONFIG4L                         00300006
+_CONFIG5H                         00300009
+_CONFIG5L                         00300008
+_CONFIG6H                         0030000B
+_CONFIG6L                         0030000A
+_CPD_OFF_5L                       000000FF
+_CPD_ON_5L                        000000FD
+_CP_OFF_5L                        000000FF
+_CP_ON_5L                         000000FE
+_CSWEN_OFF_1H                     000000F7
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 73
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CSWEN_ON_1H                      000000FF
+_DEBUG_OFF_2H                     000000FF
+_DEBUG_ON_2H                      000000DF
+_DEVID1                           003FFFFE
+_DEVID2                           003FFFFF
+_EBTR0_OFF_6L                     000000FF
+_EBTR0_ON_6L                      000000FE
+_EBTR1_OFF_6L                     000000FF
+_EBTR1_ON_6L                      000000FD
+_EBTR2_OFF_6L                     000000FF
+_EBTR2_ON_6L                      000000FB
+_EBTR3_OFF_6L                     000000FF
+_EBTR3_ON_6L                      000000F7
+_EBTRB_OFF_6H                     000000FF
+_EBTRB_ON_6H                      000000FD
+_FCMEN_OFF_1H                     000000DF
+_FCMEN_ON_1H                      000000FF
+_FEXTOSC_ECH_1L                   000000FF
+_FEXTOSC_ECL_1L                   000000FD
+_FEXTOSC_ECM_1L                   000000FE
+_FEXTOSC_HS_1L                    000000FA
+_FEXTOSC_LP_1L                    000000F8
+_FEXTOSC_OFF_1L                   000000FC
+_FEXTOSC_RESERVED_1L              000000FB
+_FEXTOSC_XT_1L                    000000F9
+_IDLOC0                           00200000
+_IDLOC1                           00200001
+_IDLOC10                          0020000A
+_IDLOC11                          0020000B
+_IDLOC12                          0020000C
+_IDLOC13                          0020000D
+_IDLOC14                          0020000E
+_IDLOC15                          0020000F
+_IDLOC2                           00200002
+_IDLOC3                           00200003
+_IDLOC4                           00200004
+_IDLOC5                           00200005
+_IDLOC6                           00200006
+_IDLOC7                           00200007
+_IDLOC8                           00200008
+_IDLOC9                           00200009
+_LPBOREN_OFF_2L                   000000FF
+_LPBOREN_ON_2L                    000000DF
+_LVP_OFF_4H                       000000DF
+_LVP_ON_4H                        000000FF
+_MAIN_PROG_0070                   00000070
+_MAIN_PROG_0146                   00000146
+_MCLRE_EXTMCLR_2L                 000000FF
+_MCLRE_INTMCLR_2L                 000000FE
+_PPS1WAY_OFF_2H                   000000F7
+_PPS1WAY_ON_2H                    000000FF
+_PWRTE_OFF_2L                     000000FF
+_PWRTE_ON_2L                      000000FD
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 74
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_RSTOSC_EXTOSC_1L                 000000FF
+_RSTOSC_EXTOSC_4PLL_1L            000000AF
+_RSTOSC_HFINTOSC_1MHZ_1L          000000EF
+_RSTOSC_HFINTOSC_64MHZ_1L         0000008F
+_RSTOSC_LFINTOSC_1L               000000DF
+_RSTOSC_RESERVED_1_1L             0000009F
+_RSTOSC_RESERVED_2_1L             000000BF
+_RSTOSC_SOSC_1L                   000000CF
+_SCANE_OFF_4H                     000000EF
+_SCANE_ON_4H                      000000FF
+_STVREN_OFF_2H                    000000EF
+_STVREN_ON_2H                     000000FF
+_WDTCCS_HFINTOSC_3H               000000CF
+_WDTCCS_LFINTOSC_3H               000000C7
+_WDTCCS_SC_3H                     000000FF
+_WDTCPS_WDTCPS_0_3L               000000E0
+_WDTCPS_WDTCPS_10_3L              000000EA
+_WDTCPS_WDTCPS_11_3L              000000EB
+_WDTCPS_WDTCPS_12_3L              000000EC
+_WDTCPS_WDTCPS_13_3L              000000ED
+_WDTCPS_WDTCPS_14_3L              000000EE
+_WDTCPS_WDTCPS_15_3L              000000EF
+_WDTCPS_WDTCPS_16_3L              000000F0
+_WDTCPS_WDTCPS_17_3L              000000F1
+_WDTCPS_WDTCPS_18_3L              000000F2
+_WDTCPS_WDTCPS_19_3L              000000F3
+_WDTCPS_WDTCPS_1_3L               000000E1
+_WDTCPS_WDTCPS_20_3L              000000F4
+_WDTCPS_WDTCPS_21_3L              000000F5
+_WDTCPS_WDTCPS_22_3L              000000F6
+_WDTCPS_WDTCPS_23_3L              000000F7
+_WDTCPS_WDTCPS_24_3L              000000F8
+_WDTCPS_WDTCPS_25_3L              000000F9
+_WDTCPS_WDTCPS_26_3L              000000FA
+_WDTCPS_WDTCPS_27_3L              000000FB
+_WDTCPS_WDTCPS_28_3L              000000FC
+_WDTCPS_WDTCPS_29_3L              000000FD
+_WDTCPS_WDTCPS_2_3L               000000E2
+_WDTCPS_WDTCPS_30_3L              000000FE
+_WDTCPS_WDTCPS_31_3L              000000FF
+_WDTCPS_WDTCPS_3_3L               000000E3
+_WDTCPS_WDTCPS_4_3L               000000E4
+_WDTCPS_WDTCPS_5_3L               000000E5
+_WDTCPS_WDTCPS_6_3L               000000E6
+_WDTCPS_WDTCPS_7_3L               000000E7
+_WDTCPS_WDTCPS_8_3L               000000E8
+_WDTCPS_WDTCPS_9_3L               000000E9
+_WDTCWS_WDTCWS_0_3H               000000F8
+_WDTCWS_WDTCWS_1_3H               000000F9
+_WDTCWS_WDTCWS_2_3H               000000FA
+_WDTCWS_WDTCWS_3_3H               000000FB
+_WDTCWS_WDTCWS_4_3H               000000FC
+_WDTCWS_WDTCWS_5_3H               000000FD
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 75
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTCWS_WDTCWS_6_3H               000000FE
+_WDTCWS_WDTCWS_7_3H               000000FF
+_WDTE_NSLEEP_3L                   000000DF
+_WDTE_OFF_3L                      0000009F
+_WDTE_ON_3L                       000000FF
+_WDTE_SWDTEN_3L                   000000BF
+_WRT0_OFF_4L                      000000FF
+_WRT0_ON_4L                       000000FE
+_WRT1_OFF_4L                      000000FF
+_WRT1_ON_4L                       000000FD
+_WRT2_OFF_4L                      000000FF
+_WRT2_ON_4L                       000000FB
+_WRT3_OFF_4L                      000000FF
+_WRT3_ON_4L                       000000F7
+_WRTB_OFF_4H                      000000FF
+_WRTB_ON_4H                       000000FD
+_WRTC_OFF_4H                      000000FF
+_WRTC_ON_4H                       000000FE
+_WRTD_OFF_4H                      000000FF
+_WRTD_ON_4H                       000000FB
+_XINST_OFF_2H                     000000FF
+_XINST_ON_2H                      0000007F
+_ZCD_OFF_2H                       000000FF
+_ZCD_ON_2H                        000000FB
+__18F25K40                        00000001
+bit0                              000002C6
+bit1                              000002E6
+cinq                              00000007
+deux                              00000004
+eteindre_led                      0000019E
+huit                              0000000A
+ife2                              000000BA
+ife3                              000000D0
+incre                             0000000E
+isbtn0pressed                     00000002
+isbtn1pressed                     00000001
+lab1                              000000E6
+lab2                              000000F2
+lab3                              000000FE
+lab4                              0000010A
+lab5                              00000116
+lab6                              00000122
+lab7                              0000012E
+lab8                              0000013A
+ledlum0pr1                        000001E6
+ledlum0pr2                        0000024C
+ledlum0skip1                      000001EA
+ledlum0skip2                      00000250
+ledlum1pr1                        000001F6
+ledlum1pr2                        0000025C
+ledlum1skip1                      000001FE
+ledlum1skip2                      00000264
+ledlum2pr1                        0000020A
+MPASM 5.87                 RGBLUMINOSITE.ASM   2-1-2024  11:19:24         PAGE 76
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ledlum2pr2                        00000270
+ledlum2skip1                      00000212
+ledlum2skip2                      00000278
+ledlum3pr1                        0000021E
+ledlum3pr2                        00000284
+ledlum3skip1                      00000226
+ledlum3skip2                      0000028C
+ledlum4pr1                        00000232
+ledlum4pr2                        00000298
+ledlum4skip1                      0000023A
+ledlum4skip2                      000002A0
+loop                              000000AA
+luminosite                        0000000F
+prog                              00000000
+prog1                             000001D6
+prog2                             0000023C
+prog3                             000002A2
+prog4                             000002A8
+prog5                             000002AE
+prog6                             000002B4
+prog7                             000002BA
+prog8                             000002C0
+quatre                            00000006
+resett                            000001BA
+sept                              00000009
+six                               00000008
+skip                              000001BE
+suite                             000000C0
+suite2                            000000D6
+trigger_led                       0000013E
+trois                             00000005
+un                                00000003
+
+Errors   :     0
+Warnings :     1 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
